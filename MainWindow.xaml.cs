@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using MoqWord.Helpers;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,7 @@ namespace MoqWord
         public MainWindow()
         {
             InitializeComponent();
+            Resources.Add("services", ServiceProvider.getService());
         }
     }
 }

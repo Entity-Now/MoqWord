@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Builder;
+using Autofac.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using MoqWord.Repository;
 using SqlSugar;
 
@@ -15,15 +17,18 @@ namespace MoqWord.Helpers
     internal class ServiceProvider
     {
         private static bool _isInitialized;
-        private static IContainer _containerBuilder;
+        private static IServiceCollection _serviceCollection;
+        private static IServiceProvider _services;
 
         private static void initializer()
         {
             _isInitialized = true;
-            var builder = new ContainerBuilder();
-            // 初始化
-            Configuration(builder);
-            _containerBuilder = builder.Build();
+
+            _serviceCollection = new ServiceCollection();
+            _serviceCollection.AddWpfBlazorWebView();
+            _serviceCollection.AddAutofac(Configuration);
+
+            _services = _serviceCollection.BuildServiceProvider();
         }
 
         private static void Configuration(ContainerBuilder builder)
@@ -71,19 +76,27 @@ namespace MoqWord.Helpers
                 .InstancePerDependency();
         }
 
-        public static T? getService<T>()
+        public static IServiceProvider getService()
         {
             if (!_isInitialized)
             {
                 initializer();
             }
-            return _containerBuilder.Resolve<T>();
+            //return _containerBuilder.Resolve<T>();
+            return _services;
+        }
+        public static IServiceCollection getCollection()
+        {
+            if (!_isInitialized)
+            {
+                initializer();
+            }
+            return _serviceCollection;
         }
 
         public static void Dispose()
         {
             _isInitialized = false;
-            _containerBuilder.Dispose();
         }
     }
 }
