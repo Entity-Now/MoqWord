@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MoqWord.Model.Entity
 {
+    [SugarTable]
     public class BaseEntity
     {
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]

@@ -20,7 +20,15 @@ namespace MoqWord
         public MainWindow()
         {
             InitializeComponent();
-            Resources.Add("services", ServiceProvider.getService());
+            Resources.Add("services", ServiceHelper.getService());
+            // 注册窗口事件类
+            WindowHelper.Init();
+        }
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                this.DragMove();
         }
     }
 }

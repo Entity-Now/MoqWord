@@ -1,0 +1,12 @@
+﻿<Router AppAssembly="@typeof(Layout.MainLayout).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="@typeof(Layout.MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(Layout.MainLayout)">
+            <Result Status="404" />
+        </LayoutView>
+    </NotFound>
+</Router>
+
+<AntContainer />

@@ -1,0 +1,117 @@
+﻿@using MoqWord.Components.Components.FaIcon
+@inherits LayoutComponentBase
+@inject AntDesign.IconService iconService
+@using MoqWord.Helpers
+
+<Layout class="MainContainer">
+    <Sider @bind-Collapsed=@collapsed NoTrigger OnCollapse="OnCollapse">
+        <div class="titleBar">
+            <img class="logo" src="MOQ.png" alt="莫欺单词" />
+            @if (!collapsed)
+            {
+                <span class="title">莫欺单词</span>
+            }
+        </div>
+        <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Inline" DefaultSelectedKeys=@(new[]{"1"})>
+            <MenuItem Key="1" OnClick=@(()=>NavigateGo("/"))>
+                <Icon Type="home" Theme="outline" Style="font-weight:bold;"/>
+                <span class="nav_name">主页</span>
+            </MenuItem>
+            <MenuItem Key="2" OnClick=@(()=>NavigateGo("/Settings"))>
+                <Icon Type="setting" Theme="outline" Style="font-weight:bold;" />
+                <span>设置</span>
+            </MenuItem>
+        </Menu>
+    </Sider>
+    <Layout Class="site-layout">
+        <div @onmousedown="WindowHelper.StartMove" @onmouseup="WindowHelper.StopMove">
+            <Header Class="header site-layout-background">
+                @if (collapsed)
+                {
+                    <FaIcon Type="fa-indent" OnClick="toggle" />
+                }
+                else
+                {
+                    <FaIcon Type="fa-outdent" OnClick="toggle" />
+                }
+
+                <Space Class="tools" Size="@("large")">
+                    <SpaceItem>
+                        <FaIcon Type="fa-minus" OnClick="WindowHelper.Minimize" />
+                    </SpaceItem>
+                    <SpaceItem>
+                        <FaIcon Type="fa-expand" OnClick="WindowHelper.Collpase" />
+                    </SpaceItem>
+                    <SpaceItem>
+                        <FaIcon Type="fa-xmark" OnClick="()=>WindowHelper.Close()" />
+                    </SpaceItem>
+                </Space>
+            </Header>
+        </div>
+        <Breadcrumb Style="margin: 10px">
+            <BreadcrumbItem>Home</BreadcrumbItem>
+        </Breadcrumb>
+        <Content Class="site-layout-background" Style="margin: 0 10px;padding: 10px;height: 100%">
+            @Body
+        </Content>
+    </Layout>
+</Layout>
+<AntContainer />
+
+
+<style>
+    .MainContainer {
+        height: 100% !important;
+        width: 100% !important;
+    }
+
+        .MainContainer .trigger {
+            font-size: 18px;
+            line-height: 64px;
+            padding: 0 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+            .MainContainer .trigger:hover {
+                color: #1890ff;
+            }
+
+        .MainContainer .titleBar {
+            height: 32px;
+            margin: 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            gap: 10px;
+        }
+
+            .MainContainer .titleBar .logo{
+                width: 32px;
+                height: 32px;
+            }
+
+            .MainContainer .titleBar .title{
+                font-size: 20px;
+            }
+        .nav_name{
+            margin-left: 10px;
+        }
+        .MainContainer .header {
+            display: flex;
+            flex-direction: row;
+            padding: 0 17px;
+            box-sizing: border-box;
+        }
+
+            .MainContainer .header .tools{
+                margin-left: auto;
+            }
+
+    .site-layout .site-layout-background {
+        background: #fff;
+    }
+
+</style>

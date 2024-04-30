@@ -1,4 +1,6 @@
-﻿using System.Configuration;
+﻿using Microsoft.Extensions.DependencyInjection;
+using MoqWord.Helpers;
+using System.Configuration;
 using System.Data;
 using System.Windows;
 
@@ -13,6 +15,8 @@ namespace MoqWord
         {
             base.OnStartup(e);
 
+            var mainWindow = ServiceHelper.Services.GetRequiredService<MainWindow>();
+            mainWindow.Show();
         }
     }
 

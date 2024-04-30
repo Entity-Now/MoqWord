@@ -3,15 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell"
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:MoqWord"
-        xmlns:page="clr-namespace:MoqWord.Page"
+        xmlns:components="clr-namespace:MoqWord.Components"
         mc:Ignorable="d"
-        Title="Moq单词" Height="450" Width="800">
+        Title="Moq单词" Height="800" Width="1400" WindowStyle="None" Icon="/MOQ.png">
     <Grid>
-        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <blazor:BlazorWebView Grid.Row="0" Grid.RowSpan="2" HostPage="wwwroot\index.html" Services="{DynamicResource services}">
             <blazor:BlazorWebView.RootComponents>
-                <blazor:RootComponent Selector="#app" ComponentType="{x:Type page:Index}" />
+                <blazor:RootComponent Selector="#app" ComponentType="{x:Type components:Routes}" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
     </Grid>

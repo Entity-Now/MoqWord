@@ -1,0 +1,22 @@
+﻿@inherits AntDomComponentBase
+
+<div class="FaFont @(IsHover ? "Hover" : ' ') @ClassMapper.Class" style="@getVar() @Style" id="@Id" @ref="Ref" @onclick="OnClickHandler">
+    <span class="fa-solid @(Type)"></span>
+</div>
+
+<style>
+    .FaFont{
+        display: inline-flex;
+        color: var(--color, black);
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .Hover.FaFont:hover{
+        color: var(--hover-color, #1890ff);
+        cursor: pointer;
+    }
+        .FaFont .fa-solid {
+            font-size: var(--size, 28px);
+        }
+</style>
