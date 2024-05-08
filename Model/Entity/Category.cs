@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace MoqWord.Model.Entity
 {
+    [SugarTable]
     public class Category : BaseEntity
     {
         /// <summary>

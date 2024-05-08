@@ -17,6 +17,7 @@ namespace MoqWord
 
             var mainWindow = ServiceHelper.Services.GetRequiredService<MainWindow>();
             mainWindow.Show();
+            
         }
     }
 

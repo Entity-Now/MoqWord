@@ -21,6 +21,8 @@ namespace MoqWord.Components.Components.FaIcon
         public string Size { get; set; }
         [Parameter]
         public bool IsHover { get; set; } = true;
+        [Parameter]
+        public bool IsInherit { get; set; } = false;
 
         // 定义点击事件参数
         [Parameter]
@@ -36,13 +38,13 @@ namespace MoqWord.Components.Components.FaIcon
         private string getVar()
         {
             string val = "";
-            if (!string.IsNullOrEmpty(Color))
+            if (IsInherit == true || !string.IsNullOrEmpty(Color))
             {
-                val += $"--color:{Color};";
+                val += $"--color:{(IsInherit ? "inherit" : Color)};";
             }
-            if (!string.IsNullOrEmpty(HoverColor))
+            if (IsInherit == true || !string.IsNullOrEmpty(HoverColor))
             {
-                val += $"--hover-color:{HoverColor};";
+                val += $"--hover-color:{(IsInherit ? "inherit" : HoverColor)};";
             }
             if (!string.IsNullOrEmpty(Size))
             {

@@ -1,15 +1,105 @@
-﻿@page "/"
+﻿@using MoqWord.Components.Components.FaIcon
+@page "/"
 @inject IMessageService _message
 
+<div class="IndexContainer">
+    <div class="topTools">
+        <Flex Gap="large" Align="center" Justify="flex-start" Style="height: 100%;margin: 0 10px;">
+            <Tooltip Title="请选择字典">
+                <div class="ToolsItem">
+                    当前字典
+                </div>
+            </Tooltip>
+            <Tooltip Title="切换暗色主题">
+                <FaIcon Type="fa-sun" />
+            </Tooltip>
+            <Dropdown Arrow Placement="Placement.Bottom">
+                <Overlay>
+                    <Menu>
+                        <MenuItem>循环播放1次</MenuItem>
+                        <MenuItem>循环播放3次</MenuItem>
+                        <MenuItem>循环播放5次</MenuItem>
+                        <MenuItem>循环播放8次</MenuItem>
+                        <MenuItem>重复循环</MenuItem>
+                    </Menu>
+                </Overlay>
+                <ChildContent>
+                    <Tooltip Title="切换播放次数" Style="text-align: center">
+                        <FaIcon Type="fa-repeat" />
+                    </Tooltip>
+                </ChildContent>
+            </Dropdown>
+        </Flex>
+    </div>
+    <div class="Body">
 
-<Button Type="primary" OnClick="OnClick">
-    Display normal message
-</Button>
+    </div>
+    <div class="footBar">
+        <Flex Vertical="true" Align="center" Style="flex-basis: 120px">
+            <Title Level="4" Style="margin-bottom: 0; ">00：01</Title>
+            <Divider Style="margin: 10px 0"/>
+            <Text>时间</Text>
+        </Flex>
 
-@code {
-    private void OnClick()
-    {
-        Console.WriteLine("onclick");
-        _message.Info("This is a normal message");
+        <Flex Vertical="true" Align="center" Style="flex-basis: 120px">
+            <Title Level="4" Style="margin-bottom: 0">00：01</Title>
+            <Divider Style="margin: 10px 0" />
+            <Text>输入数</Text>
+        </Flex>
+        <Flex Vertical="true" Align="center" Style="flex-basis: 120px">
+            <Title Level="4" Style="margin-bottom: 0">00：01</Title>
+            <Divider Style="margin: 10px 0"/>
+            <Text>正确数</Text>
+        </Flex>
+        <Flex Vertical="true" Align="center" Style="flex-basis: 120px">
+            <Title Level="4" Style="margin-bottom: 0">00：01</Title>
+            <Divider Style="margin: 10px 0"/>
+            <Text>正确率</Text>
+        </Flex>
+    </div>
+</div>
+<style>
+    .IndexContainer{
+       position: relative;
+       width: 100%;
+       height: 100%;
     }
-}
+    .IndexContainer .topTools{
+        position: absolute;
+        top: 0;
+        left: 10%;
+        width: 80%;
+        height: 60px;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+            .IndexContainer .topTools .ToolsItem {
+                cursor: pointer;
+                transition: all .3s;
+                padding: 7px;
+                box-sizing: border-box;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+                .IndexContainer .topTools .ToolsItem:hover{
+                    background: #1890ff;
+                    color: white;
+                }
+    .IndexContainer .footBar{
+        position: absolute;
+        bottom: 0px;
+        left: 0;
+        width: 100%;
+        min-height: 120px;
+        background: #fff;
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+        box-sizing: border-box;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+    }
+</style>

@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace MoqWord.Model.Entity
 {
-    [SugarTable]
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int Id { get; set; }
