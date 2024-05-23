@@ -1,0 +1,34 @@
+﻿@using ColorHelper;
+@using MoqWord.Components.Components.FaIcon;
+<div class="flex flex-row">
+    <div class="relative w-8 h-8" style="background: #@Color">
+        <div class="flex justify-center items-center absolute left-0 top-0 w-full h-full cursor-pointer opacity-0 hover:opacity-100 transition-all delay-200 text-gray-500" @onclick="()=>ResetColor()">
+            <FaIcon Type="fa-rotate" IsInherit="true"/>
+        </div>
+    </div>
+
+</div>
+
+@code {
+    [Parameter]
+    public string Color{ get; set; }
+    [Parameter]
+    public EventCallback<string> ColorChanged { get; set; }
+
+    public void ResetColor(){
+        Color = ColorGenerator.GetLightRandomColor<HEX>().ToString();
+        ColorChanged.InvokeAsync(Color);
+    }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        ResetColor();
+    }
+}
+
+<style>
+    .ViewColor {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    }
+
+</style>

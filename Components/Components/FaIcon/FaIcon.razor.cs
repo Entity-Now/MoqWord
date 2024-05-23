@@ -11,6 +11,16 @@ namespace MoqWord.Components.Components.FaIcon
 {
     public partial class FaIcon : AntDomComponentBase
     {
+        private string? ClassString => CssBuilder.Default("FaFont")
+            .AddClass("Color HoverColor", !IsInherit)
+            .AddClass("Hover", IsHover)
+            .Build();
+        private string? StyleString => CssBuilder.Default()
+            .AddClass($"--color:{(IsInherit ? "inherit" : Color)};", !string.IsNullOrEmpty(Color))
+            .AddClass($"--hover-color:{(IsInherit ? "inherit" : HoverColor)};", !string.IsNullOrEmpty(HoverColor))
+            .AddClass($"--size:{Size};", !string.IsNullOrEmpty(Size))
+            .Build();
+
         [Parameter]
         public string Type { get; set; }
         [Parameter]
@@ -33,24 +43,6 @@ namespace MoqWord.Components.Components.FaIcon
         {
             // 调用点击事件参数
             await OnClick.InvokeAsync(e);
-        }
-
-        private string getVar()
-        {
-            string val = "";
-            if (IsInherit == true || !string.IsNullOrEmpty(Color))
-            {
-                val += $"--color:{(IsInherit ? "inherit" : Color)};";
-            }
-            if (IsInherit == true || !string.IsNullOrEmpty(HoverColor))
-            {
-                val += $"--hover-color:{(IsInherit ? "inherit" : HoverColor)};";
-            }
-            if (!string.IsNullOrEmpty(Size))
-            {
-                val += $"--size:{Size};";
-            }
-            return val;
         }
     }
 }

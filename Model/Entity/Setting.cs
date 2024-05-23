@@ -59,10 +59,20 @@ namespace MoqWord.Model.Entity
         [CellType("音频名", "未定义", CellType.TextBox, typeof(string))]
         public string SoundName { get; set; }
         /// <summary>
+        /// 编码译码器
+        /// </summary>
+        [CellType("编码译码器", null, CellType.TextBox, typeof(string), Visible = false)]
+        public string? SuggestedCodec { get; set; }
+        /// <summary>
         /// 音频播放速度
         /// </summary>
-        [CellType("音频播放速度", 0, CellType.TextBox, typeof(double))]
+        [CellType(Title = "音频播放速度", Value = 0, CellType = CellType.Slider, ValueType = typeof(double), MinValue = -100.0, MaxValue = 100.0)]
         public double SpeechSpeed { get; set; }
+        /// <summary>
+        /// 音频音量
+        /// </summary>
+        [CellType(Title = "音频音量", Value = 0, CellType = CellType.Slider, ValueType = typeof(double), MinValue = 0.0, MaxValue = 100.0)]
+        public double SoundVolume { get; set; }
         /// <summary>
         /// 是否开机自启
         /// </summary>

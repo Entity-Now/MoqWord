@@ -12,6 +12,9 @@ namespace MoqWord
         public static TypeAdapterConfig getConfig()
         {
             var config = new TypeAdapterConfig();
+            config.ForType<Category, CategoryDTO>()
+                .Map(dest => dest.Count, src => src.Words.Count())
+                .Map(dest => dest.GraspCount, src => src.Words.Count(x => x.Grasp));
 
             return config;
         }

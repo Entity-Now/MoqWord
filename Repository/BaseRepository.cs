@@ -1,4 +1,5 @@
 ﻿using Mapster;
+using MoqWord.Repository.Interface;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MoqWord.Repository
 {
-    public class BaseRepository<T> : SimpleClient<T>, IBaseRepository<T> where T : class , new()
+    public class BaseRepository<T> : SimpleClient<T>, IBaseRepository<T> where T : BaseEntity , new()
     {
         public TypeAdapterConfig Config { get; set; }
         public BaseRepository(ISqlSugarClient db, TypeAdapterConfig _config) {
@@ -177,6 +178,24 @@ namespace MoqWord.Repository
             return Context.Updateable<T>(t).ExecuteCommandAsync();
         }
         /// <summary>
+        /// 级联插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual InsertNavTaskInit<T,T> InsertNav(List<T> list)
+        {
+            return Context.InsertNav(list);
+        }
+        /// <summary>
+        /// 级联插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual InsertNavTaskInit<T, T> InsertNav(T list)
+        {
+            return Context.InsertNav(list);
+        }
+        /// <summary>
         /// 插入或更新
         /// </summary>
         /// <param name="t"></param>
@@ -211,6 +230,38 @@ namespace MoqWord.Repository
         public virtual Task<int> InsertOrUpdateAsync(List<T> t)
         {
             return Context.Storageable<T>(t).DefaultAddElseUpdate().ExecuteCommandAsync();
+        }
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        public virtual int Count()
+        {
+            return Context.Queryable<T>().Count();
+        }
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task<int> CountAsync()
+        {
+            return Context.Queryable<T>().CountAsync();
+        }
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        public virtual int Count(Expression<Func<T, bool>> expression)
+        {
+            return Context.Queryable<T>().Where(expression).Count();
+        }
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task<int> CountAsync(Expression<Func<T, bool>> expression)
+        {
+            return Context.Queryable<T>().Where(expression).CountAsync();
         }
     }
 }

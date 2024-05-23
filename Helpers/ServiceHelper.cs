@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,9 @@ using System.Windows;
 using Mapster;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
-using MoqWord.Repository;
+using MoqWord.Repository.Interface;
+using MoqWord.Services;
+using MoqWord.Services.Interface;
 using SqlSugar;
 
 namespace MoqWord.Helpers
@@ -29,8 +32,8 @@ namespace MoqWord.Helpers
 
             _serviceCollection = new ServiceCollection();
             // 注入Mapster
-            _serviceCollection.AddMapster();
             _serviceCollection.AddSingleton(TypeMappingConfig.getConfig());
+            _serviceCollection.AddMapster();
             // 注册blazor wpf
             _serviceCollection.AddWpfBlazorWebView();
             _serviceCollection.AddBlazorWebViewDeveloperTools();
@@ -73,6 +76,17 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<ISettingRepository, SettingRepository>();
             _serviceCollection.AddTransient<IWordRepository, WordRepository>();
             _serviceCollection.AddTransient<IWordLogRepository, WordLogRepository>();
+            _serviceCollection.AddTransient<ITagRepository, TagRepository>();
+            _serviceCollection.AddTransient(typeof(BaseService<>));
+            _serviceCollection.AddTransient<ICategoryService, CategoryService>();
+            _serviceCollection.AddTransient<IPersonalService, PersonalService>();
+            _serviceCollection.AddTransient<ISettingService, SettingService>();
+            _serviceCollection.AddTransient<IWordService, WordService>();
+            _serviceCollection.AddTransient<IWordLogService, WordLogService>();
+            _serviceCollection.AddTransient<ITagService, TagService>();
+            _serviceCollection.AddTransient<DefaultPlaySound>();
+            _serviceCollection.AddTransient<EdgePlaySound>();
+            _serviceCollection.AddTransient<YoudaoPlaySound>();
 
             _services = _serviceCollection.BuildServiceProvider();
         }

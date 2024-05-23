@@ -1,0 +1,168 @@
+﻿@page "/WordList"
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.Win32
+@using MoqWord.Components.Components.FaIcon
+@using MoqWord.Components.Components.RandomColor
+@using System.IO
+@using MyTag = MoqWord.Model.Entity.Tag;
+
+@inject IMessageService _message
+@inject ICategoryService _service
+@inject IWordService _wordService
+@inject ITagService _tagService
+@inject ISettingService _settingService
+@inject TypeAdapterConfig _config
+
+<div class="flex flex-col w-full h-full relative px-4">
+    <div class="grid grid-cols-4 gap-5">
+        @foreach (var item in categories)
+        {
+            <div class="relative h-[320px] flex flex-col items-center justify-center shadow-md rounded transition-all duration-500 cursor-pointer hover:-translate-y-1"
+                style="background:#@(item.Color)"
+                 @onclick="()=> openWordsView(item)">
+                <span class="text-2xl font-bold m-auto">@item.Name</span>
+                <div class="mt-auto flex flex-col w-full">
+                    <div class="flex justify-around">
+                        <span class="!block bg-gray-100 rounded-md p-1">背完@(item.GraspCount)个</span>
+                        <span class="!block bg-gray-100 rounded-md p-1">总共@(item.Count)个</span>
+                    </div>
+                    <Progress Class="!w-10/12 !m-auto" Percent=@(item.GraspCount / item.Count * 100) ShowInfo="false" />
+                </div>
+            </div>
+        }
+    </div>
+    <div class="absolute right-12 bottom-12 w-[48px] h-[48px] flex items-center justify-center bg-white shadow-md rounded-full cursor-pointer hover:bg-gray-50" @onclick="()=>openModal()">
+        <FaIcon Type="fa-plus" IsInherit="true"/>
+    </div>
+</div>
+
+@if (currCategory != null)
+{
+    <Drawer @bind-Visible="wordsView" Title="@($"{currCategory.Name}单词列表")" Width="500">
+        <Virtualize Items="@currCategory.Words" Context="item">
+            <div class="relative flex flex-col bg-slate-300 gap-3 my-3 p-3 rounded shadow-current">
+                <div class="flex flex-row gap-2">
+                    <span class="text-base text-black font-medium">@item.WordName</span>
+                    <span class="text-base text-black text-gray-600">英 @item.AnnotationUk 美 @item.AnnotationUs</span>
+                </div>
+                <span class="text-base text-black font-medium">@item.Translation</span>
+                <FaIcon OnClick="p => PlayWord(item)" Class=" absolute right-3 top-1/2 -translate-y-1/2" Type="fa-volume-low"></FaIcon>
+            </div>
+        </Virtualize>
+    </Drawer>
+}
+<Modal Title="@("添加字典")" @bind-Visible="modalIsVisible" Draggable Footer="null">
+    <Form Model="@model" OnFinish="OkHandle"
+          LabelColSpan="4"
+          WrapperColSpan="20">
+        <FormItem Label="导入平台">
+            <RadioGroup @bind-Value="selectPlatform" ButtonStyle="@RadioButtonStyle.Solid">
+                <Radio RadioButton Value="@("Qwerty")">Qwerty</Radio>
+                <Radio RadioButton Value="@("不背单词")" Disabled>不背单词</Radio>
+                <Radio RadioButton Value="@("有道")" Disabled>有道</Radio>
+            </RadioGroup>
+        </FormItem>
+        <FormItem Label="分类名">
+            <Input @bind-Value="model.Name"></Input>
+        </FormItem>
+        <FormItem Label="标签列表">
+            <Select Bordered ShowArrowIcon Mode="tags" TItem="MyTag" TItemValue="string" ValueName="@nameof(MyTag.Name)" LabelName="@nameof(MyTag.Name)" @bind-Values="selectTags" AllowClear>
+
+            </Select>
+        </FormItem>
+        <FormItem Label="分类描述">
+            <TextArea @bind-Value="model.Description" Placeholder="请输入字典描述.."></TextArea>
+        </FormItem>
+        <FormItem Label="背景颜色">
+            <RandomColor @bind-Color="model.Color" />
+        </FormItem>
+        <div class="flex flex-row">
+            <Button Class="ml-auto" Type="@ButtonType.Primary" HtmlType="submit">新增</Button>
+        </div>
+    </Form>
+</Modal>
+
+@code{
+    // 表单是否显示
+    bool modalIsVisible = false;
+    bool wordsView = false;
+    // 当前选中的导入平台
+    string selectPlatform = "Qwerty";
+    Dictionary<string, Func<IImportWords>> importPlatform = new()
+        {
+            ["Qwerty"] = ()=> new QwertyLearnerImport(),
+            ["不背单词"] = () => new QwertyLearnerImport(),
+            ["有道"] = () => new QwertyLearnerImport(),
+    };
+    List<MyTag> tags { get; set; }
+    IEnumerable<string> selectTags = new List<string>();
+    List<CategoryDTO> categories { get; set; }
+    CategoryDTO currCategory { get; set; }
+    Category model = new Category();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        tags = _tagService.GetAll().ToList();
+        categories = _service.GetAllCategory().ToList();
+    }
+    void openModal(){
+        modalIsVisible = true;
+    }
+    void openWordsView(CategoryDTO item)
+    {
+        if (item.Words is null or default(List<Word>))
+        {
+            item.Words = _wordService.GetQuery(x => x.CategoryId == item.Id).ToList();
+        }
+        wordsView = true;
+        currCategory = item;
+    }
+    async void OkHandle(EditContext context){
+        try
+        {
+            var open = new OpenFileDialog();
+            open.DefaultExt = ".json,.txt";
+            if (open.ShowDialog() is bool result == true)
+            {
+                var haveTags = tags.Where(x => selectTags.Any(i => i == x.Name));
+                var addTags = selectTags.Where(x => !haveTags.Any(i => i.Name == x)).Select(item => new MyTag
+                    {
+                        Name = item,
+                        CreateDT = DateTime.Now,
+                        UpdateDT = DateTime.Now
+                    });
+                var wordSource = File.ReadAllText(open.FileName);
+                model.CreateDT = DateTime.Now;
+                model.UpdateDT = DateTime.Now;
+                model.Tags = haveTags.Concat(addTags).ToList();
+                // handle words
+                var importHandle = importPlatform[selectPlatform]();
+                model.Words = importHandle.ImportWords(wordSource).ToList();
+                // save words
+                var insertState = await _service.InsertNav(model)
+                    .Include(x => x.Words)
+                    .Include(x => x.Tags)
+                    .ExecuteCommandAsync();
+                if (insertState)
+                {
+                    _message.Success("导入成功~");
+                    modalIsVisible = false;
+                }
+                else
+                {
+                    _message.Error("导入失败~");
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            _message.Error(e.Message);
+            throw e;
+        }
+    }
+    async void PlayWord(Word word){
+        var sound = _settingService.getCurrentSound();
+        sound.Play(word.WordName);
+    }
+}

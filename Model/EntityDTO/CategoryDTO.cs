@@ -6,10 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoqWord.Model.Entity
+namespace MoqWord.Model.EntityDTO
 {
-    [SugarTable]
-    public class Category : BaseEntity
+    public class CategoryDTO : BaseEntity
     {
         /// <summary>
         /// 分类名
@@ -40,12 +39,13 @@ namespace MoqWord.Model.Entity
         /// 分类颜色
         /// </summary>
         public string Color { get; set; }
-        [Navigate(typeof(CategoryTag), nameof(CategoryTag.CategoryId), nameof(CategoryTag.TagId))]
+        public int Count { get; set; }
+        public int GraspCount { get; set; }
+        public int Precentage { get; set; }
         public List<Tag> Tags { get; set; }
         /// <summary>
         /// 此分类下的列表
         /// </summary>
-        [Navigate(NavigateType.OneToMany, nameof(Word.CategoryId))]
         public List<Word> Words { get; set; }
     }
 }

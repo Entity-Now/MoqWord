@@ -15,16 +15,20 @@
         <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Inline" DefaultSelectedKeys=@(new[]{"1"})>
             <MenuItem Key="1" OnClick=@(()=>NavigateGo("/"))>
                 <Icon Type="home" Theme="outline" Style="font-weight:bold;"/>
-                <span class="nav_name">主页</span>
+                <span class="nav_name">背诵单词</span>
             </MenuItem>
-            <MenuItem Key="2" OnClick=@(()=>NavigateGo("/Settings"))>
+            <MenuItem Key="2" OnClick=@(()=>NavigateGo("/WordList"))>
+                <Icon Type="home" Theme="outline" Style="font-weight:bold;" />
+                <span class="nav_name">字典列表</span>
+            </MenuItem>
+            <MenuItem Key="3" OnClick=@(()=>NavigateGo("/Settings"))>
                 <Icon Type="setting" Theme="outline" Style="font-weight:bold;" />
                 <span>设置</span>
             </MenuItem>
         </Menu>
     </Sider>
     <Layout Class="site-layout">
-        <div @onmousedown="WindowHelper.StartMove" @onmouseup="WindowHelper.StopMove">
+        <div @onmousedown="WindowHelper.StartMove" @onmouseup="WindowHelper.StopMove" @onmouseleave="WindowHelper.StopMove">
             <Header Class="header site-layout-background">
                 @if (collapsed)
                 {
@@ -34,18 +38,36 @@
                 {
                     <FaIcon Type="fa-outdent" OnClick="toggle" />
                 }
-
-                <Space Class="tools" Size="@("large")">
-                    <SpaceItem>
-                        <FaIcon Type="fa-minus" OnClick="WindowHelper.Minimize" />
-                    </SpaceItem>
-                    <SpaceItem>
-                        <FaIcon Type="fa-expand" OnClick="WindowHelper.Collpase" />
-                    </SpaceItem>
-                    <SpaceItem>
-                        <FaIcon Type="fa-xmark" OnClick="()=>WindowHelper.Close()" />
-                    </SpaceItem>
-                </Space>
+                <Flex Class="tools" Gap="large">
+                    <Flex Gap="large" Align="center" Justify="center" Style="height: 100%;margin: 0 10px;">
+                        <Tooltip Title="请选择字典">
+                            <span class="ToolsItem" Style="margin: 0">
+                                当前字典
+                            </span>
+                        </Tooltip>
+                        <Tooltip Title="切换暗色主题">
+                            <FaIcon Type="fa-sun" />
+                        </Tooltip>
+                        <Dropdown Arrow Placement="Placement.Bottom">
+                            <Overlay>
+                                <Menu>
+                                    <MenuItem>循环播放1次</MenuItem>
+                                    <MenuItem>循环播放3次</MenuItem>
+                                    <MenuItem>循环播放5次</MenuItem>
+                                    <MenuItem>循环播放8次</MenuItem>
+                                    <MenuItem>重复循环</MenuItem>
+                                </Menu>
+                            </Overlay>
+                            <ChildContent>
+                                <FaIcon Type="fa-repeat" />
+                            </ChildContent>
+                        </Dropdown>
+                    </Flex>
+                    <Divider Type="DirectionVHType.Vertical" Style="margin: auto 0"/>
+                    <FaIcon Type="fa-minus" OnClick="WindowHelper.Minimize" />
+                    <FaIcon Type="fa-expand" OnClick="WindowHelper.Collpase" />
+                    <FaIcon Type="fa-xmark" OnClick="()=>WindowHelper.Close()" />
+                </Flex>
             </Header>
         </div>
         <Content Style="padding-top: 20px;height: 100%;box-sizing: border-box;overflow: auto;">
@@ -54,7 +76,6 @@
     </Layout>
 </Layout>
 <AntContainer />
-
 
 <style>
     .MainContainer {
@@ -68,6 +89,7 @@
             padding: 0 24px;
             cursor: pointer;
             transition: color 0.3s;
+            box-sizing: border-box;
         }
 
             .MainContainer .trigger:hover {
@@ -101,11 +123,27 @@
             flex-direction: row;
             padding: 0 17px;
             box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
         }
 
             .MainContainer .header .tools{
                 margin-left: auto;
             }
+
+            .MainContainer .header .tools .ToolsItem {
+                cursor: pointer;
+                transition: all .3s;
+                padding: 7px;
+                box-sizing: border-box;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+                .MainContainer .header .tools .ToolsItem:hover {
+                    background: #1890ff;
+                    color: white;
+                }
 
     .site-layout .site-layout-background {
         background: #fff;

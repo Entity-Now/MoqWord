@@ -3,36 +3,31 @@
 @inject IMessageService _message
 
 <div class="IndexContainer">
-    <div class="topTools">
-        <Flex Gap="large" Align="center" Justify="flex-start" Style="height: 100%;margin: 0 10px;">
-            <Tooltip Title="请选择字典">
-                <div class="ToolsItem">
-                    当前字典
-                </div>
-            </Tooltip>
-            <Tooltip Title="切换暗色主题">
-                <FaIcon Type="fa-sun" />
-            </Tooltip>
-            <Dropdown Arrow Placement="Placement.Bottom">
-                <Overlay>
-                    <Menu>
-                        <MenuItem>循环播放1次</MenuItem>
-                        <MenuItem>循环播放3次</MenuItem>
-                        <MenuItem>循环播放5次</MenuItem>
-                        <MenuItem>循环播放8次</MenuItem>
-                        <MenuItem>重复循环</MenuItem>
-                    </Menu>
-                </Overlay>
-                <ChildContent>
-                    <Tooltip Title="切换播放次数" Style="text-align: center">
-                        <FaIcon Type="fa-repeat" />
-                    </Tooltip>
-                </ChildContent>
-            </Dropdown>
-        </Flex>
-    </div>
+   
     <div class="Body">
-
+        <div class="nextWord">
+            <div class="switch left">
+                <FaIcon IsInherit="true" Class="arrow" Type="fa-arrow-left-long" />
+                <div class="wordInfo">
+                    <span class="word">Cancle</span>
+                    <span class="describe">爆炸的；极易引起争论的；炸药；</span>
+                </div>
+            </div>
+            <div class="switch right">
+                <div class="wordInfo">
+                    <span class="word">Cancle</span>
+                    <span class="describe">爆炸的；极易引起争论的；炸药；</span>
+                </div>
+                <FaIcon IsInherit="true" Class="arrow" Type="fa-arrow-right-long" />
+            </div>
+        </div>
+        <div class="wordView">
+            <div class="currentWord">
+                <Title Level="1" class="word">resemble</Title>
+                <Text class="annotation">AM adfad</Text>
+                <Text Strong="true" class="translation">像，类似于</Text>
+            </div>
+        </div>
     </div>
     <div class="footBar">
         <Flex Vertical="true" Align="center" Style="flex-basis: 120px">
@@ -59,34 +54,61 @@
     </div>
 </div>
 <style>
-    .IndexContainer{
+    .Body, .IndexContainer {
        position: relative;
        width: 100%;
        height: 100%;
     }
-    .IndexContainer .topTools{
-        position: absolute;
-        top: 0;
-        left: 10%;
-        width: 80%;
-        height: 60px;
-        background: white;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    }
 
-            .IndexContainer .topTools .ToolsItem {
-                cursor: pointer;
-                transition: all .3s;
-                padding: 7px;
-                box-sizing: border-box;
-                font-size: 18px;
-                font-weight: bold;
+        .IndexContainer .Body{
+            display: grid;
+            grid-template-rows: 100px 1fr;
+        }
+
+            .IndexContainer .Body .nextWord, .IndexContainer .Body .nextWord .switch{
+                flex: 1;
+                display: flex;
+                flex-direction: row;
+                gap: 20px;
+                transition: all .5s;
             }
 
-                .IndexContainer .topTools .ToolsItem:hover{
-                    background: #1890ff;
-                    color: white;
+                .IndexContainer .Body .nextWord .switch:hover{
+                    cursor: pointer;
+                    color: #BCBCBC;
                 }
+            .IndexContainer .Body .nextWord{
+                align-items: center;
+                justify-content: space-between;
+                padding: 40px;
+                box-sizing: border-box;
+            }
+
+                .IndexContainer .Body .nextWord .right{
+                    justify-content: flex-end;
+                }
+                .IndexContainer .Body .nextWord .wordInfo {
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                    .IndexContainer .Body .nextWord .wordInfo .word{
+                        font-size: 22px;
+                        font-weight: bold;
+                    }
+
+    .wordView, .wordView .currentWord {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .wordView{
+        height: 100%;
+    }
+    .wordView .currentWord {
+        margin-bottom: 220px;
+    }
     .IndexContainer .footBar{
         position: absolute;
         bottom: 0px;

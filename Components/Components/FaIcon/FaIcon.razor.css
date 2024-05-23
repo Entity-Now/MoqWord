@@ -1,0 +1,22 @@
+﻿.FaFont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Color.FaFont {
+    color: var(--color, black);
+}
+
+.Hover.FaFont:hover {
+    cursor: pointer;
+}
+
+.HoverColor.FaFont:hover {
+    color: var(--hover-color, #1890ff);
+}
+
+.FaFont .fa-solid {
+    font-size: var(--size, 22px);
+    color: inherit;
+}

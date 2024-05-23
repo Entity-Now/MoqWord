@@ -6,10 +6,12 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoqWord.Repository
+namespace MoqWord.Services.Interface
 {
-    public interface IBaseRepository<T> : ISimpleClient<T> where T : class , new()
+    public interface IBaseService<T> where T : BaseEntity, new()
     {
+        IBaseRepository<T> repository { get; set; }
+
         T this[int id] => GetById(id);
         List<T> this[Expression<Func<T, bool>> where] => GetQuery(where).ToList();
 
@@ -113,6 +115,18 @@ namespace MoqWord.Repository
         /// <returns></returns>
         Task<int> UpdateByIdAsync(T t);
         /// <summary>
+        /// 级联插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        InsertNavTaskInit<T, T> InsertNav(List<T> list);
+        /// <summary>
+        /// 级联插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        InsertNavTaskInit<T, T> InsertNav(T list);
+        /// <summary>
         /// 插入或更新
         /// </summary>
         /// <param name="t"></param>
@@ -136,5 +150,25 @@ namespace MoqWord.Repository
         /// <param name="t"></param>
         /// <returns></returns>
         Task<int> InsertOrUpdateAsync(List<T> t);
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        int Count();
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        Task<int> CountAsync();
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        int Count(Expression<Func<T, bool>> expression);
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <returns></returns>
+        Task<int> CountAsync(Expression<Func<T, bool>> expression);
     }
 }

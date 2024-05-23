@@ -1,8 +1,16 @@
-﻿global using MoqWord;
+﻿global using Mapster;
+global using MoqWord;
 global using MoqWord.Core;
 global using MoqWord.Model.Data;
 global using MoqWord.Model.Entity;
+global using MoqWord.Model.EntityDTO;
 global using MoqWord.Model.Enum;
 global using MoqWord.Helpers;
 global using MoqWord.Repository;
+global using MoqWord.Repository.Interface;
+global using MoqWord.Services;
+global using MoqWord.Services.Interface;
+global using MoqWord.Core.Interface;
 global using MoqWord.Components.Components.FaIcon;
+global using Microsoft.JSInterop;
+global using System.Diagnostics.CodeAnalysis;

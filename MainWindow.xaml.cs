@@ -1,4 +1,5 @@
 ﻿using MoqWord.Helpers;
+using MoqWord.Repository.Interface;
 using SqlSugar;
 using System.Reflection;
 using System.Text;
@@ -20,6 +21,7 @@ namespace MoqWord
     public partial class MainWindow : Window
     {
         public ISqlSugarClient sqlSugar { get; set; }
+        public ISettingRepository settingRepository { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -27,9 +29,10 @@ namespace MoqWord
             // 注册窗口事件类
             WindowHelper.Init();
         }
-        public MainWindow(ISqlSugarClient _sqlSugar) : this()
+        public MainWindow(ISqlSugarClient _sqlSugar, ISettingRepository _settingRepository) : this()
         {
             sqlSugar = _sqlSugar;
+            settingRepository = _settingRepository;
             // 初始化数据库
             init();
         }
@@ -42,6 +45,27 @@ namespace MoqWord
             else
             {
                 MessageBox.Show("创建失败");
+            }
+            // 初始化setting配置
+            var firstSetting = settingRepository.GetSingle(x => x.Id >= 0);
+            if (firstSetting is null or default(Setting))
+            {
+                settingRepository.Insert(new Setting
+                {
+                    DarkNess = false,
+                    UsingSound = false,
+                    EverDayCount = 20,
+                    RepeatCount = RepeatType.Three,
+                    TimeInterval = 365,
+                    DesiredRetension = 0.9,
+                    Difficulty = 0.5,
+                    SoundName = "",
+                    SoundSource = Sound.Default,
+                    SpeechSpeed = 0,
+                    SoundVolume = 100,
+                    SuggestedCodec = "",
+                    StartWithWindows = false
+                });
             }
         }
 

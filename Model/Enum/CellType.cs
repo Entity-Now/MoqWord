@@ -12,6 +12,7 @@ namespace MoqWord.Model.Enum
         ComboBox,
         Switch,
         Button,
-        Link
+        Link,
+        Slider
     }
 }

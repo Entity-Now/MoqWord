@@ -13,19 +13,19 @@
                 {
                     if (item.Cell.ValueType == typeof(string))
                     {
-                        <Input Style="width: 200px" Value="(string)item.Value" TValue="string" OnChange="(curr)=> { item.Handle(curr); item.Value = curr; }" Placeholder="请输入内容..." />
+                        <Input Style="width: 200px" Value="(string)item.Value" TValue="string" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
                     }
                     else if (item.Cell.ValueType == typeof(int))
                     {
-                        <InputNumber Style="width: 200px" Value="(int)item.Value" TValue="int" OnChange="(curr)=> { item.Handle(curr); item.Value = curr; }" Placeholder="请输入内容..." />
+                        <InputNumber Style="width: 200px" Value="(int)item.Value" TValue="int" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
                     }
                     else if (item.Cell.ValueType == typeof(long))
                     {
-                        <InputNumber Style="width: 200px" Value="(long)item.Value" TValue="long" OnChange="(curr)=> { item.Handle(curr); item.Value = curr; }" Placeholder="请输入内容..." />
+                        <InputNumber Style="width: 200px" Value="(long)item.Value" TValue="long" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
                     }
                     else if (item.Cell.ValueType == typeof(double))
                     {
-                        <InputNumber Style="width: 200px" Value="(double)item.Value" TValue="double" Step="0.1" OnChange="(curr)=> { item.Handle(curr); item.Value = curr; }" Placeholder="请输入内容..." />
+                        <InputNumber Style="width: 200px" Value="(double)item.Value" TValue="double" Step="0.1" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
                     }
                 }
                 else if (item.Cell.CellType == CellType.Switch)
@@ -34,15 +34,27 @@
                 }
                 else if (item.Cell.CellType == CellType.ComboBox && item.Cell.ValueType == typeof(Sound))
                 {
-                     <EnumSelect Style="width: 200px" Value="(Sound)item.Value" TEnum="Sound" OnSelectedItemChanged="(curr)=> { item.Handle(curr); item.Value = curr; }" />
+                    <EnumSelect Style="width: 200px" Value="(Sound)item.Value" TEnum="Sound" OnSelectedItemChanged="(curr)=> InputHandle(curr, item)" />
                 }
                 else if (item.Cell.CellType == CellType.ComboBox && item.Cell.ValueType == typeof(RepeatType))
                 {
-                    <EnumSelect Style="width: 200px" Value="(RepeatType)item.Value" TEnum="RepeatType" OnSelectedItemChanged="(curr)=> { item.Handle(curr); item.Value = curr; }" />
+                    <EnumSelect Style="width: 200px" Value="(RepeatType)item.Value" TEnum="RepeatType" OnSelectedItemChanged="(curr)=> InputHandle(curr, item)" />
                 }
                 else if (item.Cell.CellType == CellType.ComboBox)
                 {
-                    <Select Style="width: 200px" Value="(int)item.Value" DataSource="item.Cell.Options" OnSelectedItemChanged="(curr)=> { item.Handle(curr.Value); item.Value = curr.Value; }" TItem="SelectValue" TItemValue="object" ValueProperty="c=> c.Value" LabelProperty="c => c.Label"></Select>
+                    <Select Style="width: 200px" Value="(int)item.Value" DataSource="item.Cell.Options" OnSelectedItemChanged="(curr)=> InputHandle(curr, item)" TItem="SelectValue" TItemValue="object" ValueProperty="c=> c.Value" LabelProperty="c => c.Label"></Select>
+                }
+                else if (item.Cell.CellType == CellType.Slider)
+                {
+                    if (item.Cell.ValueType == typeof(double))
+                    {
+                        <Slider Style="width: 200px" TValue="double" DefaultValue="(double)item.Value" Min="(double)item.Cell.MinValue" Max="(double)item.Cell.MaxValue" Step="1" OnChange="(curr)=> InputHandle(curr, item)" />
+                    }
+                    else if (item.Cell.ValueType == typeof(int))
+                    {
+                        @* slider数值只能是double类型 *@
+                        @* <Slider Style="width: 200px" TValue="double" DefaultValue="(int)item.Value" Min="(int)item.Cell.MinValue" Max="(int)item.Cell.MaxValue" Step="1" OnChange="(curr)=> InputHandle(curr, item)" /> *@
+                    }
                 }
             </Flex>
         </ListItem>

@@ -10,9 +10,13 @@ namespace MoqWord.Attributes
     public class CellTypeAttribute : Attribute
     {
         public object Value { get; set; }
+        public object MinValue { get; set; }
+        public object MaxValue { get; set; }
         public string Title { get; set; }
         public Type? ValueType { get; set; }
         public CellType CellType { get; set; }
+        public bool Visible { get; set; } = true;
+        public bool IsEnabled { get; set; } = true;
         public string Description { get; set; }
         public List<SelectValue>? Options { get; set; }
 
