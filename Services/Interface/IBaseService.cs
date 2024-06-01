@@ -115,6 +115,40 @@ namespace MoqWord.Services.Interface
         /// <returns></returns>
         Task<int> UpdateByIdAsync(T t);
         /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        int Update(T t, Expression<Func<T, bool>> expression);
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        Task<int> UpdateAsync(T t, Expression<Func<T, bool>> expression);
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        int Update(List<T> t, Expression<Func<T, bool>> expression);
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        Task<int> UpdateAsync(List<T> t, Expression<Func<T, bool>> expression);
+        /// <summary>
+        /// 更新指定的列
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        int SetColumns(Expression<Func<T, T>> col, Expression<Func<T, bool>> wh);
+        /// <summary>
+        /// 更新指定的列
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        Task<int> SetColumnsAsync(Expression<Func<T, T>> col, Expression<Func<T, bool>> wh);
+        /// <summary>
         /// 级联插入
         /// </summary>
         /// <param name="list"></param>

@@ -178,6 +178,58 @@ namespace MoqWord.Repository
             return Context.Updateable<T>(t).ExecuteCommandAsync();
         }
         /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual int Update(T t, Expression<Func<T, bool>> expression)
+        {
+            return Context.Updateable(t).Where(expression).ExecuteCommand();
+        }
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task<int> UpdateAsync(T t, Expression<Func<T, bool>> expression)
+        {
+            return Context.Updateable(t).Where(expression).ExecuteCommandAsync();
+        }
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual int Update(List<T> t, Expression<Func<T, bool>> expression) 
+        {
+            return Context.Updateable(t).Where(expression).ExecuteCommand();
+        }
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task<int> UpdateAsync(List<T> t, Expression<Func<T, bool>> expression)
+        {
+            return Context.Updateable(t).Where(expression).ExecuteCommandAsync();
+        }
+        /// <summary>
+        /// 更新指定的列
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public virtual int SetColumns(Expression<Func<T, T>> expression, Expression<Func<T, bool>> wh)
+        {
+            return Context.Updateable<T>().SetColumns(expression).Where(wh).ExecuteCommand();
+        }
+        /// <summary>
+        /// 更新指定的列
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public virtual Task<int> SetColumnsAsync(Expression<Func<T, T>> expression, Expression<Func<T, bool>> wh)
+        {
+            return Context.Updateable<T>().SetColumns(expression).Where(wh).ExecuteCommandAsync();
+        }
+        /// <summary>
         /// 级联插入
         /// </summary>
         /// <param name="list"></param>

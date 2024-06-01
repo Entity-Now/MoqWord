@@ -10,9 +10,7 @@ namespace MoqWord.Model.Entity
     [SugarTable]
     public class Personal : BaseEntity
     {
-        /// <summary>
-        /// 已用天数
-        /// </summary>
-        public int ElapsedDays { get; set; }
+
+
     }
 }

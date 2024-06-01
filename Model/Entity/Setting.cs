@@ -24,6 +24,17 @@ namespace MoqWord.Model.Entity
         [CellType("使用音效", false, CellType.Switch)]
         public bool UsingSound { get; set; }
         /// <summary>
+        /// 当前记忆的单词本ID
+        /// </summary>
+        [CellType(Visible = false)]
+        [Navigate(NavigateType.OneToOne, nameof(CurrentCategoryId))]
+        public int? CurrentCategoryId { get; set; }
+        /// <summary>
+        /// 当前记忆的单词本
+        /// </summary>
+        [CellType(Visible = false)]
+        public Category? CurrentCategory { get; set; }
+        /// <summary>
         /// 每日记忆数量
         /// </summary>
         [CellType("每日记忆数量", 20, CellType.TextBox, typeof(int))]

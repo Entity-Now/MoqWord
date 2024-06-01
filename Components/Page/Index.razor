@@ -1,31 +1,31 @@
 ﻿@using MoqWord.Components.Components.FaIcon
 @page "/"
-@inject IMessageService _message
+
 
 <div class="IndexContainer">
    
     <div class="Body">
         <div class="nextWord">
-            <div class="switch left">
+            <div class="switch left" @onclick="()=> _message.Info(PreviousWord?.WordName)">
                 <FaIcon IsInherit="true" Class="arrow" Type="fa-arrow-left-long" />
                 <div class="wordInfo">
-                    <span class="word">Cancle</span>
-                    <span class="describe">爆炸的；极易引起争论的；炸药；</span>
+                    <span class="word">@PreviousWord?.WordName</span>
+                    <span class="describe">@PreviousWord?.Translation</span>
                 </div>
             </div>
             <div class="switch right">
                 <div class="wordInfo">
-                    <span class="word">Cancle</span>
-                    <span class="describe">爆炸的；极易引起争论的；炸药；</span>
+                    <span class="word">@LastWord?.WordName</span>
+                    <span class="describe">@LastWord?.Translation</span>
                 </div>
                 <FaIcon IsInherit="true" Class="arrow" Type="fa-arrow-right-long" />
             </div>
         </div>
         <div class="wordView">
             <div class="currentWord">
-                <Title Level="1" class="word">resemble</Title>
-                <Text class="annotation">AM adfad</Text>
-                <Text Strong="true" class="translation">像，类似于</Text>
+                <Title Level="1" class="word">@CurrentWord?.WordName</Title>
+                <Text class="annotation">美：@CurrentWord?.AnnotationUk  英：@CurrentWord?.AnnotationUs</Text>
+                <Text Strong="true" class="translation">@CurrentWord?.Translation</Text>
             </div>
         </div>
     </div>

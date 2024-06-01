@@ -31,6 +31,10 @@ namespace MoqWord.Helpers
             _isInitialized = true;
 
             _serviceCollection = new ServiceCollection();
+            _serviceCollection.AddMediatR(x =>
+            {
+                x.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+            });
             // 注入Mapster
             _serviceCollection.AddSingleton(TypeMappingConfig.getConfig());
             _serviceCollection.AddMapster();
@@ -87,6 +91,8 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<DefaultPlaySound>();
             _serviceCollection.AddTransient<EdgePlaySound>();
             _serviceCollection.AddTransient<YoudaoPlaySound>();
+
+            _serviceCollection.AddSingleton<IPlayService, PlayService>();
 
             _services = _serviceCollection.BuildServiceProvider();
         }

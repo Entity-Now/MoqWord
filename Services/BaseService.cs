@@ -85,6 +85,7 @@ namespace MoqWord.Services
         {
             return repository.GetQuery(predicate);
         }
+
         public virtual InsertNavTaskInit<T, T> InsertNav(List<T> list)
         {
             return repository.InsertNav(list);
@@ -121,6 +122,59 @@ namespace MoqWord.Services
         public virtual Task<int> UpdateByIdAsync(T t)
         {
             return repository.UpdateByIdAsync(t);
+        }
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual int Update(T t, Expression<Func<T, bool>> expression)
+        {
+            return repository.Update(t, expression);
+        }
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task<int> UpdateAsync(T t, Expression<Func<T, bool>> expression)
+        {
+            return repository.UpdateAsync(t, expression);
+        }
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual int Update(List<T> t, Expression<Func<T, bool>> expression)
+        {
+            return repository.Update(t, expression);
+        }
+        /// <summary>
+        /// 更新实体数据
+        /// </summary>
+        /// <returns></returns>
+        public virtual Task<int> UpdateAsync(List<T> t, Expression<Func<T, bool>> expression)
+        {
+            return repository.UpdateAsync(t, expression);
+        }
+
+        /// <summary>
+        /// 更新指定的列
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public virtual int SetColumns(Expression<Func<T, T>> col, Expression<Func<T, bool>> wh)
+        {
+            return repository.SetColumns(col, wh);
+        }
+        /// <summary>
+        /// 更新指定的列
+        /// </summary>
+        /// <param name="t"></param>
+        /// <param name="expression"></param>
+        /// <returns></returns>
+        public virtual Task<int> SetColumnsAsync(Expression<Func<T, T>> col, Expression<Func<T, bool>> wh)
+        {
+            return repository.SetColumnsAsync(col, wh);
         }
         /// <summary>
         /// 统计数量
