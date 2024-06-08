@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoqWord.Model.Data
+namespace MoqWord.Model.Notify
 {
     public class WordNotify : INotification
     {
         public int CurrentIndex { get; set; }
-        public WordNotify( int currentIndex)
+        public WordNotify(int currentIndex)
         {
             CurrentIndex = currentIndex;
         }

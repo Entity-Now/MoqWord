@@ -1,7 +1,6 @@
 ﻿@using MoqWord.Components.Components.FaIcon
-@inherits LayoutComponentBase
-@inject AntDesign.IconService iconService
-@using MoqWord.Helpers
+@using ReactiveUI.Blazor
+@inherits ReactiveLayoutComponentBase<GlobalService>
 
 <Layout class="MainContainer">
     <Sider @bind-Collapsed=@collapsed NoTrigger OnCollapse="OnCollapse">
@@ -12,16 +11,16 @@
                 <span class="title">莫欺单词</span>
             }
         </div>
-        <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Inline" DefaultSelectedKeys=@(new[]{"1"})>
-            <MenuItem Key="1" OnClick=@(()=>NavigateGo("/"))>
+        <Menu Theme="MenuTheme.Dark" Mode="MenuMode.Inline" SelectedKeys="new string[] { currentKey }">
+            <MenuItem Key="" OnClick=@(()=>NavigateGo("/"))>
                 <Icon Type="home" Theme="outline" Style="font-weight:bold;"/>
                 <span class="nav_name">背诵单词</span>
             </MenuItem>
-            <MenuItem Key="2" OnClick=@(()=>NavigateGo("/WordList"))>
-                <Icon Type="home" Theme="outline" Style="font-weight:bold;" />
+            <MenuItem Key="WordList" OnClick=@(()=>NavigateGo("/WordList"))>
+                <Icon Type="table" Theme="outline" Style="font-weight:bold;" />
                 <span class="nav_name">字典列表</span>
             </MenuItem>
-            <MenuItem Key="3" OnClick=@(()=>NavigateGo("/Settings"))>
+            <MenuItem Key="Settings" OnClick=@(()=>NavigateGo("/Settings"))>
                 <Icon Type="setting" Theme="outline" Style="font-weight:bold;" />
                 <span>设置</span>
             </MenuItem>
@@ -41,8 +40,8 @@
                 <Flex Class="tools" Gap="large">
                     <Flex Gap="large" Align="center" Justify="center" Style="height: 100%;margin: 0 10px;">
                         <Tooltip Title="请选择字典">
-                            <span class="ToolsItem" Style="margin: 0">
-                                当前字典
+                            <span class="ToolsItem" Style="margin: 0" @onclick=@(()=>NavigateGo("/WordList"))>
+                                @(ViewModel?.currentCategory?.Name ?? "未选择")
                             </span>
                         </Tooltip>
                         <Tooltip Title="切换暗色主题">

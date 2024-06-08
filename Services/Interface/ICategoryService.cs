@@ -17,13 +17,13 @@ namespace MoqWord.Services.Interface
         /// 当前是否选择记忆单词本
         /// </summary>
         /// <returns></returns>
-        bool IsSelectCategory();
+        Category IsSelectCategory();
         /// <summary>
         /// 选择词库
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
-        void SelectCategory(Category c);
+        bool SelectCategory(Category c);
         /// <summary>
         /// 初始化所有单词
         /// </summary>

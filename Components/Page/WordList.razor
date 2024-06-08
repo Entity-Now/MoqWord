@@ -7,6 +7,7 @@
 @using MyTag = MoqWord.Model.Entity.Tag;
 
 @inject IMessageService _message
+@inject IConfirmService _confirmService
 @inject ICategoryService _service
 @inject IWordService _wordService
 @inject ITagService _tagService
@@ -17,16 +18,23 @@
     <div class="grid grid-cols-4 gap-5">
         @foreach (var item in categories)
         {
-            <div class="relative h-[320px] flex flex-col items-center justify-center shadow-md rounded transition-all duration-500 cursor-pointer hover:-translate-y-1"
-                style="background:#@(item.Color)"
-                 @onclick="()=> openWordsView(item)">
-                <span class="text-2xl font-bold m-auto">@item.Name</span>
+            <div class="group relative h-[320px] flex flex-col items-center justify-center shadow-md rounded transition-all duration-500 cursor-pointer hover:-translate-y-1"
+                style="background:#@(item.Color)">
+                <span class="text-2xl font-bold m-auto group-hover:text-sky-500 transition-all">@item.Name</span>
                 <div class="mt-auto flex flex-col w-full">
                     <div class="flex justify-around">
                         <span class="!block bg-gray-100 rounded-md p-1">背完@(item.GraspCount)个</span>
                         <span class="!block bg-gray-100 rounded-md p-1">总共@(item.Count)个</span>
                     </div>
                     <Progress Class="!w-10/12 !m-auto" Percent=@(item.GraspCount / item.Count * 100) ShowInfo="false" />
+                </div>
+                @if (item.IsCurrent)
+                {
+                    <FaIcon Class="absolute right-3 top-3 text-white text-bold" Type="fa-check" IsInherit="true" />
+                }
+                <div class="absolute insert-0 flex items-center justify-center gap-5 bg-gray-100 transition-all opacity-0 group-hover:opacity-70 w-full h-full">
+                    <Button Type="@ButtonType.Primary" OnClick="()=> SelectCategory(item)">选择</Button>
+                    <Button Type="@ButtonType.Primary" OnClick="()=> openWordsView(item)">查看</Button>
                 </div>
             </div>
         }
@@ -89,10 +97,10 @@
     // 当前选中的导入平台
     string selectPlatform = "Qwerty";
     Dictionary<string, Func<IImportWords>> importPlatform = new()
-        {
-            ["Qwerty"] = ()=> new QwertyLearnerImport(),
-            ["不背单词"] = () => new QwertyLearnerImport(),
-            ["有道"] = () => new QwertyLearnerImport(),
+    {
+        ["Qwerty"] = ()=> new QwertyLearnerImport(),
+        ["不背单词"] = () => new QwertyLearnerImport(),
+        ["有道"] = () => new QwertyLearnerImport(),
     };
     List<MyTag> tags { get; set; }
     IEnumerable<string> selectTags = new List<string>();
@@ -118,48 +126,74 @@
         wordsView = true;
         currCategory = item;
     }
-    async void OkHandle(EditContext context){
-        try
+    void OkHandle(EditContext context)
+    {
+        Task.Run( async () =>
         {
-            var open = new OpenFileDialog();
-            open.DefaultExt = ".json,.txt";
-            if (open.ShowDialog() is bool result == true)
+            try
             {
-                var haveTags = tags.Where(x => selectTags.Any(i => i == x.Name));
-                var addTags = selectTags.Where(x => !haveTags.Any(i => i.Name == x)).Select(item => new MyTag
+                var open = new OpenFileDialog();
+                var showDialog = open.ShowDialog();
+                if (showDialog == true)
+                {
+                    var haveTags = tags.Where(x => selectTags.Any(i => i == x.Name));
+                    var addTags = selectTags.Where(x => !haveTags.Any(i => i.Name == x)).Select(item => new MyTag
                     {
                         Name = item,
                         CreateDT = DateTime.Now,
                         UpdateDT = DateTime.Now
                     });
-                var wordSource = File.ReadAllText(open.FileName);
-                model.CreateDT = DateTime.Now;
-                model.UpdateDT = DateTime.Now;
-                model.Tags = haveTags.Concat(addTags).ToList();
-                // handle words
-                var importHandle = importPlatform[selectPlatform]();
-                model.Words = importHandle.ImportWords(wordSource).ToList();
-                // save words
-                var insertState = await _service.InsertNav(model)
+                    var wordSource = File.ReadAllText(open.FileName);
+                    model.CreateDT = DateTime.Now;
+                    model.UpdateDT = DateTime.Now;
+                    model.Tags = haveTags.Concat(addTags).ToList();
+                    // handle words
+                    var importHandle = importPlatform[selectPlatform]();
+                    model.Words = importHandle.ImportWords(wordSource).ToList();
+                    // save words
+                    var insertState = await _service.InsertNav(model)
                     .Include(x => x.Words)
                     .Include(x => x.Tags)
                     .ExecuteCommandAsync();
-                if (insertState)
-                {
-                    _message.Success("导入成功~");
-                    modalIsVisible = false;
-                }
-                else
-                {
-                    _message.Error("导入失败~");
+                    if (insertState)
+                    {
+                        _message.Success("导入成功~");
+                        modalIsVisible = false;
+                        InvokeAsync(StateHasChanged);
+                    }
+                    else
+                    {
+                        _message.Error("导入失败~");
+                    }
                 }
             }
-        }
-        catch (Exception e)
+            catch (Exception ex)
+            {
+                _message.Error(ex.Message);
+            }
+
+        });
+    }
+    async void SelectCategory(CategoryDTO c)
+    {
+        void update()
         {
-            _message.Error(e.Message);
-            throw e;
+            var isOk = _service.SelectCategory(c.Adapt<CategoryDTO, Category>(_config));
+            c.IsCurrent = true;
         }
+        var exist = _service.IsSelectCategory();
+        var setting = _settingService.Get();
+        if (exist is not null)
+        {
+            var result = await _confirmService.Show("当前有未背完的词库，是否继续更换词库？", "警告", ConfirmButtons.YesNo);
+            if (result == ConfirmResult.Yes)
+            {
+                update();
+            }
+
+            return;
+        }
+        update();
     }
     async void PlayWord(Word word){
         var sound = _settingService.getCurrentSound();

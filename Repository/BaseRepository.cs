@@ -199,7 +199,7 @@ namespace MoqWord.Repository
         /// <returns></returns>
         public virtual int Update(List<T> t, Expression<Func<T, bool>> expression) 
         {
-            return Context.Updateable(t).Where(expression).ExecuteCommand();
+            return Context.Updateable(t).ExecuteCommand();
         }
         /// <summary>
         /// 更新实体数据
@@ -207,7 +207,7 @@ namespace MoqWord.Repository
         /// <returns></returns>
         public virtual Task<int> UpdateAsync(List<T> t, Expression<Func<T, bool>> expression)
         {
-            return Context.Updateable(t).Where(expression).ExecuteCommandAsync();
+            return Context.Updateable(t).ExecuteCommandAsync();
         }
         /// <summary>
         /// 更新指定的列

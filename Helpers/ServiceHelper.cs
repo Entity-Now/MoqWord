@@ -8,12 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Mapster;
+using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using MoqWord.Components.Layout;
+using MoqWord.Components.Page;
 using MoqWord.Repository.Interface;
 using MoqWord.Services;
 using MoqWord.Services.Interface;
 using SqlSugar;
+using Index = MoqWord.Components.Page.Index;
 
 namespace MoqWord.Helpers
 {
@@ -74,6 +78,9 @@ namespace MoqWord.Helpers
                 });
                 return sqlSugar;
             });
+            // 注册页面
+
+            // 注册服务
             _serviceCollection.AddTransient(typeof(BaseRepository<>));
             _serviceCollection.AddTransient<ICategoryRepository, CategoryRepository>();
             _serviceCollection.AddTransient<IPersonalRepository, PersonalRepository>();
@@ -93,6 +100,12 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<YoudaoPlaySound>();
 
             _serviceCollection.AddSingleton<IPlayService, PlayService>();
+            _serviceCollection.AddSingleton(typeof(GlobalService));
+            // 指定 GlobalService 实现的接口
+            _serviceCollection.AddSingleton<INotificationHandler<CategoryNotify>>(provider => provider.GetService<GlobalService>());
+            _serviceCollection.AddSingleton<INotificationHandler<SettingNotify>>(provider => provider.GetService<GlobalService>());
+            // 注入scheduler
+            _serviceCollection.AddSingleton(SchedulerService.getScheduler());
 
             _services = _serviceCollection.BuildServiceProvider();
         }

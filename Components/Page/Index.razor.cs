@@ -1,6 +1,7 @@
 ﻿using AntDesign;
 using MediatR;
 using Microsoft.AspNetCore.Components;
+using MoqWord.Model.Notify;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,7 @@ namespace MoqWord.Components.Page
         {
             base.OnInitialized();
             var SelectIsTrue = _categoryService.IsSelectCategory();
-            if (!SelectIsTrue)
+            if (SelectIsTrue is null)
             {
                 _message.Warning("请选择单词~");
                 navigationManager.NavigateTo("/WordList");

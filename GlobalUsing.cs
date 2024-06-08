@@ -4,6 +4,7 @@ global using MoqWord.Core;
 global using MoqWord.Model.Data;
 global using MoqWord.Model.Entity;
 global using MoqWord.Model.EntityDTO;
+global using MoqWord.Model.Notify;
 global using MoqWord.Model.Enum;
 global using MoqWord.Helpers;
 global using MoqWord.Repository;

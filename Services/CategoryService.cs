@@ -1,4 +1,5 @@
-﻿using MoqWord.Components.Page;
+﻿using MediatR;
+using MoqWord.Components.Page;
 using MoqWord.Model.Entity;
 using MoqWord.Services.Interface;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MoqWord.Services
 {
-    public class CategoryService(ICategoryRepository repository, IWordService wordService, ISettingService settingService) : BaseService<Category>(repository), ICategoryService
+    public class CategoryService(ICategoryRepository repository, IWordService wordService, ISettingService settingService, IMediator mediator) : BaseService<Category>(repository), ICategoryService
     {
         /// <summary>
         /// 获取所有词库
@@ -32,30 +33,33 @@ namespace MoqWord.Services
         /// 当前是否选择记忆单词本
         /// </summary>
         /// <returns></returns>
-        public virtual bool IsSelectCategory()
+        public virtual Category? IsSelectCategory()
         {
             var settings = settingService.GetAll().Includes(c => c.CurrentCategory).First();
             if (settings.CurrentCategory is not null and not default(Category))
             {
-                return true;
+                return settings.CurrentCategory;
             }
-            return false;
+            return null;
         }
         /// <summary>
         /// 选择词库
         /// </summary>
         /// <param name="c"></param>
         /// <returns></returns>
-        public virtual void SelectCategory(Category c)
+        public virtual bool SelectCategory(Category c)
         {
             var settings = settingService.Get();
-            //SetColumns(c => new() { IsCurrent = false }, x => x.IsCurrent);
-            if (!c.IsCurrent)
-            {
-                Initialization(c.Id, settings.EverDayCount);
-            }
+            SetColumns(c => new() { IsCurrent = false }, x => x.IsCurrent);
+            Initialization(c.Id, settings.EverDayCount);
+            settings.CurrentCategoryId = c.Id;
             settings.CurrentCategory = c;
-            settingService.Update(settings, s => s.Id == settings.Id);
+            var result = settingService.Update(settings, s => s.Id == settings.Id) > 0;
+            if (result)
+            {
+                mediator.Publish(new CategoryNotify(c));
+            }
+            return result;
         }
         /// <summary>
         /// 初始化所有单词
