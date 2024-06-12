@@ -81,6 +81,9 @@ namespace MoqWord.Services
                 word.Due = today.AddDays((i / dailyLimit) + 1);
                 word.Reps = 0;
                 word.Grasp = false;
+
+                // 设置单词的分组编号
+                word.GroupNumber = (i / dailyLimit) + 1;
             }
             wordService.Update(words, x => true);
             SetColumns(c => new()
@@ -106,6 +109,22 @@ namespace MoqWord.Services
         }
 
         /// <summary>
+        /// 根据指定的GroupNumber获取单词列表
+        /// </summary>
+        /// <param name="groupNumber">指定的GroupNumber</param>
+        /// <returns>对应GroupNumber的单词列表</returns>
+        public virtual List<Word> GetWordsToReviewByGroupNumber(int groupNumber)
+        {
+            var settings = settingService.Get();
+
+            // 获取指定GroupNumber的单词
+            var wordsToReview = wordService.GetQuery(w => w.GroupNumber == groupNumber && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
+
+            return wordsToReview;
+        }
+
+
+        /// <summary>
         /// 获取需要复习的单词，每次获取的数量由dailyLimit决定
         /// </summary>
         /// <returns></returns>
@@ -125,18 +144,43 @@ namespace MoqWord.Services
         }
 
         /// <summary>
+        /// 根据CategoryId查找出所有不同的GroupNumber，并以升序排序
+        /// </summary>
+        /// <param name="categoryId">指定的CategoryId</param>
+        /// <returns>升序排序的GroupNumber列表</returns>
+        public virtual List<int> GetGroupNumbersByCategoryId(int categoryId)
+        {
+            // 获取指定CategoryId的所有不同的GroupNumber，并升序排序
+            var groupNumbers = wordService.GetQuery(w => w.CategoryId == categoryId)
+                                           .Select(w => w.GroupNumber)
+                                           .Distinct()
+                                           .OrderBy(gn => gn)
+                                           .ToList();
+
+            return groupNumbers;
+        }
+
+
+        /// <summary>
         /// 根据评分更新单词
         /// </summary>
-        /// <param name="word"></param>
-        /// <param name="grade">0（完全不记得）1（几乎不记得）2（部分记住）3(记住) 4（几乎掌握）5（完全掌握）</param>
-        public virtual void UpdateWordAfterReview(Word word, int grade)
+        /// <param name="word">需要更新的单词</param>
+        /// <param name="rating">单词记忆评分</param>
+        public virtual void UpdateWordAfterReview(Word word, WordRating rating)
         {
+            // 获取当前设置
+            var settings = settingService.Get();
+
             double easinessFactor = word.EasinessFactor ?? 2.5;
             int repetition = word.Repetition ?? 0;
             double interval = word.Interval ?? 1;
 
-            // 根据评分更新易记因子和间隔
-            easinessFactor = Math.Max(1.3, easinessFactor + 0.1 - (5 - grade) * (0.08 + (5 - grade) * 0.02));
+            // 将 WordRating 转换为数值
+            int grade = (int)rating;
+
+            // 根据评分更新易记因子
+            easinessFactor = Math.Max(1.3, easinessFactor + 0.1 - (4 - grade) * (0.08 + (4 - grade) * 0.02) * settings.Difficulty);
+
             if (grade >= 3)
             {
                 if (repetition == 0)
@@ -163,12 +207,16 @@ namespace MoqWord.Services
                 word.Lapses = (word.Lapses ?? 0) + 1;
             }
 
+            // 调整记忆间隔，应用DesiredRetension和TimeInterval
+            double retensionInterval = Math.Max(1, interval * settings.TimeInterval * settings.DesiredRetension);
+
             word.EasinessFactor = easinessFactor;
             word.Repetition = repetition;
             word.Interval = interval;
             word.LastReview = DateTime.Now;
-            word.Due = DateTime.Now.AddDays(interval);
+            word.Due = DateTime.Now.AddDays(retensionInterval);
             wordService.Update(word, w => w.Id == word.Id);
         }
+
     }
 }

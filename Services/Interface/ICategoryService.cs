@@ -34,6 +34,18 @@ namespace MoqWord.Services.Interface
         /// <returns></returns>
         List<Word> GetWordsToReview();
         /// <summary>
+        /// 根据指定的GroupNumber获取单词列表
+        /// </summary>
+        /// <param name="groupNumber">指定的GroupNumber</param>
+        /// <returns>对应GroupNumber的单词列表</returns>
+        List<Word> GetWordsToReviewByGroupNumber(int groupNumber);
+        /// <summary>
+        /// 根据CategoryId查找出所有不同的GroupNumber，并以升序排序
+        /// </summary>
+        /// <param name="categoryId">指定的CategoryId</param>
+        /// <returns>升序排序的GroupNumber列表</returns>
+        List<int> GetGroupNumbersByCategoryId(int categoryId);
+        /// <summary>
         /// 获取需要复习的单词
         /// </summary>
         /// <returns></returns>
@@ -41,8 +53,8 @@ namespace MoqWord.Services.Interface
         /// <summary>
         /// 根据评分更新单词
         /// </summary>
-        /// <param name="word"></param>
-        /// <param name="grade"></param>
-        void UpdateWordAfterReview(Word word, int grade);
+        /// <param name="word">需要更新的单词</param>
+        /// <param name="rating">单词记忆评分</param>
+        void UpdateWordAfterReview(Word word, WordRating rating);
     }
 }

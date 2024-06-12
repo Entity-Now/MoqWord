@@ -18,6 +18,7 @@ namespace MoqWord.Services
     {
         ICategoryService categoryService { get; set; }
         ISettingService settingService { get; set; }
+        public IPlayService playService { get; set; }
         Category? _currentCategory;
         /// <summary>
         /// 当前选择的词库
@@ -41,18 +42,19 @@ namespace MoqWord.Services
 
 
 
-        public GlobalService(ICategoryService _categoryService, ISettingService _settingService)
+        public GlobalService(ICategoryService _categoryService, ISettingService _settingService, IPlayService _playService)
         {
             categoryService = _categoryService;
             settingService = _settingService;
             currentCategory = categoryService.IsSelectCategory();
             currentSetting = settingService.Get(s => s.Id > 0);
+            playService = _playService;
         }
 
         public Task Handle(CategoryNotify notification, CancellationToken cancellationToken)
         {
             currentCategory = categoryService.IsSelectCategory();
-            
+            playService.Init();
             return Task.CompletedTask;
         }
 

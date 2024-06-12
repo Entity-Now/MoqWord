@@ -61,6 +61,10 @@ namespace MoqWord.Model.Entity
         /// </summary>
         public bool Grasp { get; set; }
         /// <summary>
+        /// 单词每日分组
+        /// </summary>
+        public int GroupNumber { get; set; }
+        /// <summary>
         /// 上次复习时间
         /// </summary>
         public DateTime? LastReview { get; set; }
