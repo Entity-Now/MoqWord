@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="MoqWord.Core.WordPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MoqWord.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="400"
+             Width="580" Height="120">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Style/GlobalStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border CornerRadius="10" 
+            Padding="10 5"
+            Background="#bebebe">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal">
+                    <!--WPF不能识别X，所以加上x-->
+                    <Button Style="{ StaticResource textButton }" Content="&#xf0d9;" Command="{Binding PreviousCommand}"/>
+                    <Button Style="{ StaticResource textButton }" Content="&#xf04d;" Margin="10 0" Command="{Binding StopCommand}"/>
+                    <Button Style="{ StaticResource textButton }" Content="&#xf0da;" Command="{Binding LastCommand}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <!--<TextBlock Text="&#xf021;" Margin="10 0"/>-->
+                    <Button Style="{ StaticResource textButton }" Content="&#xf00d;" Command="{Binding CloseCommand}"/>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <TextBlock HorizontalAlignment="Center" FontSize="16" FontWeight="Bold" Text="{Binding playService.CurrentWord.WordName}"/>
+                <TextBlock HorizontalAlignment="Center" Margin="0 15" FontSize="14" Text="{Binding playService.CurrentWord.Translation}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

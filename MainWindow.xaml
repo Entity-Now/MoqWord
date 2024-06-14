@@ -7,8 +7,9 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:local="clr-namespace:MoqWord"
         xmlns:components="clr-namespace:MoqWord.Components"
+        Style="{StaticResource MaterialDesignWindow}"
         mc:Ignorable="d"
-        Title="Moq单词" Height="800" Width="1400" WindowStyle="None" Icon="/MOQ.png">
+        Title="Moq单词" Height="800" Width="1400" WindowStyle="None" Icon="wwwroot/MOQ.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100"/>

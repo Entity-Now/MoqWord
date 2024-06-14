@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
@@ -39,6 +40,12 @@ namespace MoqWord.Helpers
         {
             var window = GetActiveWindow(); if (window != null) { window.WindowState = WindowState.Minimized; }
         }
+
+        public static void Normal()
+        {
+            var window = GetActiveWindow(); if (window != null) { window.WindowState = WindowState.Normal; }
+        }
+
         public static void Collpase()
         {
             var window = GetActiveWindow();
@@ -49,6 +56,9 @@ namespace MoqWord.Helpers
                     window.WindowState = WindowState.Maximized;
                 }
                 else if(window.WindowState == WindowState.Maximized)
+                {
+                    window.WindowState = WindowState.Normal;
+                }else if (window.WindowState == WindowState.Minimized)
                 {
                     window.WindowState = WindowState.Normal;
                 }
@@ -65,7 +75,7 @@ namespace MoqWord.Helpers
         }
         private static Window? GetActiveWindow()
         {
-            return Application.Current.Windows.Cast<Window>().FirstOrDefault(currentWindow => currentWindow.IsActive);
+            return ServiceHelper.Services.GetService<MainWindow>();
         }
 
         private static int GetX()

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using MoqWord.Components.Layout;
 using MoqWord.Components.Page;
+using MoqWord.ModelView;
 using MoqWord.Repository.Interface;
 using MoqWord.Services;
 using MoqWord.Services.Interface;
@@ -106,6 +107,8 @@ namespace MoqWord.Helpers
             _serviceCollection.AddSingleton<INotificationHandler<SettingNotify>>(provider => provider.GetService<GlobalService>());
             // 注入scheduler
             _serviceCollection.AddSingleton(SchedulerService.getScheduler());
+            // modelview
+            _serviceCollection.AddTransient(typeof(WordNotifyModelView));
 
             _services = _serviceCollection.BuildServiceProvider();
         }

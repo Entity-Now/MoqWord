@@ -28,6 +28,8 @@ namespace MoqWord
             Resources.Add("services", ServiceHelper.getService());
             // 注册窗口事件类
             WindowHelper.Init();
+            // 
+            NotifyIconHelper.Icon();
         }
         public MainWindow(ISqlSugarClient _sqlSugar, ISettingRepository _settingRepository) : this()
         {
