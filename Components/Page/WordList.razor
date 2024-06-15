@@ -111,7 +111,7 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        tags = _tagService.GetAll().ToList();
+        tags = _tagService.All().ToList();
         categories = _service.GetAllCategory().ToList();
     }
     void openModal(){
@@ -121,7 +121,7 @@
     {
         if (item.Words is null or default(List<Word>))
         {
-            item.Words = _wordService.GetQuery(x => x.CategoryId == item.Id).ToList();
+            item.Words = _wordService.Query(x => x.CategoryId == item.Id).ToList();
         }
         wordsView = true;
         currCategory = item;
@@ -182,7 +182,7 @@
             c.IsCurrent = true;
         }
         var exist = _service.IsSelectCategory();
-        var setting = _settingService.Get();
+        var setting = _settingService.First();
         if (exist is not null)
         {
             var result = await _confirmService.Show("当前有未背完的词库，是否继续更换词库？", "警告", ConfirmButtons.YesNo);

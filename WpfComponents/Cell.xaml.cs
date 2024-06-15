@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using MoqWord.ModelView;
-using ReactiveUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,17 +16,22 @@ using System.Windows.Shapes;
 namespace MoqWord.WpfComponents
 {
     /// <summary>
-    /// WordPopup.xaml 的交互逻辑
+    /// Cell.xaml 的交互逻辑
     /// </summary>
-    public partial class WordPopup : UserControl
+    public partial class Cell : UserControl
     {
-        public WordPopup()
+        public Cell()
         {
             InitializeComponent();
-            DataContext = this;
         }
-        public PopupConfigModelView popupConfigModelView => ServiceHelper.Services.GetService<PopupConfigModelView>();
-        public WordNotifyModelView wordNotifyModelView => ServiceHelper.Services.GetService<WordNotifyModelView>();
 
+        public string Title { get; set; }
+        public object operation { get; set; }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            this._title.Text = Title;
+            this._opreation.Content = operation;
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace MoqWord.Services
 
         public void Play(string word)
         {
-            var setting = settingRepository.Get();
+            var setting = settingRepository.First();
             Voice useVoice = null;
             if (setting.SoundSource == Sound.Edge && !string.IsNullOrEmpty(setting.SoundName))
             {

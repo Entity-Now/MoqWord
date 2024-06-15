@@ -1,6 +1,8 @@
 ﻿global using Mapster;
 global using MoqWord;
 global using MoqWord.Core;
+global using MoqWord.Components;
+global using MoqWord.WpfComponents;
 global using MoqWord.Model.Data;
 global using MoqWord.Model.Entity;
 global using MoqWord.Model.EntityDTO;

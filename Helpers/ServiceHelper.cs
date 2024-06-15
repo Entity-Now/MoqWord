@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DynamicData;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Components;
@@ -38,7 +39,12 @@ namespace MoqWord.Helpers
             _serviceCollection = new ServiceCollection();
             _serviceCollection.AddMediatR(x =>
             {
-                x.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+                List<Assembly> assemblies = new List<Assembly>
+                {
+                    typeof(INotificationHandler<CategoryNotify>).Assembly,
+                    typeof(INotificationHandler<SettingNotify>).Assembly
+                };
+                x.RegisterServicesFromAssemblies(assemblies.ToArray());
             });
             // 注入Mapster
             _serviceCollection.AddSingleton(TypeMappingConfig.getConfig());
@@ -89,6 +95,7 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<IWordRepository, WordRepository>();
             _serviceCollection.AddTransient<IWordLogRepository, WordLogRepository>();
             _serviceCollection.AddTransient<ITagRepository, TagRepository>();
+            _serviceCollection.AddTransient<IPopupConfigRepository, PopupConfigRepository>();
             _serviceCollection.AddTransient(typeof(BaseService<>));
             _serviceCollection.AddTransient<ICategoryService, CategoryService>();
             _serviceCollection.AddTransient<IPersonalService, PersonalService>();
@@ -96,6 +103,7 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<IWordService, WordService>();
             _serviceCollection.AddTransient<IWordLogService, WordLogService>();
             _serviceCollection.AddTransient<ITagService, TagService>();
+            _serviceCollection.AddTransient<IPopupConfigService, PopupConfigService>();
             _serviceCollection.AddTransient<DefaultPlaySound>();
             _serviceCollection.AddTransient<EdgePlaySound>();
             _serviceCollection.AddTransient<YoudaoPlaySound>();
@@ -109,6 +117,7 @@ namespace MoqWord.Helpers
             _serviceCollection.AddSingleton(SchedulerService.getScheduler());
             // modelview
             _serviceCollection.AddTransient(typeof(WordNotifyModelView));
+            _serviceCollection.AddTransient(typeof(PopupConfigModelView));
 
             _services = _serviceCollection.BuildServiceProvider();
         }

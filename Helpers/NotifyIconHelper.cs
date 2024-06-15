@@ -56,6 +56,14 @@ namespace MoqWord.Helpers
             }
             
         }
+        public static void ShowOptionView()
+        {
+            var popupOptionView = new HandyControl.Controls.Window();
+            popupOptionView.Content = new PopupConfigView();
+            //popupOptionView.Topmost = true;
+            popupOptionView.Show();
+            //tbi.ShowCustomBalloon(new PopupConfigView(), PopupAnimation.Slide, null);
+        }
         public static void Close()
         {
             tbi.CloseBalloon();

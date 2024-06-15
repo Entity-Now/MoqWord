@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MoqWord.ModelView;
-using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,17 +18,15 @@ using System.Windows.Shapes;
 namespace MoqWord.WpfComponents
 {
     /// <summary>
-    /// WordPopup.xaml 的交互逻辑
+    /// PopupConfigView.xaml 的交互逻辑
     /// </summary>
-    public partial class WordPopup : UserControl
+    public partial class PopupConfigView : UserControl
     {
-        public WordPopup()
+        public PopupConfigView()
         {
             InitializeComponent();
-            DataContext = this;
+            DataContext = ServiceHelper.Services.GetService<PopupConfigModelView>();
         }
-        public PopupConfigModelView popupConfigModelView => ServiceHelper.Services.GetService<PopupConfigModelView>();
-        public WordNotifyModelView wordNotifyModelView => ServiceHelper.Services.GetService<WordNotifyModelView>();
 
     }
 }

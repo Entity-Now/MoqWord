@@ -11,14 +11,6 @@ namespace MoqWord.ModelView
     public class WordNotifyModelView : ReactiveObject
     {
         public IPlayService playService { get; set; }
-        double _opacity;
-        public double Opacity
-        {
-            get => _opacity;
-            set{
-                this.RaiseAndSetIfChanged(ref _opacity, value);
-            }
-        }
 
         public ReactiveCommand<Unit, Unit> PreviousCommand { get; set; }
         public ReactiveCommand<Unit, Unit> LastCommand { get; set; }

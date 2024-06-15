@@ -12,7 +12,7 @@ namespace MoqWord.Services.Interface
         /// <summary>
         /// 可以是背诵/复习的单词
         /// </summary>
-        ObservableCollection<Word> ToDayWords { get; set; }
+        ReadOnlyObservableCollection<Word> ToDayWords { get; }
         /// <summary>
         /// 当前单词的索引
         /// </summary>

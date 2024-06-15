@@ -11,32 +11,32 @@ namespace MoqWord.Repository.Interface
     public interface IBaseRepository<T> : ISimpleClient<T> where T : BaseEntity, new()
     {
         T this[int id] => GetById(id);
-        List<T> this[Expression<Func<T, bool>> where] => GetQuery(where).ToList();
+        List<T> this[Expression<Func<T, bool>> where] => Query(where).ToList();
 
         /// <summary>
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        ISugarQueryable<T> GetAll();
+        ISugarQueryable<T> All();
         /// <summary>
         /// 查询符合条件的数据
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        ISugarQueryable<T> GetQuery(Expression<Func<T, bool>> predicate);
+        ISugarQueryable<T> Query(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// 获取第一条数据
         /// </summary>
         /// <param name="where">查询条件</param>
         /// <returns>实体</returns>
-        T Get(Expression<Func<T, bool>> @where = null);
+        T First(Expression<Func<T, bool>> @where = null);
         /// <summary>
         /// 获取第一条数据
         /// </summary>
         /// <param name="where">查询条件</param>
         /// <returns>实体</returns>
-        Task<T> GetAsync(Expression<Func<T, bool>> @where = null);
+        Task<T> FirstAsync(Expression<Func<T, bool>> @where = null);
 
         /// <summary>
         /// 获取第一条数据
@@ -46,7 +46,7 @@ namespace MoqWord.Repository.Interface
         /// <param name="orderby">排序字段</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns>实体</returns>
-        Task<T> GetAsync(Expression<Func<T, bool>> @where, Expression<Func<T, object>> @orderby, bool isAsc = true);
+        Task<T> FirstAsync(Expression<Func<T, bool>> @where, Expression<Func<T, object>> @orderby, bool isAsc = true);
 
 
         /// <summary>
@@ -54,14 +54,14 @@ namespace MoqWord.Repository.Interface
         /// </summary>
         /// <param name="id">实体id</param>
         /// <returns>实体</returns>
-        T GetById(int id);
+        T FindById(int id);
 
         /// <summary>
         /// 根据ID找实体(异步)
         /// </summary>
         /// <param name="id">实体id</param>
         /// <returns>实体</returns>
-        Task<T> GetByIdAsync(int id);
+        Task<T> FindByIdAsync(int id);
 
         /// <summary>
         /// 根据ID删除实体

@@ -18,7 +18,7 @@ namespace MoqWord.Services
         /// <returns></returns>
         public virtual IEnumerable<CategoryDTO> GetAllCategory()
         {
-            return GetAll()
+            return All()
             .Includes(x => x.Tags)
             .ToList().Select(x => new CategoryDTO
             {
@@ -35,7 +35,7 @@ namespace MoqWord.Services
         /// <returns></returns>
         public virtual Category? IsSelectCategory()
         {
-            var settings = settingService.GetAll().Includes(c => c.CurrentCategory).First();
+            var settings = settingService.All().Includes(c => c.CurrentCategory).First();
             if (settings.CurrentCategory is not null and not default(Category))
             {
                 return settings.CurrentCategory;
@@ -49,12 +49,14 @@ namespace MoqWord.Services
         /// <returns></returns>
         public virtual bool SelectCategory(Category c)
         {
-            var settings = settingService.Get();
+            var settings = settingService.First();
             SetColumns(c => new() { IsCurrent = false }, x => x.IsCurrent);
             Initialization(c.Id, settings.EverDayCount);
-            settings.CurrentCategoryId = c.Id;
-            settings.CurrentCategory = c;
-            var result = settingService.Update(settings, s => s.Id == settings.Id) > 0;
+            var result = settingService.SetColumns(s => new()
+            {
+                CurrentCategoryId = c.Id,
+                CurrentCategory = c
+            }, s => s.Id == settings.Id) > 0;
             if (result)
             {
                 mediator.Publish(new CategoryNotify(c));
@@ -66,8 +68,8 @@ namespace MoqWord.Services
         /// </summary>
         public void Initialization(int categoryId, int dailyLimit)
         {
-            var words = wordService.GetAll().ToList();
-            var today = DateTime.Today;
+            var words = wordService.Query(c => c.CategoryId == categoryId).ToList();
+            var today = DateTime.Today.Date;
             int totalWords = words.Count;
             int daysNeeded = (int)Math.Ceiling((double)totalWords / dailyLimit);
 
@@ -78,12 +80,12 @@ namespace MoqWord.Services
                 word.Interval = 1;
                 word.Repetition = 0;
                 word.LastReview = today;
-                word.Due = today.AddDays((i / dailyLimit) + 1);
+                word.Due = today.AddDays((i / dailyLimit));
                 word.Reps = 0;
                 word.Grasp = false;
 
                 // 设置单词的分组编号
-                word.GroupNumber = (i / dailyLimit) + 1;
+                word.GroupNumber = (i / dailyLimit);
             }
             wordService.Update(words, x => true);
             SetColumns(c => new()
@@ -99,11 +101,11 @@ namespace MoqWord.Services
         /// <returns></returns>
         public virtual List<Word> GetWordsToReview()
         {
-            var settings = settingService.Get();
-            var today = DateTime.Today;
+            var settings = settingService.First();
+            var today = DateTime.Today.Date.AddDays(1);
 
             // 筛选出今天或之前需要复习的单词
-            var wordsToReview = wordService.GetQuery(w => w.Due <= today && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
+            var wordsToReview = wordService.Query(w => w.Due <= today && !w.Grasp && w.CategoryId == settings.CurrentCategoryId).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
 
             return wordsToReview;
         }
@@ -115,10 +117,10 @@ namespace MoqWord.Services
         /// <returns>对应GroupNumber的单词列表</returns>
         public virtual List<Word> GetWordsToReviewByGroupNumber(int groupNumber)
         {
-            var settings = settingService.Get();
+            var settings = settingService.First();
 
             // 获取指定GroupNumber的单词
-            var wordsToReview = wordService.GetQuery(w => w.GroupNumber == groupNumber && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
+            var wordsToReview = wordService.Query(w => w.GroupNumber == groupNumber && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
 
             return wordsToReview;
         }
@@ -130,12 +132,12 @@ namespace MoqWord.Services
         /// <returns></returns>
         public virtual List<Word> GetNextWordsToReview()
         {
-            var settings = settingService.Get();
+            var settings = settingService.First();
             var today = DateTime.Today;
 
             // 获取今天或之前需要复习的单词，并按照Due日期排序，排除已掌握的单词和已复习的单词
             var wordsToReview = wordService
-                .GetQuery(w => w.Due <= today && w.Grasp)
+                .Query(w => w.Due <= today && w.Grasp)
                 .OrderBy(w => w.Due)
                 .Take(settings.EverDayCount)
                 .ToList();
@@ -151,7 +153,7 @@ namespace MoqWord.Services
         public virtual List<int> GetGroupNumbersByCategoryId(int categoryId)
         {
             // 获取指定CategoryId的所有不同的GroupNumber，并升序排序
-            var groupNumbers = wordService.GetQuery(w => w.CategoryId == categoryId)
+            var groupNumbers = wordService.Query(w => w.CategoryId == categoryId)
                                            .Select(w => w.GroupNumber)
                                            .Distinct()
                                            .OrderBy(gn => gn)
@@ -169,7 +171,7 @@ namespace MoqWord.Services
         public virtual void UpdateWordAfterReview(Word word, WordRating rating)
         {
             // 获取当前设置
-            var settings = settingService.Get();
+            var settings = settingService.First();
 
             double easinessFactor = word.EasinessFactor ?? 2.5;
             int repetition = word.Repetition ?? 0;

@@ -19,12 +19,12 @@ namespace MoqWord.Repository
         }
 
         T this[int id] => GetById(id);
-        List<T> this[Expression<Func<T, bool>> where] => GetQuery(where).ToList();
+        List<T> this[Expression<Func<T, bool>> where] => Query(where).ToList();
         /// <summary>
         /// 获取全部数据
         /// </summary>
         /// <returns></returns>
-        public virtual ISugarQueryable<T> GetAll()
+        public virtual ISugarQueryable<T> All()
         {
             return Context.Queryable<T>();
         }
@@ -33,7 +33,7 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public virtual ISugarQueryable<T> GetQuery(Expression<Func<T, bool>> predicate)
+        public virtual ISugarQueryable<T> Query(Expression<Func<T, bool>> predicate)
         {
             return Context.Queryable<T>().Where(predicate);
         }
@@ -42,7 +42,7 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="where">查询条件</param>
         /// <returns>实体</returns>
-        public T Get(Expression<Func<T, bool>> @where = null)
+        public T First(Expression<Func<T, bool>> @where = null)
         {
             return @where == null ? Context.Queryable<T>().First() : Context.Queryable<T>().First(@where);
         }
@@ -51,7 +51,7 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="where">查询条件</param>
         /// <returns>实体</returns>
-        public virtual Task<T> GetAsync(Expression<Func<T, bool>> @where = null)
+        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> @where = null)
         {
             return @where == null ? Context.Queryable<T>().FirstAsync() : Context.Queryable<T>().FirstAsync(@where);
         }
@@ -64,7 +64,7 @@ namespace MoqWord.Repository
         /// <param name="orderby">排序字段</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns>实体</returns>
-        public virtual Task<T> GetAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
+        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
         {
             var data = Context.Queryable<T>();
             return isAsc ? data.OrderBy(orderby, OrderByType.Asc).FirstAsync() : Context.Queryable<T>().OrderBy(orderby, OrderByType.Desc).FirstAsync();
@@ -79,7 +79,7 @@ namespace MoqWord.Repository
         /// <param name="orderby">排序字段</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns>实体</returns>
-        public virtual TDto Get<TDto>(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true) where TDto : class
+        public virtual TDto First<TDto>(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true) where TDto : class
         {
             var data = Context.Queryable<T>();
             return isAsc ? data.OrderBy(orderby, OrderByType.Asc).First().Adapt<TDto>(Config) : Context.Queryable<T>().OrderBy(orderby, OrderByType.Desc).First().Adapt<TDto>(Config);
@@ -90,7 +90,7 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="id">实体id</param>
         /// <returns>实体</returns>
-        public virtual T GetById(int id)
+        public virtual T FindById(int id)
         {
             return Context.Queryable<T>().InSingle(id);
         }
@@ -100,7 +100,7 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="id">实体id</param>
         /// <returns>实体</returns>
-        public virtual Task<T> GetByIdAsync(int id)
+        public virtual Task<T> FindByIdAsync(int id)
         {
             return Context.Queryable<T>().InSingleAsync(id);
         }

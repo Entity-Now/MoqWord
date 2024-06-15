@@ -18,8 +18,8 @@ namespace MoqWord.Services
             repository = _repository;
         }
 
-        public virtual T this[int id] => GetById(id);
-        public virtual List<T> this[Expression<Func<T, bool>> where] => GetQuery(where).ToList();
+        public virtual T this[int id] => FindById(id);
+        public virtual List<T> this[Expression<Func<T, bool>> where] => Query(where).ToList();
 
         public virtual int DeleteByEntity(T t)
         {
@@ -51,39 +51,39 @@ namespace MoqWord.Services
             return repository.DeleteByIdAsync(id);
         }
 
-        public virtual T Get(Expression<Func<T, bool>> where = null)
+        public virtual T First(Expression<Func<T, bool>> where = null)
         {
-            return repository.Get(where);
+            return repository.First(where);
         }
 
-        public virtual ISugarQueryable<T> GetAll()
+        public virtual ISugarQueryable<T> All()
         {
-            return repository.GetAll();
+            return repository.All();
         }
 
-        public virtual Task<T> GetAsync(Expression<Func<T, bool>> where = null)
+        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> where = null)
         {
-            return repository.GetAsync(where);
+            return repository.FirstAsync(where);
         }
 
-        public virtual Task<T> GetAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
+        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
         {
-            return repository.GetAsync(where, orderby, isAsc);
+            return repository.FirstAsync(where, orderby, isAsc);
         }
 
-        public virtual T GetById(int id)
+        public virtual T FindById(int id)
         {
-            return repository.GetById(id);
+            return repository.FindById(id);
         }
 
-        public virtual Task<T> GetByIdAsync(int id)
+        public virtual Task<T> FindByIdAsync(int id)
         {
-            return repository.GetByIdAsync(id);
+            return repository.FindByIdAsync(id);
         }
 
-        public virtual ISugarQueryable<T> GetQuery(Expression<Func<T, bool>> predicate)
+        public virtual ISugarQueryable<T> Query(Expression<Func<T, bool>> predicate)
         {
-            return repository.GetQuery(predicate);
+            return repository.Query(predicate);
         }
 
         public virtual InsertNavTaskInit<T, T> InsertNav(List<T> list)

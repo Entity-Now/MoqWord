@@ -47,7 +47,7 @@ namespace MoqWord.Services
             categoryService = _categoryService;
             settingService = _settingService;
             currentCategory = categoryService.IsSelectCategory();
-            currentSetting = settingService.Get(s => s.Id > 0);
+            currentSetting = settingService.First(s => s.Id > 0);
             playService = _playService;
         }
 
@@ -60,7 +60,7 @@ namespace MoqWord.Services
 
         public Task Handle(SettingNotify notification, CancellationToken cancellationToken)
         {
-            currentSetting = settingService.Get(s => s.Id > 0);
+            currentSetting = settingService.First(s => s.Id > 0);
             return Task.CompletedTask;
         }
     }

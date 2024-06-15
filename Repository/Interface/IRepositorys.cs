@@ -13,4 +13,5 @@ namespace MoqWord.Repository.Interface
     public interface IWordRepository : IBaseRepository<Word>;
     public interface IWordLogRepository : IBaseRepository<WordLog>;
     public interface ITagRepository : IBaseRepository<Tag>;
+    public interface IPopupConfigRepository : IBaseRepository<PopupConfig>;
 }

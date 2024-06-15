@@ -27,7 +27,7 @@ namespace MoqWord.Services
                 [Sound.Youdao] = typeof(YoudaoPlaySound),
                 [Sound.Edge] = typeof(EdgePlaySound)
             };
-            var setting = repository.Get();
+            var setting = repository.First();
             var service = ServiceHelper.getService().GetService(SoundMap[setting.SoundSource]) as IPlaySound;
             return service;
         }
@@ -79,7 +79,7 @@ namespace MoqWord.Services
         /// <returns></returns>
         public virtual IEnumerable<SettingItem> GetAllSettings(Action errorBack)
         {
-            var setting = repository.Get();
+            var setting = repository.First();
             return typeof(Setting)
                 .GetTypeInfo()
                 .GetProperties()

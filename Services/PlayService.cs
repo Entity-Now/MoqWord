@@ -1,26 +1,33 @@
-﻿using MoqWord.Services.Interface;
+﻿using DynamicData;
+using MoqWord.Services.Interface;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MoqWord.Services
 {
+
+    using DynamicData;
+    using ReactiveUI;
+    using System.Linq;
+    using System.Reactive.Linq;
+    using System.Windows;
 
     public class PlayService : ReactiveObject, IPlayService
     {
         public ICategoryService categoryService { get; set; }
         public ISettingService settingService { get; set; }
         public IPlaySound playSound { get; set; }
-        private ObservableCollection<Word> _toDayWords;
-        public ObservableCollection<Word> ToDayWords
-        {
-            get => _toDayWords;
-            set => this.RaiseAndSetIfChanged(ref _toDayWords, value);
-        }
+
+        private SourceList<Word> _toDayWords = new SourceList<Word>();
+        private readonly ReadOnlyObservableCollection<Word> _words;
+        public ReadOnlyObservableCollection<Word> ToDayWords => _words;
 
         private int _currentIndex = 0;
         public int CurrentIndex
@@ -65,15 +72,25 @@ namespace MoqWord.Services
         {
             categoryService = _categoryService;
             settingService = _settingService;
+            _toDayWords.Connect()
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(out _words)
+                .Subscribe(x =>
+                {
+                    //MessageBox.Show("集合被改变");
+                });
             Init();
         }
 
         public void Init()
         {
             playSound = settingService.getCurrentSound();
-            ToDayWords = new ObservableCollection<Word>(categoryService.GetWordsToReview());
+            _toDayWords.Clear();
+            _toDayWords.AddRange(categoryService.GetWordsToReview());
+
             DailyLimit = ToDayWords.Count;
-            UpdateWords();
+            CurrentIndex = 0; // 确保在初始化时将 CurrentIndex 设置为 0
+            UpdateWords();    // 确保在初始化时调用 UpdateWords 更新单词
         }
 
         public virtual void Next()

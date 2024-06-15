@@ -32,10 +32,10 @@ namespace MoqWord.Components.Layout
 
         protected override async Task OnInitializedAsync()
         {
-            globalService.PropertyChanged += async (sender, e) =>
-            {
-                await InvokeAsync(StateHasChanged);
-            };
+            //globalService.PropertyChanged += async (sender, e) =>
+            //{
+            //    await InvokeAsync(StateHasChanged);
+            //};
             await base.OnInitializedAsync();
             currentKey = navigationManager.Uri.Split(@"/")[^1];
             navigationManager.LocationChanged += LocationChangeHandle;
