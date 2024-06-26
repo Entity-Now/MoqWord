@@ -11,15 +11,18 @@ namespace MoqWord.ModelView
     public class WordNotifyModelView : ReactiveObject
     {
         public IPlayService playService { get; set; }
+        public PopupConfigModelView popupConfigModelView { get; set; }
 
         public ReactiveCommand<Unit, Unit> PreviousCommand { get; set; }
         public ReactiveCommand<Unit, Unit> LastCommand { get; set; }
         public ReactiveCommand<Unit, Unit> StopCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> LookCommand { get; set; }
         public ReactiveCommand<Unit, Unit> CloseCommand { get; set; }
 
-        public WordNotifyModelView(IPlayService _playService)
+        public WordNotifyModelView(IPlayService _playService, PopupConfigModelView _popupConfigModelView)
         {
             playService = _playService;
+            popupConfigModelView = _popupConfigModelView;
             PreviousCommand = ReactiveCommand.Create(() =>
             {
                 playService.Previous();
@@ -31,6 +34,10 @@ namespace MoqWord.ModelView
             StopCommand = ReactiveCommand.Create(() =>
             {
                 playService?.Stop();
+            });
+            LookCommand = ReactiveCommand.Create(() =>
+            {
+                popupConfigModelView.IsLock = !popupConfigModelView.IsLock;
             });
             CloseCommand = ReactiveCommand.Create(() =>
             {

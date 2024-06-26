@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="MoqWord.WpfComponents.WordPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MoqWord.WpfComponents"
+             xmlns:vm="clr-namespace:MoqWord.ModelView"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="400"
+             Width="680" Height="140">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/Style/GlobalStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Border CornerRadius="10" 
+                x:Name="_border"
+            Padding="10 5"
+            Background="{Binding popupConfigModelView.Background, Mode=TwoWay}"
+            Opacity="{Binding popupConfigModelView.Opacity, Mode=TwoWay}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid x:Name="_tools" Margin="0 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <!--WPF不能识别X，所以加上x-->
+                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf0d9;" Command="{Binding PreviousCommand}"/>
+                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf04d;" Margin="10 0" Command="{Binding StopCommand}"/>
+                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf0da;" Command="{Binding LastCommand}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <!--<TextBlock Text="&#xf021;" Margin="10 0"/>-->
+                        <Button Foreground="{Binding popupConfigModelView.Color}" Margin="10 0" Style="{ StaticResource textButton }" Content="&#xf023;" Command="{Binding LookCommand}"/>
+                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf00d;" Command="{Binding CloseCommand}"/>
+                    </StackPanel>
+                </Grid>
+                <Button x:Name="_LockButton" Foreground="{Binding popupConfigModelView.Color}" HorizontalAlignment="Center" Style="{ StaticResource textButton }" Content="&#xf023;" Command="{Binding LookCommand}"/>
+                <StackPanel Grid.Row="1" Orientation="Vertical">
+                    <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.WordNameFontSize }" Style="{StaticResource desktopWordNameFontSize}" Text="{Binding playService.CurrentWord.WordName}"/>
+                    <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Style="{StaticResource desktopTranslateFontSize}" Text="{Binding playService.CurrentWord.Translation}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

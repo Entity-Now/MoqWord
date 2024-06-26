@@ -17,7 +17,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <TextBlock Text="{TemplateBinding Content}" Style="{StaticResource TextHover}"/>
+                    <TextBlock Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" Style="{StaticResource TextHover}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -72,5 +72,14 @@
                 </BeginStoryboard>
             </EventTrigger>
         </Style.Triggers>
+    </Style>
+    <!--动态资源-->
+    <Style x:Key="desktopWordNameFontSize" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+    <Style x:Key="desktopTranslateFontSize" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 15"/>
     </Style>
 </ResourceDictionary>

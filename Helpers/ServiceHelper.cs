@@ -116,8 +116,8 @@ namespace MoqWord.Helpers
             // 注入scheduler
             _serviceCollection.AddSingleton(SchedulerService.getScheduler());
             // modelview
-            _serviceCollection.AddTransient(typeof(WordNotifyModelView));
-            _serviceCollection.AddTransient(typeof(PopupConfigModelView));
+            _serviceCollection.AddSingleton(typeof(WordNotifyModelView));
+            _serviceCollection.AddSingleton(typeof(PopupConfigModelView));
 
             _services = _serviceCollection.BuildServiceProvider();
         }

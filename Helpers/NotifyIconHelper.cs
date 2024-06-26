@@ -1,21 +1,30 @@
-﻿using Hardcodet.Wpf.TaskbarNotification;
+﻿using AntDesign;
+using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using MoqWord.WpfComponents.Page;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
+using System.Windows.Interop;
+using System.Windows.Media;
+using Color = System.Windows.Media.Color;
+using Icon = System.Drawing.Icon;
+using MenuItem = System.Windows.Controls.MenuItem;
 
 namespace MoqWord.Helpers
 {
     public static class NotifyIconHelper
     {
+        public static Window DeskTopNotify { get; set; }
         public static TaskbarIcon tbi { get; set; }
         public static void Icon()
         {
@@ -46,15 +55,12 @@ namespace MoqWord.Helpers
 
         public static void Show()
         {
-            if (tbi.CustomBalloon is default(Popup) or null)
+            if (DeskTopNotify.Visibility == Visibility.Visible)
             {
-                tbi.ShowCustomBalloon(new WordPopup(), System.Windows.Controls.Primitives.PopupAnimation.Slide, null);
+                DeskTopNotify.Hide();
+                return;
             }
-            else
-            {
-                Close();
-            }
-            
+            DeskTopNotify.Show();
         }
         public static void ShowOptionView()
         {
@@ -66,7 +72,47 @@ namespace MoqWord.Helpers
         }
         public static void Close()
         {
-            tbi.CloseBalloon();
+            DeskTopNotify.Hide();
         }
+
+        static NotifyIconHelper()
+        {
+            DeskTopNotify = new DeskTop();
+            //DeskTopNotify.Content = new WordPopup();
+            //DeskTopNotify.ShowInTaskbar = false; // 不显示在任务栏中
+            //DeskTopNotify.AllowsTransparency = true; // 允许透明
+            //DeskTopNotify.WindowStyle = WindowStyle.None; // 无边框样式
+            //DeskTopNotify.Topmost = true;
+            //DeskTopNotify.Background = new SolidColorBrush(Color.FromArgb(0, 255, 255, 255)); // 设置背景为透明
+            //DeskTopNotify.MouseLeftButtonDown += (sender, e) =>
+            //{
+            //    DeskTopNotify.DragMove();
+            //};
+            //DeskTopNotify.SourceInitialized += DeskTopNotify_SourceInitialized;
+        }
+
+        private static void DeskTopNotify_SourceInitialized(object? sender, EventArgs e)
+        {
+            // Get this window's handle
+            IntPtr hWnd = new WindowInteropHelper(DeskTopNotify).Handle;
+
+            // Get the extended window style
+            int exStyle = (int)GetWindowLong(hWnd, GWL_EXSTYLE);
+
+            // Set the WS_EX_TOOLWINDOW and WS_EX_TRANSPARENT styles
+            exStyle |= WS_EX_TRANSPARENT;
+            SetWindowLong(hWnd, GWL_EXSTYLE, (IntPtr)exStyle);
+        }
+
+        // Win32 API declarations
+        private const int GWL_EXSTYLE = -20;
+        private const int WS_EX_TOOLWINDOW = 0x80;
+        private const int WS_EX_TRANSPARENT = 0x20;
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SetWindowLong(IntPtr hWnd, int nIndex, IntPtr dwNewLong);
     }
 }

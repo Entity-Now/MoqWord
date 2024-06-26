@@ -7,6 +7,7 @@ using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MoqWord.ModelView
 {
@@ -17,7 +18,7 @@ namespace MoqWord.ModelView
         /// <summary>
         /// 单词名字体大小
         /// </summary>
-        double _wordNameFontSize;
+        private double _wordNameFontSize;
         public double WordNameFontSize
         {
             get => _wordNameFontSize;
@@ -29,7 +30,7 @@ namespace MoqWord.ModelView
         /// <summary>
         /// 译文字体大小
         /// </summary>
-        double _translationFontSize;
+        private double _translationFontSize;
         public double TranslationFontSize
         {
             get => _translationFontSize;
@@ -41,7 +42,7 @@ namespace MoqWord.ModelView
         /// <summary>
         /// 透明度
         /// </summary>
-        double _opacity;
+        private double _opacity;
         public double Opacity
         {
             get => _opacity;
@@ -53,7 +54,7 @@ namespace MoqWord.ModelView
         /// <summary>
         /// 字体颜色
         /// </summary>
-        string _color;
+        private string _color;
         public string Color
         {
             get => _color;
@@ -65,7 +66,7 @@ namespace MoqWord.ModelView
         /// <summary>
         /// 背景颜色
         /// </summary>
-        string _background;
+        private string _background;
         public string Background
         {
             get => _background;
@@ -147,6 +148,22 @@ namespace MoqWord.ModelView
                     IsLock = source.Item7
                 }, x => true);
             });
+        }
+
+        void SetStyle()
+        {
+            // 获取资源字典中的样式
+            var style = Application.Current.Resources["desktopTranslateFontSize"] as Style;
+            if (style != null)
+            {
+                // 查找需要修改的 Setter
+                var fontSizeSetter = style.Setters.OfType<Setter>().FirstOrDefault(s => s.Property == TextBlock.FontSizeProperty);
+                if (fontSizeSetter != null)
+                {
+                    // 修改 FontSize 的值
+                    fontSizeSetter.Value = 20; // 这里可以设置为你想要的值
+                }
+            }
         }
     }
 }

@@ -7,16 +7,19 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="WpfComponents\Cell.xaml.cs">
+    <Compile Update="WpfComponents\Component\Cell.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WpfComponents\ColoPicker.xaml.cs">
+    <Compile Update="WpfComponents\Component\ColoPicker.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WpfComponents\PopupConfigView.xaml.cs">
+    <Compile Update="WpfComponents\Component\PopupConfigView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="WpfComponents\WordPopup.xaml.cs">
+    <Compile Update="WpfComponents\Component\WordPopup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="WpfComponents\Page\DeskTop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -24,19 +27,22 @@
     <Page Update="Style\GlobalStyle.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WpfComponents\Cell.xaml">
+    <Page Update="WpfComponents\Component\Cell.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WpfComponents\ColoPicker.xaml">
+    <Page Update="WpfComponents\Component\ColoPicker.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WpfComponents\PopupConfigView.xaml">
+    <Page Update="WpfComponents\Component\PopupConfigView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="WpfComponents\WordPopup.xaml">
+    <Page Update="WpfComponents\Component\WordPopup.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WpfComponents\Page\DeskTop.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
