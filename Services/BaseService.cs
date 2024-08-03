@@ -26,9 +26,9 @@ namespace MoqWord.Services
             return repository.DeleteByEntity(t);
         }
 
-        public virtual Task<int> DeleteByEntityAsync(T t)
+        public virtual async Task<int> DeleteByEntityAsync(T t)
         {
-            return repository.DeleteByEntityAsync(t);
+            return await repository.DeleteByEntityAsync(t);
         }
 
         public virtual int DeleteById(int id)
@@ -41,14 +41,14 @@ namespace MoqWord.Services
             return repository.DeleteById(id);
         }
 
-        public virtual Task<int> DeleteByIdAsync(int id)
+        public virtual async Task<int> DeleteByIdAsync(int id)
         {
-            return repository.DeleteByIdAsync(id);
+            return await repository.DeleteByIdAsync(id);
         }
 
-        public virtual Task<int> DeleteByIdAsync(List<int> id)
+        public virtual async Task<int> DeleteByIdAsync(List<int> id)
         {
-            return repository.DeleteByIdAsync(id);
+            return await repository.DeleteByIdAsync(id);
         }
 
         public virtual T First(Expression<Func<T, bool>> where = null)
@@ -61,14 +61,14 @@ namespace MoqWord.Services
             return repository.All();
         }
 
-        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> where = null)
+        public virtual async Task<T> FirstAsync(Expression<Func<T, bool>> where = null)
         {
-            return repository.FirstAsync(where);
+            return await repository.FirstAsync(where);
         }
 
-        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
+        public virtual async Task<T> FirstAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
         {
-            return repository.FirstAsync(where, orderby, isAsc);
+            return await repository.FirstAsync(where, orderby, isAsc);
         }
 
         public virtual T FindById(int id)
@@ -76,9 +76,9 @@ namespace MoqWord.Services
             return repository.FindById(id);
         }
 
-        public virtual Task<T> FindByIdAsync(int id)
+        public virtual async Task<T> FindByIdAsync(int id)
         {
-            return repository.FindByIdAsync(id);
+            return await repository.FindByIdAsync(id);
         }
 
         public virtual ISugarQueryable<T> Query(Expression<Func<T, bool>> predicate)
@@ -104,14 +104,33 @@ namespace MoqWord.Services
             return repository.InsertOrUpdate(t);
         }
 
-        public virtual Task<int> InsertOrUpdateAsync(T t)
+        public virtual async Task<int> InsertOrUpdateAsync(T t)
         {
-            return repository.InsertOrUpdateAsync(t);
+            return await repository.InsertOrUpdateAsync(t);
         }
 
-        public virtual Task<int> InsertOrUpdateAsync(List<T> t)
+        public virtual async Task<int> InsertOrUpdateAsync(List<T> t)
         {
-            return repository.InsertOrUpdateAsync(t);
+            return await repository.InsertOrUpdateAsync(t);
+        }
+
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual int InsertList(List<T> list)
+        {
+            return repository.InsertList(list);
+        }
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual async Task<int> InsertListAsync(List<T> list)
+        {
+            return await repository.InsertListAsync(list);
         }
 
         public virtual int UpdateById(T t)
@@ -119,9 +138,9 @@ namespace MoqWord.Services
             return repository.UpdateById(t);
         }
 
-        public virtual Task<int> UpdateByIdAsync(T t)
+        public virtual async Task<int> UpdateByIdAsync(T t)
         {
-            return repository.UpdateByIdAsync(t);
+            return await repository.UpdateByIdAsync(t);
         }
         /// <summary>
         /// 更新实体数据
@@ -135,9 +154,9 @@ namespace MoqWord.Services
         /// 更新实体数据
         /// </summary>
         /// <returns></returns>
-        public virtual Task<int> UpdateAsync(T t, Expression<Func<T, bool>> expression)
+        public virtual async Task<int> UpdateAsync(T t, Expression<Func<T, bool>> expression)
         {
-            return repository.UpdateAsync(t, expression);
+            return await repository.UpdateAsync(t, expression);
         }
         /// <summary>
         /// 更新实体数据

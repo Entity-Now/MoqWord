@@ -38,6 +38,20 @@
             </div>
         </div>
     </div>
+    <div class="absolute bottom-0 left-0 w-full min-h-[120px] flex flex-row p-[20px] box-border items-center justify-center gap-6 bg-white">
+        <FaIcon Type="fa-backward-step" Size="38px" OnClick=@(()=> playService.Previous()) />
+        <div @onclick=@(PlayOrStop) class="rounded-full bg-gray-300 hover:bg-gray-200 hover:cursor-pointer hover:text-blue-300 flex items-center justify-center w-[60px] h-[60px]">
+            @if (!playService.IsLoopPlay)
+            {
+                <FaIcon Type="fa-play" IsInherit="true"/>
+            }
+            else
+            {
+                <FaIcon Type="fa-stop" IsInherit="true"/>
+            }
+        </div>
+        <FaIcon Type="fa-forward-step" Size="38px" OnClick=@(()=> playService.Next()) />
+    </div>
    @*  <div class="footBar">
         <Flex Vertical="true" Align="center" Style="flex-basis: 120px">
             <Title Level="4" Style="margin-bottom: 0; ">00：01</Title>

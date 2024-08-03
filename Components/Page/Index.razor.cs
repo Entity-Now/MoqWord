@@ -46,5 +46,18 @@ namespace MoqWord.Components.Page
         {
             return Task.CompletedTask;
         }
+
+        private void PlayOrStop()
+        {
+            if (!playService.IsLoopPlay)
+            {
+                playService.IsLoopPlay = true;
+                playService.Looped();
+            }
+            else
+            {
+                playService.Stop();
+            }
+        }
     }
 }

@@ -51,9 +51,9 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="where">查询条件</param>
         /// <returns>实体</returns>
-        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> @where = null)
+        public virtual async Task<T> FirstAsync(Expression<Func<T, bool>> @where = null)
         {
-            return @where == null ? Context.Queryable<T>().FirstAsync() : Context.Queryable<T>().FirstAsync(@where);
+            return @where == null ? await Context.Queryable<T>().FirstAsync() : await Context.Queryable<T>().FirstAsync(@where);
         }
 
         /// <summary>
@@ -64,10 +64,10 @@ namespace MoqWord.Repository
         /// <param name="orderby">排序字段</param>
         /// <param name="isAsc">是否升序</param>
         /// <returns>实体</returns>
-        public virtual Task<T> FirstAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
+        public virtual async Task<T> FirstAsync(Expression<Func<T, bool>> where, Expression<Func<T, object>> orderby, bool isAsc = true)
         {
             var data = Context.Queryable<T>();
-            return isAsc ? data.OrderBy(orderby, OrderByType.Asc).FirstAsync() : Context.Queryable<T>().OrderBy(orderby, OrderByType.Desc).FirstAsync();
+            return isAsc ? await data.OrderBy(orderby, OrderByType.Asc).FirstAsync() : await Context.Queryable<T>().OrderBy(orderby, OrderByType.Desc).FirstAsync();
         }
 
         /// <summary>
@@ -100,9 +100,9 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="id">实体id</param>
         /// <returns>实体</returns>
-        public virtual Task<T> FindByIdAsync(int id)
+        public virtual async Task<T> FindByIdAsync(int id)
         {
-            return Context.Queryable<T>().InSingleAsync(id);
+            return await Context.Queryable<T>().InSingleAsync(id);
         }
 
         /// <summary>
@@ -119,9 +119,9 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual Task<int> DeleteByIdAsync(int id)
+        public virtual async Task<int> DeleteByIdAsync(int id)
         {
-            return Context.Deleteable<T>().In(id).ExecuteCommandAsync();
+            return await Context.Deleteable<T>().In(id).ExecuteCommandAsync();
         }
         /// <summary>
         /// 根据ID删除实体
@@ -137,9 +137,9 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public virtual Task<int> DeleteByIdAsync(List<int> id)
+        public virtual async Task<int> DeleteByIdAsync(List<int> id)
         {
-            return Context.Deleteable<T>().In(id).ExecuteCommandAsync();
+            return await Context.Deleteable<T>().In(id).ExecuteCommandAsync();
         }
         /// <summary>
         /// 根据实体删除数据
@@ -155,9 +155,9 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public virtual Task<int> DeleteByEntityAsync(T t)
+        public virtual async Task<int> DeleteByEntityAsync(T t)
         {
-            return Context.Deleteable<T>(t).ExecuteCommandAsync();
+            return await Context.Deleteable<T>(t).ExecuteCommandAsync();
         }
         /// <summary>
         /// 更新指定ID的实体
@@ -173,9 +173,9 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public virtual Task<int> UpdateByIdAsync(T t)
+        public virtual async Task<int> UpdateByIdAsync(T t)
         {
-            return Context.Updateable<T>(t).ExecuteCommandAsync();
+            return await Context.Updateable<T>(t).ExecuteCommandAsync();
         }
         /// <summary>
         /// 更新实体数据
@@ -189,9 +189,9 @@ namespace MoqWord.Repository
         /// 更新实体数据
         /// </summary>
         /// <returns></returns>
-        public virtual Task<int> UpdateAsync(T t, Expression<Func<T, bool>> expression)
+        public virtual async Task<int> UpdateAsync(T t, Expression<Func<T, bool>> expression)
         {
-            return Context.Updateable(t).Where(expression).ExecuteCommandAsync();
+            return await Context.Updateable(t).Where(expression).ExecuteCommandAsync();
         }
         /// <summary>
         /// 更新实体数据
@@ -205,9 +205,9 @@ namespace MoqWord.Repository
         /// 更新实体数据
         /// </summary>
         /// <returns></returns>
-        public virtual Task<int> UpdateAsync(List<T> t, Expression<Func<T, bool>> expression)
+        public virtual async Task<int> UpdateAsync(List<T> t, Expression<Func<T, bool>> expression)
         {
-            return Context.Updateable(t).ExecuteCommandAsync();
+            return await Context.Updateable(t).ExecuteCommandAsync();
         }
         /// <summary>
         /// 更新指定的列
@@ -225,9 +225,9 @@ namespace MoqWord.Repository
         /// <param name="t"></param>
         /// <param name="expression"></param>
         /// <returns></returns>
-        public virtual Task<int> SetColumnsAsync(Expression<Func<T, T>> expression, Expression<Func<T, bool>> wh)
+        public virtual async Task<int> SetColumnsAsync(Expression<Func<T, T>> expression, Expression<Func<T, bool>> wh)
         {
-            return Context.Updateable<T>().SetColumns(expression).Where(wh).ExecuteCommandAsync();
+            return await Context.Updateable<T>().SetColumns(expression).Where(wh).ExecuteCommandAsync();
         }
         /// <summary>
         /// 级联插入
@@ -261,9 +261,9 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public virtual Task<int> InsertOrUpdateAsync(T t)
+        public virtual async Task<int> InsertOrUpdateAsync(T t)
         {
-            return Context.Storageable<T>(t).DefaultAddElseUpdate().ExecuteCommandAsync();
+            return await Context.Storageable<T>(t).DefaultAddElseUpdate().ExecuteCommandAsync();
         }
         /// <summary>
         /// 插入或更新
@@ -279,9 +279,28 @@ namespace MoqWord.Repository
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
-        public virtual Task<int> InsertOrUpdateAsync(List<T> t)
+        public virtual async Task<int> InsertOrUpdateAsync(List<T> t)
         {
-            return Context.Storageable<T>(t).DefaultAddElseUpdate().ExecuteCommandAsync();
+            return await Context.Storageable<T>(t).DefaultAddElseUpdate().ExecuteCommandAsync();
+        }
+
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual int InsertList(List<T> list)
+        {
+            return Context.Insertable<T>(list).ExecuteCommand();
+        }
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public virtual async Task<int> InsertListAsync(List<T> list)
+        {
+            return await Context.Insertable<T>(list).ExecuteCommandAsync();
         }
         /// <summary>
         /// 统计数量
@@ -295,9 +314,9 @@ namespace MoqWord.Repository
         /// 统计数量
         /// </summary>
         /// <returns></returns>
-        public virtual Task<int> CountAsync()
+        public virtual async Task<int> CountAsync()
         {
-            return Context.Queryable<T>().CountAsync();
+            return await Context.Queryable<T>().CountAsync();
         }
         /// <summary>
         /// 统计数量
@@ -311,9 +330,9 @@ namespace MoqWord.Repository
         /// 统计数量
         /// </summary>
         /// <returns></returns>
-        public virtual Task<int> CountAsync(Expression<Func<T, bool>> expression)
+        public virtual async Task<int> CountAsync(Expression<Func<T, bool>> expression)
         {
-            return Context.Queryable<T>().Where(expression).CountAsync();
+            return await Context.Queryable<T>().Where(expression).CountAsync();
         }
     }
 }

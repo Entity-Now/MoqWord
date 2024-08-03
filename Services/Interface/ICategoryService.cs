@@ -29,6 +29,19 @@ namespace MoqWord.Services.Interface
         /// </summary>
         void Initialization(int categoryId, int dailyLimit);
         /// <summary>
+        /// 获取当前是背诵的第几天
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        int GetCurrentDay(int categoryId);
+        /// <summary>
+        /// 将指定的groupNumber分类设置为已经记忆完成
+        /// </summary>
+        /// <param name="WordGroup"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        int SetGroupState(WordGroup wordGroup, bool state);
+        /// <summary>
         /// 获取今天的单词
         /// </summary>
         /// <returns></returns>
@@ -44,7 +57,7 @@ namespace MoqWord.Services.Interface
         /// </summary>
         /// <param name="categoryId">指定的CategoryId</param>
         /// <returns>升序排序的GroupNumber列表</returns>
-        List<int> GetGroupNumbersByCategoryId(int categoryId);
+        List<WordGroup> GetGroupNumbersByCategoryId(int categoryId);
         /// <summary>
         /// 获取需要复习的单词
         /// </summary>

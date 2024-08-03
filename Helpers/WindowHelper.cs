@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
@@ -16,10 +17,45 @@ namespace MoqWord.Helpers
         private static double _startWindLeft; 
         private static double _startWindTop;
 
-        public static void Close(bool allWindow = false) {
-            if (allWindow) { Application.Current?.Shutdown(); return; }
-            var window = GetActiveWindow(); if (window != null) { window.Close(); }
+        public static void Close(bool allWindow = true)
+        {
+            // 停止播放单词
+            var playS = ServiceHelper.Services.GetService<IPlayService>();
+            playS?.Stop(); // 加上空值检查
+
+            // 停止应用程序
+            if (allWindow)
+            {
+                var pro = Process.GetProcessesByName(Constants.ProgramName);
+                foreach (var process in pro)
+                {
+                    try
+                    {
+                        process.Kill();
+                        process.WaitForExit(); // 等待进程退出
+                    }
+                    catch (Exception ex)
+                    {
+                        // 记录或处理异常
+                        Console.WriteLine($"Error terminating process: {ex.Message}");
+                    }
+                }
+            }
+
+            // 关闭活动窗口
+            var window = GetActiveWindow();
+            if (window != null)
+            {
+                window.Close();
+            }
         }
+
+
+        public static void Hide()
+        {
+            var window = GetActiveWindow(); if (window != null) { window.Visibility = Visibility.Hidden; window.Hide(); }
+        }
+
 
         public static void Init()
         {

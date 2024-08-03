@@ -13,6 +13,11 @@ namespace MoqWord.Services.Interface
         /// 可以是背诵/复习的单词
         /// </summary>
         ReadOnlyObservableCollection<Word> ToDayWords { get; }
+        ReadOnlyObservableCollection<WordGroup> DayList { get; }
+        /// <summary>
+        /// 是否循环播放中
+        /// </summary>
+        public bool IsLoopPlay { get; set; }
         /// <summary>
         /// 当前单词的索引
         /// </summary>
@@ -36,7 +41,11 @@ namespace MoqWord.Services.Interface
         /// <summary>
         /// 初始化
         /// </summary>
-        void Init();
+        void Init(int? groupNumber = null);
+        /// <summary>
+        /// 切换
+        /// </summary>
+        void Collapse();
         /// <summary>
         /// 开始播放单词
         /// </summary>

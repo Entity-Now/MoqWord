@@ -28,6 +28,14 @@ namespace MoqWord.Helpers
         public static TaskbarIcon tbi { get; set; }
         public static void Icon()
         {
+            var show = ReactiveCommand.Create(() =>
+            {
+                var window = ServiceHelper.Services.GetService<MainWindow>();
+                window.Show();
+                window.WindowState = WindowState.Normal;
+                window.Topmost = true;
+                window.Topmost = false;
+            });
             var resource = ResourceHelper.GetEmbeddedResourceStream(Constants.Icon);
             tbi = new TaskbarIcon();
             tbi.Icon = new Icon(resource);
@@ -39,16 +47,19 @@ namespace MoqWord.Helpers
                     new MenuItem()
                     {
                         Header = "打开程序",
+                        Command = show
+                    },
+                    new MenuItem()
+                    {
+                        Header = "退出程序",
                         Command = ReactiveCommand.Create(() =>
                         {
-                            var window = ServiceHelper.Services.GetService<MainWindow>();
-                            window.WindowState = WindowState.Normal;
-                            window.Topmost = true;
-                            window.Topmost = false;
+                            WindowHelper.Close();
                         })
                     }
                 }
             };
+            tbi.DoubleClickCommand = show;
             tbi.ContextMenu = contextMenu;
             
         }
@@ -89,6 +100,23 @@ namespace MoqWord.Helpers
             //    DeskTopNotify.DragMove();
             //};
             //DeskTopNotify.SourceInitialized += DeskTopNotify_SourceInitialized;
+
+            #region 键盘钩子
+            // 设置钩子
+            KeyBoardHook.KeysHandle += (keys) =>
+            {
+                string key = String.Join(',', keys.Select(k => k.ToString()));
+                if (!string.IsNullOrEmpty(key))
+                {
+                    var shortS = ServiceHelper.Services.GetService<IShortcutKeysService>();
+                    var findKey = shortS.First(x => x.Keys == key && x.Name == "");
+                    if (findKey is not null && key.Equals(findKey.Keys) && findKey.ShortcutName == ShortcutName.OpenDeskTop)
+                    {
+                        Show();
+                    }
+                }
+            };
+            #endregion
         }
 
         private static void DeskTopNotify_SourceInitialized(object? sender, EventArgs e)

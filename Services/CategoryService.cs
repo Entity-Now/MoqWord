@@ -2,6 +2,7 @@
 using MoqWord.Components.Page;
 using MoqWord.Model.Entity;
 using MoqWord.Services.Interface;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,6 +97,32 @@ namespace MoqWord.Services
             }, x => x.Id == categoryId);
         }
         /// <summary>
+        /// 获取当前背诵到第几天
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetCurrentDay(int categoryId)
+        {
+            var words = wordService.Query(c => c.CategoryId == categoryId && !c.Grasp).OrderBy(c => c.Due).ToList();
+            if (words.FirstOrDefault() is Word w)
+            {
+                return w.GroupNumber;
+            }
+            return 1;
+        }
+        /// <summary>
+        /// 将指定的groupNumber分类设置为已经记忆完成
+        /// </summary>
+        /// <param name="groupNumber"></param>
+        /// <param name="state"></param>
+        /// <returns></returns>
+        public virtual int SetGroupState(WordGroup wordGroup, bool state)
+        {
+            return wordService.SetColumns(w => new()
+            {
+                Grasp = state
+            }, w => w.GroupNumber == wordGroup.GroupDay && w.CategoryId == wordGroup.CategoryId);
+        }
+        /// <summary>
         /// 获取今天的单词
         /// </summary>
         /// <returns></returns>
@@ -105,7 +132,7 @@ namespace MoqWord.Services
             var today = DateTime.Today.Date.AddDays(1);
 
             // 筛选出今天或之前需要复习的单词
-            var wordsToReview = wordService.Query(w => w.Due <= today && !w.Grasp && w.CategoryId == settings.CurrentCategoryId).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
+            var wordsToReview = wordService.Query(w => /*w.Due <= today && */!w.Grasp && w.CategoryId == settings.CurrentCategoryId).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
 
             return wordsToReview;
         }
@@ -150,16 +177,24 @@ namespace MoqWord.Services
         /// </summary>
         /// <param name="categoryId">指定的CategoryId</param>
         /// <returns>升序排序的GroupNumber列表</returns>
-        public virtual List<int> GetGroupNumbersByCategoryId(int categoryId)
+        public virtual List<WordGroup> GetGroupNumbersByCategoryId(int categoryId)
         {
             // 获取指定CategoryId的所有不同的GroupNumber，并升序排序
-            var groupNumbers = wordService.Query(w => w.CategoryId == categoryId)
-                                           .Select(w => w.GroupNumber)
-                                           .Distinct()
-                                           .OrderBy(gn => gn)
-                                           .ToList();
+            var wordGroups = wordService.Query(w => w.CategoryId == categoryId)
+                            .GroupBy(w => new { w.CategoryId, w.GroupNumber })
+                            .Select(g => new WordGroup
+                            {
+                                CategoryId = g.CategoryId,
+                                GroupDay = g.GroupNumber,
+                                IsGrasp = SqlFunc.AggregateSum(SqlFunc.IIF(g.Grasp, 1, 0)) == SqlFunc.AggregateCount(g.GroupNumber),
+                                GraspRatio = SqlFunc.AggregateSum(SqlFunc.IIF(g.Grasp, 1, 0)) / (float)SqlFunc.AggregateCount(g.GroupNumber)
+                            })
+                            .OrderBy(g => g.GroupDay)
+                            .ToList();
 
-            return groupNumbers;
+
+
+            return wordGroups;
         }
 
 

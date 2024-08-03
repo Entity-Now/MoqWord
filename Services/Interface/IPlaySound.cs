@@ -12,7 +12,7 @@ namespace MoqWord.Services.Interface
         /// 语言转文字
         /// </summary>
         /// <param name="word">文本</param>
-        void Play(string word);
+        Task PlayAsync(string word, CancellationToken cancelToken = default);
         /// <summary>
         /// 获取所有可用的讲述人列表
         /// </summary>

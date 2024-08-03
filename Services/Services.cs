@@ -17,4 +17,5 @@ namespace MoqWord.Services
     public class WordLogService(IWordLogRepository repository) : BaseService<WordLog>(repository), IWordLogService;
     public class TagService(ITagRepository repository) : BaseService<Tag>(repository), ITagService;
     public class PopupConfigService(IPopupConfigRepository repository) : BaseService<PopupConfig>(repository), IPopupConfigService;
+    public class ShortcutKeysService(IShortcutKeysRepository repository) : BaseService<ShortcutKeys>(repository), IShortcutKeysService;
 }

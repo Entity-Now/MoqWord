@@ -51,6 +51,27 @@ namespace MoqWord.WpfComponents
                         _LockButton.Opacity = 0;
                     }
                 });
+            this.WhenAnyValue(x => x.ViewMode.playService.IsLoopPlay)
+                .Subscribe((e) =>
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        if (e)
+                        {
+                            stopButton.IsEnabled = true;
+                            stopButton.Visibility = Visibility.Visible;
+                            loopButton.IsEnabled = false;
+                            loopButton.Visibility = Visibility.Collapsed;
+                        }
+                        else
+                        {
+                            stopButton.IsEnabled = false;
+                            stopButton.Visibility = Visibility.Collapsed;
+                            loopButton.IsEnabled = true;
+                            loopButton.Visibility = Visibility.Visible;
+                        }
+                    });
+                });
         }
 
         public WordNotifyModelView? ViewMode

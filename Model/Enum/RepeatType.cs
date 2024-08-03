@@ -10,14 +10,14 @@ namespace MoqWord.Model.Enum
     public enum RepeatType
     {
         [Display(Name = "一次")]
-        One,
+        One = 1,
         [Display(Name = "三次")]
-        Three,
+        Three = 3,
         [Display(Name = "五次")]
-        Five,
+        Five = 5,
         [Display(Name = "八次")]
-        Eight,
+        Eight = 8,
         [Display(Name = "无限次")]
-        Many,
+        Many = 999,
     }
 }

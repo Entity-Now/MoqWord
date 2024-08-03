@@ -28,7 +28,7 @@
     </Sider>
     <Layout Class="site-layout">
         <div @onmousedown="WindowHelper.StartMove" @onmouseup="WindowHelper.StopMove" @onmouseleave="WindowHelper.StopMove">
-            <Header Class="header site-layout-background">
+            <Header Class="!bg-white flex flex-row !px-4 items-center justify-center box-border">
                 @if (collapsed)
                 {
                     <FaIcon Type="fa-indent" OnClick="toggle" />
@@ -37,42 +37,84 @@
                 {
                     <FaIcon Type="fa-outdent" OnClick="toggle" />
                 }
-                <Flex Class="tools" Gap="large">
+                <Flex Class="ml-auto" Gap="large">
                     <Flex Gap="large" Align="center" Justify="center" Style="height: 100%;margin: 0 10px;">
                         <Tooltip Title="请选择字典">
-                            <span class="ToolsItem" Style="margin: 0" @onclick=@(()=>NavigateGo("/WordList"))>
+                            <div class="cursor-pointer p-2 box-border font-bold text-lg transition-all rounded bg-gray-100 hover:bg-gray-300" @onclick=@(()=>NavigateGo("/WordList"))>
                                 @(ViewModel?.currentCategory?.Name ?? "未选择")
-                            </span>
+                            </div>
                         </Tooltip>
-                        <Tooltip Title="切换暗色主题">
+                        <Tooltip Title="选择章节">
+                            <div class="cursor-pointer p-2 box-border font-bold text-lg transition-all rounded bg-gray-100 hover:bg-gray-300" @onclick=@(()=> dayViewCollapsed = !dayViewCollapsed)>
+                                第@(ViewModel?.currentDay + 1)天
+                            </div>
+                        </Tooltip>
+@*                         <Tooltip Title="切换暗色主题">
                             <FaIcon Type="fa-sun" />
-                        </Tooltip>
+                        </Tooltip> *@
                         <Dropdown Arrow Placement="Placement.Bottom">
                             <Overlay>
                                 <Menu>
-                                    <MenuItem>循环播放1次</MenuItem>
-                                    <MenuItem>循环播放3次</MenuItem>
-                                    <MenuItem>循环播放5次</MenuItem>
-                                    <MenuItem>循环播放8次</MenuItem>
-                                    <MenuItem>重复循环</MenuItem>
+                                    <MenuItem OnClick="()=> ViewModel.SetRepeatCount(RepeatType.One)">循环播放1次</MenuItem>
+                                    <MenuItem OnClick="()=> ViewModel.SetRepeatCount(RepeatType.Three)">循环播放3次</MenuItem>
+                                    <MenuItem OnClick="()=> ViewModel.SetRepeatCount(RepeatType.Five)">循环播放5次</MenuItem>
+                                    <MenuItem OnClick="()=> ViewModel.SetRepeatCount(RepeatType.Eight)">循环播放8次</MenuItem>
+                                    <MenuItem OnClick="()=> ViewModel.SetRepeatCount(RepeatType.Many)">重复循环</MenuItem>
                                 </Menu>
                             </Overlay>
                             <ChildContent>
-                                <FaIcon Type="fa-repeat" />
+                                <div class="flex gap-1 cursor-pointer p-2 box-border font-bold text-lg transition-all rounded bg-gray-100 hover:bg-gray-300">
+                                    <FaIcon Type="fa-repeat" IsInherit="false"/>
+                                    <span class="font-bold select-none">@((int)ViewModel?.currentSetting?.RepeatCount)次</span>
+                                </div>
                             </ChildContent>
                         </Dropdown>
                     </Flex>
                     <Divider Type="DirectionVHType.Vertical" Style="margin: auto 0"/>
-                    <FaIcon Type="fa-sliders" OnClick="NotifyIconHelper.ShowOptionView" />
-                    <FaIcon Type="fa-window-restore" OnClick="NotifyIconHelper.Show" />
-                    <FaIcon Type="fa-minus" OnClick="WindowHelper.Minimize" />
-                    <FaIcon Type="fa-expand" OnClick="WindowHelper.Collpase" />
-                    <FaIcon Type="fa-xmark" OnClick="()=>WindowHelper.Close()" />
+                    <Flex Class="flex" Gap="large" Align="center" Justify="center" Style="margin: 0 10px;">
+                        <Tooltip Title="修改桌面单词配置">
+                            <FaIcon Type="fa-sliders" OnClick="NotifyIconHelper.ShowOptionView" />
+                        </Tooltip>
+                        <Tooltip Title="桌面单词">
+                            <FaIcon Type="fa-window-restore" OnClick="NotifyIconHelper.Show" />
+                        </Tooltip>
+                        <Tooltip Title="最小化">
+                            <FaIcon Type="fa-minus" OnClick="WindowHelper.Minimize" />
+                        </Tooltip>
+                        <Tooltip Title="最大化">
+                            <FaIcon Type="fa-expand" OnClick="WindowHelper.Collpase" />
+                        </Tooltip>
+                        <Tooltip Title="隐藏">
+                            <FaIcon Type="fa-xmark" OnClick="()=>WindowHelper.Hide()" />
+                        </Tooltip>
+                    </Flex>
                 </Flex>
             </Header>
         </div>
         <Content Style="padding-top: 20px;height: 100%;box-sizing: border-box;overflow: auto;">
             @Body
+            @if (dayViewCollapsed)
+            {
+                <Drawer @bind-Visible="dayViewCollapsed" Title="@($"第{ViewModel.currentDay + 1}天")" Width="500">
+                    <Virtualize Items="@ViewModel.playService.DayList" Context="item">
+                        <div class="@(item.IsGrasp ? " bg-green-300" : "bg-slate-300") relative flex flex-row hover:bg-slate-400 gap-3 my-3 p-3 rounded shadow-current">
+                            <span class="mr-auto">第@(item.GroupDay + 1)天</span>
+                            <Tooltip Title="选择">
+                                <FaIcon Type="fa-hand-pointer" @onclick=@(()=> SelectGroupNumber(item.GroupDay)) />
+                            </Tooltip>
+                            <Tooltip Title="@(item.IsGrasp ? "重新记忆" : "已掌握")">
+                                @if(item.IsGrasp){
+                                    <FaIcon Type="fa-trash-arrow-up" @onclick=@(()=> SetGroupState(item, false)) />
+                                }
+                                else
+                                {
+                                    <FaIcon Type="fa-check" @onclick=@(()=> SetGroupState(item, true)) />
+                                }
+                            </Tooltip>
+                        </div>
+                    </Virtualize>
+                </Drawer>
+            }
         </Content>
     </Layout>
 </Layout>

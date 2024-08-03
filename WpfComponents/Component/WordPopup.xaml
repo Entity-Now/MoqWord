@@ -7,7 +7,7 @@
              xmlns:vm="clr-namespace:MoqWord.ModelView"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="400"
-             Width="680" Height="140">
+             Width="820" Height="140">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -33,9 +33,10 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Horizontal">
                         <!--WPF不能识别X，所以加上x-->
-                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf0d9;" Command="{Binding PreviousCommand}"/>
-                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf04d;" Margin="10 0" Command="{Binding StopCommand}"/>
-                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf0da;" Command="{Binding LastCommand}"/>
+                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf048;" Command="{Binding PreviousCommand}"/>
+                        <Button x:Name="loopButton" Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf04b;" Margin="10 0" Command="{Binding LoopedCommand}"/>
+                        <Button x:Name="stopButton" Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf04d;" Margin="10 0" Command="{Binding StopCommand}"/>
+                        <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf051;" Command="{Binding LastCommand}"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                         <!--<TextBlock Text="&#xf021;" Margin="10 0"/>-->

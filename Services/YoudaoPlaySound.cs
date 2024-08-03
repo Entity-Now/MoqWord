@@ -29,12 +29,12 @@ namespace MoqWord.Services
         {
             return new List<Voice>
             {
-                new Voice { Name = "美音", ShortName = "2" },
-                new Voice { Name = "英音", ShortName = "1" },
+                new Voice { Name = "2", ShortName = "美国发音" },
+                new Voice { Name = "1", ShortName = "英国发音" },
             };
         }
 
-        public async void Play(string word)
+        public async Task PlayAsync(string word, CancellationToken cancelToken = default)
         {
             try
             {
@@ -42,15 +42,16 @@ namespace MoqWord.Services
                 string useVoice = "2";
                 if (setting.SoundSource == Sound.Youdao && !string.IsNullOrEmpty(setting.SoundName))
                 {
-                    useVoice = GetVoice().First(x => x.Name == setting.SoundName).ShortName;
+                    useVoice = GetVoice().First(x => x.Name == setting.SoundName).Name;
                 }
-                HttpClient httpClient = new HttpClient();
-                var response = await httpClient.GetStreamAsync($"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncodeUnicode(word)}&type={useVoice}");
-                var stream = new MemoryStream();
-                response.CopyTo(stream);
-                stream.Position = 0;
-
-                Audio.PlayToByte(stream, (float)setting.SoundVolume / 100);
+                await Audio.PlayAudioFromUrlAsync
+                (
+                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncodeUnicode(word)}&type={useVoice}",
+                     (float)setting.SpeechSpeed,
+                     (float)setting.SoundVolume / 100,
+                     cancelToken
+                );
+                
             }
             catch (Exception ex)
             {

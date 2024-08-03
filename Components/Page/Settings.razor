@@ -1,62 +1,123 @@
 ﻿@page "/Settings"
+@using MoqWord.ModelView
+@using ReactiveUI.Blazor
+@inherits ReactiveComponentBase<SettingModelView>
 
-<AntList Bordered DataSource="@SourceList" Style="margin: 0 20px 20px 20px">
-    <Header>
-        <h2>软件配置项</h2>
-    </Header>
-    <ChildContent Context="item">
-        <ListItem>
-            <Flex Gap="middle" Align="center" Justify="space-between" Style="width: 100%">
-                <div>@item.Cell.Title</div>
+<Tabs @bind-ActiveKey="currentTag" TabPosition="TabPosition.Right">
+    <TabPane Tab="常规设置" Key="default">
+        <div class="ml-6 bg-gray-100 rounded border-2 border-slate-300 shadow-md">
+            <div class="mt-4 mx-10">
+                <span class="text-lg font-bold">常规配置</span>
+            </div>
+            <Divider Class="!m-4"/>
+            <AntList Class="!border-0 " Bordered DataSource="@SourceList" Style="margin: 0 20px 20px 20px">
+                <ListItem>
+                    <Flex Gap="middle" Align="center" Justify="space-between" Style="width: 100%">
+                        <div>@context.Cell.Title</div>
 
-                @if (item.Cell.CellType == CellType.TextBox)
+                        @if (context.Cell.CellType == CellType.TextBox)
+                        {
+                            if (context.Cell.ValueType == typeof(string))
+                            {
+                                <Input Style="width: 200px" Value="(string)context.Value" TValue="string" OnChange="(curr)=> InputHandle(curr, context)" Placeholder="请输入内容..." />
+                            }
+                            else if (context.Cell.ValueType == typeof(int))
+                            {
+                                <InputNumber Style="width: 200px" Value="(int)context.Value" TValue="int" OnChange="(curr)=> InputHandle(curr, context)" Placeholder="请输入内容..." />
+                            }
+                            else if (context.Cell.ValueType == typeof(long))
+                            {
+                                <InputNumber Style="width: 200px" Value="(long)context.Value" TValue="long" OnChange="(curr)=> InputHandle(curr, context)" Placeholder="请输入内容..." />
+                            }
+                            else if (context.Cell.ValueType == typeof(double))
+                            {
+                                <InputNumber Style="width: 200px" Value="(double)context.Value" TValue="double" Step="0.1" OnChange="(curr)=> InputHandle(curr, context)" Placeholder="请输入内容..." />
+                            }
+                        }
+                        else if (context.Cell.CellType == CellType.Switch)
+                        {
+                            <Switch Checked="(bool)context.Value" OnChange="(e)=> {context.Handle(e); context.Value = e;}" />
+                        }
+                        else if (context.Cell.CellType == CellType.ComboBox && context.Cell.ValueType == typeof(Sound))
+                        {
+                            <EnumSelect Style="width: 200px" Value="(Sound)context.Value" TEnum="Sound" OnSelectedItemChanged="(curr)=> InputHandle(curr, context)" />
+                        }
+                        else if (context.Cell.CellType == CellType.ComboBox && context.Cell.ValueType == typeof(RepeatType))
+                        {
+                            <EnumSelect Style="width: 200px" Value="(RepeatType)context.Value" TEnum="RepeatType" OnSelectedItemChanged="(curr)=> InputHandle(curr, context)" />
+                        }
+                        else if (context.Cell.CellType == CellType.ComboBox)
+                        {
+                            <Select Style="width: 200px" Value="(int)context.Value" DataSource="context.Cell.Options" OnSelectedItemChanged="(curr)=> InputHandle(curr, context)" TItem="SelectValue" TItemValue="object" ValueName="@nameof(SelectValue.Label)" LabelName="@nameof(SelectValue.Value)"></Select>
+                        }
+                        else if (context.Cell.CellType == CellType.Slider)
+                        {
+                            if (context.Cell.ValueType == typeof(double))
+                            {
+                                <Slider Style="width: 200px" TValue="double" DefaultValue="(double)context.Value" Min="(double)context.Cell.MinValue" Max="(double)context.Cell.MaxValue" Step="1" OnChange="(curr)=> InputHandle(curr, context)" />
+                            }
+                            else if (context.Cell.ValueType == typeof(int))
+                            {
+                                @* slider数值只能是double类型 *@
+                                @* <Slider Style="width: 200px" TValue="double" DefaultValue="(int)item.Value" Min="(int)item.Cell.MinValue" Max="(int)item.Cell.MaxValue" Step="1" OnChange="(curr)=> InputHandle(curr, item)" /> *@
+                            }
+                        }
+                    </Flex>
+                </ListItem>
+            </AntList>
+        </div>
+    </TabPane>
+    <TabPane Tab="音频设置" Key="Sound">
+        <div class="ml-6 bg-gray-100 rounded border-2 border-slate-300 shadow-md pb-4 box-border">
+            <div class="mt-4 mx-10">
+                <span class="text-lg font-bold">音频设置</span>
+            </div>
+            <Divider Class="!m-4" />
+            <div class="flex flex-col mx-11 gap-1">
+                <div class="flex flex-row items-center justify-between">
+                    <div>音源渠道</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <EnumSelect TEnum="Sound" @bind-Value="ViewModel.Sound"/>
+                    </div>
+                </div>
+                <div class="flex flex-row items-center justify-between">
+                    <div>音源名称</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <Select TItem="Voice" TItemValue="string" @bind-Value="ViewModel.SoundName" DataSource="@ViewModel.SoundList" ValueName="@nameof(Voice.Name)" LabelName="@nameof(Voice.ShortName)" />
+                    </div>
+                </div>
+                <div class="flex flex-row items-center justify-between">
+                    <div>音量</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <Slider TValue="double" @bind-Value="ViewModel.SoundVolume" Step="1" Min="0" Max="100" />
+                    </div>
+                </div>
+                <div class="flex flex-row items-center justify-between">
+                    <div>速度</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <Slider TValue="double" @bind-Value="ViewModel.SpeechSpeed" Step="1" Min="-100.00" Max="100.00" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </TabPane>
+        <TabPane Tab="快捷键设置" Key="shortcutKeys">
+            <div class="ml-6 bg-gray-100 rounded border-2 border-slate-300 shadow-md pb-4 box-border">
+                <div class="mt-4 mx-10">
+                <span class="text-lg font-bold">快捷键设置</span>
+                </div>
+                <Divider Class="!m-4" />
+                @* <div class="flex flex-col mx-11 gap-1">
+                @foreach (var item in ViewModel.ShortcutKeys)
                 {
-                    if (item.Cell.ValueType == typeof(string))
-                    {
-                        <Input Style="width: 200px" Value="(string)item.Value" TValue="string" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
-                    }
-                    else if (item.Cell.ValueType == typeof(int))
-                    {
-                        <InputNumber Style="width: 200px" Value="(int)item.Value" TValue="int" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
-                    }
-                    else if (item.Cell.ValueType == typeof(long))
-                    {
-                        <InputNumber Style="width: 200px" Value="(long)item.Value" TValue="long" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
-                    }
-                    else if (item.Cell.ValueType == typeof(double))
-                    {
-                        <InputNumber Style="width: 200px" Value="(double)item.Value" TValue="double" Step="0.1" OnChange="(curr)=> InputHandle(curr, item)" Placeholder="请输入内容..." />
-                    }
+                    <div class="flex flex-row items-center justify-between">
+                        <div>@item.Name</div>
+                        <div class="ml-auto min-w-[200px]">
+                            <Input TValue="string" @bind-Value="item.Keys"/>
+                        </div>
+                    </div>
                 }
-                else if (item.Cell.CellType == CellType.Switch)
-                {
-                    <Switch Checked="(bool)item.Value" OnChange="(e)=> {item.Handle(e); item.Value = e;}" />
-                }
-                else if (item.Cell.CellType == CellType.ComboBox && item.Cell.ValueType == typeof(Sound))
-                {
-                    <EnumSelect Style="width: 200px" Value="(Sound)item.Value" TEnum="Sound" OnSelectedItemChanged="(curr)=> InputHandle(curr, item)" />
-                }
-                else if (item.Cell.CellType == CellType.ComboBox && item.Cell.ValueType == typeof(RepeatType))
-                {
-                    <EnumSelect Style="width: 200px" Value="(RepeatType)item.Value" TEnum="RepeatType" OnSelectedItemChanged="(curr)=> InputHandle(curr, item)" />
-                }
-                else if (item.Cell.CellType == CellType.ComboBox)
-                {
-                    <Select Style="width: 200px" Value="(int)item.Value" DataSource="item.Cell.Options" OnSelectedItemChanged="(curr)=> InputHandle(curr, item)" TItem="SelectValue" TItemValue="object" ValueProperty="c=> c.Value" LabelProperty="c => c.Label"></Select>
-                }
-                else if (item.Cell.CellType == CellType.Slider)
-                {
-                    if (item.Cell.ValueType == typeof(double))
-                    {
-                        <Slider Style="width: 200px" TValue="double" DefaultValue="(double)item.Value" Min="(double)item.Cell.MinValue" Max="(double)item.Cell.MaxValue" Step="1" OnChange="(curr)=> InputHandle(curr, item)" />
-                    }
-                    else if (item.Cell.ValueType == typeof(int))
-                    {
-                        @* slider数值只能是double类型 *@
-                        @* <Slider Style="width: 200px" TValue="double" DefaultValue="(int)item.Value" Min="(int)item.Cell.MinValue" Max="(int)item.Cell.MaxValue" Step="1" OnChange="(curr)=> InputHandle(curr, item)" /> *@
-                    }
-                }
-            </Flex>
-        </ListItem>
-    </ChildContent>
-</AntList>
+                </div> *@
+            </div>
+        </TabPane>
+</Tabs>

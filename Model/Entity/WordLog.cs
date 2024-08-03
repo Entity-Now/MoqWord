@@ -31,5 +31,9 @@ namespace MoqWord.Model.Entity
         /// 当前单词状态
         /// </summary>
         public WordState State { get; set; }
+        /// <summary>
+        /// 听力模式，反之则是记忆模式
+        /// </summary>
+        public bool IsRead { get; set; }
     }
 }

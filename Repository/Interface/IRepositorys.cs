@@ -14,4 +14,5 @@ namespace MoqWord.Repository.Interface
     public interface IWordLogRepository : IBaseRepository<WordLog>;
     public interface ITagRepository : IBaseRepository<Tag>;
     public interface IPopupConfigRepository : IBaseRepository<PopupConfig>;
+    public interface IShortcutKeysRepository : IBaseRepository<ShortcutKeys>;
 }

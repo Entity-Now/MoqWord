@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Edge_tts_sharp;
 using Edge_tts_sharp.Model;
+using Edge_tts_sharp.Utils;
 using MoqWord.Repository.Interface;
 using MoqWord.Services.Interface;
 
@@ -18,7 +19,7 @@ namespace MoqWord.Services
             settingRepository = _settingRepository;
         }
 
-        public void Play(string word)
+        public Task PlayAsync(string word, CancellationToken cancelToken = default)
         {
             var setting = settingRepository.First();
             Voice useVoice = null;
@@ -30,14 +31,26 @@ namespace MoqWord.Services
             {
                 useVoice = GetVoice().First(x => x.Name.Contains("zh"));
             }
-            Edge_tts.PlayText(word, new eVoice
+            Edge_tts.Invoke(word, new eVoice
             {
                 Name = useVoice.Name,
                 SuggestedCodec = useVoice.SuggestedCodec,
                 Locale = useVoice.Locale,
                 Gender = useVoice.Gender,
                 ShortName = useVoice.ShortName
-            }, (int)setting.SpeechSpeed, (float)setting.SoundVolume / 100);
+            }, (int)setting.SpeechSpeed, async (sound) =>
+            {
+                if (!cancelToken.IsCancellationRequested)
+                {
+                    await Audio.PlayToByteAsync(
+                        sound.ToArray(),
+                        (int)setting.SpeechSpeed,
+                        (float)setting.SoundVolume / 100,
+                        cancelToken
+                    );
+                }
+            });
+            return Task.CompletedTask;
         }
 
         public IEnumerable<Voice> GetVoice()

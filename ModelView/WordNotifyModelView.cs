@@ -16,6 +16,7 @@ namespace MoqWord.ModelView
         public ReactiveCommand<Unit, Unit> PreviousCommand { get; set; }
         public ReactiveCommand<Unit, Unit> LastCommand { get; set; }
         public ReactiveCommand<Unit, Unit> StopCommand { get; set; }
+        public ReactiveCommand<Unit, Unit> LoopedCommand { get; set; }
         public ReactiveCommand<Unit, Unit> LookCommand { get; set; }
         public ReactiveCommand<Unit, Unit> CloseCommand { get; set; }
 
@@ -34,6 +35,11 @@ namespace MoqWord.ModelView
             StopCommand = ReactiveCommand.Create(() =>
             {
                 playService?.Stop();
+            });
+            LoopedCommand = ReactiveCommand.Create(() =>
+            {
+                playService.IsLoopPlay = true;
+                playService?.Looped();
             });
             LookCommand = ReactiveCommand.Create(() =>
             {

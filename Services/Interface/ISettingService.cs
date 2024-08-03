@@ -9,6 +9,12 @@ namespace MoqWord.Services.Interface
     public interface ISettingService : IBaseService<Setting>
     {
         /// <summary>
+        /// 获取指定音源
+        /// </summary>
+        /// <param name="sound"></param>
+        /// <returns></returns>
+        IPlaySound getSound(Sound sound);
+        /// <summary>
         /// 获取当前的音源
         /// </summary>
         /// <returns></returns>

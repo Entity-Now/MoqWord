@@ -195,8 +195,9 @@
         }
         update();
     }
+
     async void PlayWord(Word word){
         var sound = _settingService.getCurrentSound();
-        sound.Play(word.WordName);
+        sound.PlayAsync(word.WordName);
     }
 }

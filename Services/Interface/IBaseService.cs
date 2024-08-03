@@ -185,6 +185,18 @@ namespace MoqWord.Services.Interface
         /// <returns></returns>
         Task<int> InsertOrUpdateAsync(List<T> t);
         /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        int InsertList(List<T> list);
+        /// <summary>
+        /// 批量插入
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        Task<int> InsertListAsync(List<T> list);
+        /// <summary>
         /// 统计数量
         /// </summary>
         /// <returns></returns>

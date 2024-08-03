@@ -15,4 +15,5 @@ namespace MoqWord.Services.Interface
     public interface IWordLogService : IBaseService<WordLog>;
     public interface ITagService : IBaseService<Tag>;
     public interface IPopupConfigService : IBaseService<PopupConfig>;
+    public interface IShortcutKeysService : IBaseService<ShortcutKeys>;
 }

@@ -17,9 +17,10 @@ namespace MoqWord.Services
         {
             settingRepository = _settingRepository;
         }
-        public void Play(string word)
+        public async Task PlayAsync(string word, CancellationToken cancelToken = default)
         {
-            using (var synth = new SpeechSynthesizer())
+            var synth = new SpeechSynthesizer();
+            try
             {
                 var selectVoice = settingRepository.GetSingle(x => x.Id >= 0);
                 string useVoice = null;
@@ -34,10 +35,25 @@ namespace MoqWord.Services
                 synth.Rate = (int)selectVoice.SpeechSpeed / 10;
                 synth.Volume = (int)selectVoice.SoundVolume;
                 synth.SelectVoice(useVoice);
-                synth.Speak(word);
-                synth.Dispose();
+
+                var tcs = new TaskCompletionSource<bool>();
+                cancelToken.Register(() =>
+                {
+                    synth?.SpeakAsyncCancelAll();
+                    tcs?.TrySetResult(true);
+                });
+
+                synth.SpeakCompleted += (s, e) => tcs.TrySetResult(true);
+                synth?.SpeakAsync(word);
+
+                await tcs.Task;
+            }
+            finally
+            {
+                //synth.Dispose();
             }
         }
+
         public IEnumerable<Voice> GetVoice()
         {
             using (var synth = new SpeechSynthesizer())

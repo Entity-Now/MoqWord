@@ -13,11 +13,14 @@ namespace MoqWord
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            // 注册键盘钩子
+            KeyBoardHook.SetHook(KeyBoardHook._proc);
             base.OnStartup(e);
 
             var mainWindow = ServiceHelper.Services.GetRequiredService<MainWindow>();
             mainWindow.Show();
-            
+            // 卸载钩子
+            KeyBoardHook.UnhookWindowsHookEx(KeyBoardHook._hookID);
         }
     }
 

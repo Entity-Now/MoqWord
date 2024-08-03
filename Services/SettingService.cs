@@ -19,6 +19,21 @@ namespace MoqWord.Services
         /// 获取当前的音源
         /// </summary>
         /// <returns></returns>
+        public virtual IPlaySound getSound(Sound sound)
+        {
+            Dictionary<Sound, Type> SoundMap = new Dictionary<Sound, Type>
+            {
+                [Sound.Default] = typeof(DefaultPlaySound),
+                [Sound.Youdao] = typeof(YoudaoPlaySound),
+                [Sound.Edge] = typeof(EdgePlaySound)
+            };
+            var service = ServiceHelper.getService().GetService(SoundMap[sound]) as IPlaySound;
+            return service;
+        }
+        /// <summary>
+        /// 获取当前的音源
+        /// </summary>
+        /// <returns></returns>
         public virtual IPlaySound getCurrentSound() 
         {
             Dictionary<Sound, Type> SoundMap = new Dictionary<Sound, Type> 

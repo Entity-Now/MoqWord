@@ -62,12 +62,14 @@ namespace MoqWord.Model.Entity
         /// <summary>
         /// 音源
         /// </summary>
-        [CellType("音源", Sound.Default, CellType.ComboBox, typeof(Sound))]
+        //[CellType("音源", Sound.Default, CellType.ComboBox, typeof(Sound))]
+        [CellType(Visible = false)]
         public Sound SoundSource { get; set; }
         /// <summary>
         /// 音频名
         /// </summary>
-        [CellType("音频名", "未定义", CellType.TextBox, typeof(string))]
+        //[CellType("音频名", "未定义", CellType.TextBox, typeof(string))]
+        [CellType(Visible = false)]
         public string SoundName { get; set; }
         /// <summary>
         /// 编码译码器
@@ -77,12 +79,14 @@ namespace MoqWord.Model.Entity
         /// <summary>
         /// 音频播放速度
         /// </summary>
-        [CellType(Title = "音频播放速度", Value = 0, CellType = CellType.Slider, ValueType = typeof(double), MinValue = -100.0, MaxValue = 100.0)]
+        //[CellType(Title = "音频播放速度", Value = 0, CellType = CellType.Slider, ValueType = typeof(double), MinValue = -100.0, MaxValue = 100.0)]
+        [CellType(Visible = false)]
         public double SpeechSpeed { get; set; }
         /// <summary>
         /// 音频音量
         /// </summary>
-        [CellType(Title = "音频音量", Value = 0, CellType = CellType.Slider, ValueType = typeof(double), MinValue = 0.0, MaxValue = 100.0)]
+        //[CellType(Title = "音频音量", Value = 0, CellType = CellType.Slider, ValueType = typeof(double), MinValue = 0.0, MaxValue = 100.0)]
+        [CellType(Visible = false)]
         public double SoundVolume { get; set; }
         /// <summary>
         /// 是否开机自启

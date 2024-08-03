@@ -55,6 +55,8 @@ namespace MoqWord.Helpers
             // 注册 ant design
             _serviceCollection.AddAntDesign();
             _serviceCollection.AddSingleton<MainWindow>();
+            // 注入scheduler 
+            _serviceCollection.AddSingleton(SchedulerService.getScheduler());
 
             // 注入SQL Sugar仓储
             _serviceCollection.AddScoped(typeof(BaseRepository<>));
@@ -96,6 +98,7 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<IWordLogRepository, WordLogRepository>();
             _serviceCollection.AddTransient<ITagRepository, TagRepository>();
             _serviceCollection.AddTransient<IPopupConfigRepository, PopupConfigRepository>();
+            _serviceCollection.AddTransient<IShortcutKeysRepository, ShortcutKeysRepository>();
             _serviceCollection.AddTransient(typeof(BaseService<>));
             _serviceCollection.AddTransient<ICategoryService, CategoryService>();
             _serviceCollection.AddTransient<IPersonalService, PersonalService>();
@@ -104,6 +107,7 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<IWordLogService, WordLogService>();
             _serviceCollection.AddTransient<ITagService, TagService>();
             _serviceCollection.AddTransient<IPopupConfigService, PopupConfigService>();
+            _serviceCollection.AddTransient<IShortcutKeysService, ShortcutKeysService>();
             _serviceCollection.AddTransient<DefaultPlaySound>();
             _serviceCollection.AddTransient<EdgePlaySound>();
             _serviceCollection.AddTransient<YoudaoPlaySound>();
@@ -118,6 +122,7 @@ namespace MoqWord.Helpers
             // modelview
             _serviceCollection.AddSingleton(typeof(WordNotifyModelView));
             _serviceCollection.AddSingleton(typeof(PopupConfigModelView));
+            _serviceCollection.AddSingleton(typeof(SettingModelView));
 
             _services = _serviceCollection.BuildServiceProvider();
         }

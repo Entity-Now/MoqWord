@@ -17,4 +17,5 @@ namespace MoqWord.Repository
     public class WordLogRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<WordLog>(db, _config), IWordLogRepository;
     public class TagRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<Tag>(db, _config), ITagRepository;
     public class PopupConfigRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<PopupConfig>(db, _config), IPopupConfigRepository;
+    public class ShortcutKeysRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<ShortcutKeys>(db, _config), IShortcutKeysRepository;
 }
