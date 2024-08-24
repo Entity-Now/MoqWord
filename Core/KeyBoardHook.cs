@@ -43,7 +43,7 @@ namespace MoqWord.Core
                 int vkCode = Marshal.ReadInt32(lParam);
                 Keys key = (Keys)vkCode;
 
-                if (wParam == (IntPtr)WM_KEYDOWN)
+                if (wParam == (IntPtr)WM_KEYDOWN && !PressedKeys.Contains(key))
                 {
                     PressedKeys.Add(key);
                     // 出发委托

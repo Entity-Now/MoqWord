@@ -88,19 +88,25 @@ namespace MoqWord
                     {
                         Name = "开始/停止播放",
                         Keys = "Ctrl,Alt,P",
-                        ShortcutName = ShortcutName.Collapse
+                        ShortcutName = ShortcutName.Collapse,
+                        Interface = "IPlayService",
+                        Method = "Collapse"
                     },
                     new ShortcutKeys
                     {
                         Name = "上一个单词",
                         Keys = "Ctrl,Alt,Left",
-                        ShortcutName = ShortcutName.Previous
+                        ShortcutName = ShortcutName.Previous,
+                        Interface = "IPlayService",
+                        Method = "Previous"
                     },
                     new ShortcutKeys
                     {
                         Name = "下一个单词",
                         Keys = "Ctrl,Alt,Right",
-                        ShortcutName = ShortcutName.Next
+                        ShortcutName = ShortcutName.Next,
+                        Interface = "IPlayService",
+                        Method = "Next"
                     },
                 });
             }

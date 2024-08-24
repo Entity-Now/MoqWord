@@ -1,0 +1,120 @@
+﻿@page "/about"
+@using ReactiveUI.Blazor
+@using MoqWord.Components.Components.FaIcon
+@inject NavigationManager Navigation
+@code{
+    private void openUrl(string url){
+        Navigation.NavigateTo(url);
+    }
+}
+
+<div class="bg-gray-50 rounded mx-4 p-4 box-border flex flex-col gap-3">
+    <h1 class="text-center font-bold text-2xl">关于我们</h1>
+    <div class="node">
+        <div class="title font-bold text-lg">起因</div>
+        <div class="descript mt-2 ml-2">
+            <Button OnClick=@(()=> openUrl("https://github.com/Entity-Now/MoqWord")) Type="@ButtonType.Link">莫欺单词</Button>，顾名思义，就是提醒我们在背诵单词时要用心对待。学习外语是一项需要坚持与努力的任务，而背诵单词则是其中至关重要的一环。莫欺单词，让你在轻松的环境中高效学习，不再让拖延和懈怠成为你的阻碍。记住，不要欺骗自己，背诵单词就从现在开始。
+        </div>
+    </div>
+    <div class="ability">
+        <div class="title font-bold text-lg">功能</div>
+        <table class="mt-2 ml-2 border-2 border-gray-300">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="px-4 py-2 text-center border">功能</th>
+                    <th class="px-4 py-2 text-center border">描述</th>
+                    <th class="px-4 py-2 text-center border">开发状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-4 py-2 text-center border">背诵计划</td>
+                    <td class="px-4 py-2 text-center border">规划单词的背诵计划，合理安排背诵时间。</td>
+                    <td class="px-4 py-2 text-center border">完成</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border">桌面单词</td>
+                    <td class="px-4 py-2 text-center border">单词将悬浮在桌面中</td>
+                    <td class="px-4 py-2 text-center border">完成</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border">网络音源</td>
+                    <td class="px-4 py-2 text-center border">支持Edge、有道等音源</td>
+                    <td class="px-4 py-2 text-center border">完成</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">Qwerty Learner</Button></td>
+                    <td class="px-4 py-2 text-center border">支持导入该平台字典</td>
+                    <td class="px-4 py-2 text-center border">完成</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border">云存储</td>
+                    <td class="px-4 py-2 text-center border">将背诵进度存储在云端</td>
+                    <td class="px-4 py-2 text-center border">计划</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="node">
+        <div class="title font-bold text-lg">引用的开源库</div>
+        <div class="descript mt-2 ml-2">
+            以下是本程序引用的部分类库，在此对广大开源作者们表示感谢~
+        </div>
+        <table class="mt-2 ml-2 border-2 border-gray-300">
+            <thead class="bg-gray-200">
+                <tr>
+                    <th class="px-4 py-2 text-center border">项目</th>
+                    <th class="px-4 py-2 text-center border">描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">Edge_tts_sharp</Button></td>
+                    <td class="px-4 py-2 text-center border">由本人开发的，微软Edge语音转文本类库！</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">HandyControls</Button></td>
+                    <td class="px-4 py-2 text-center border">国产WPF UI框架，简单易用 功能丰富！</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">AntDesign</Button></td>
+                    <td class="px-4 py-2 text-center border">blazor UI 框架</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">FreeScheduler</Button></td>
+                    <td class="px-4 py-2 text-center border">任务调度类库</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">Hardcodet.NotifyIcon.Wpf</Button></td>
+                    <td class="px-4 py-2 text-center border">Wpf任务栏工具库</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">Mapster</Button></td>
+                    <td class="px-4 py-2 text-center border">类型转换，DTO工具库</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">MediatR</Button></td>
+                    <td class="px-4 py-2 text-center border">领域事件类库</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">ReactiveUI</Button></td>
+                    <td class="px-4 py-2 text-center border">MVVM框架</td>
+                </tr>
+                <tr>
+                    <td class="px-4 py-2 text-center border"><Button Type="@ButtonType.Link">Qwerty Learner</Button></td>
+                    <td class="px-4 py-2 text-center border">记忆单词的网页程序，本程序部分字典来自该平台，对此表示感谢~</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="node">
+        <div class="title font-bold text-lg">支持</div>
+        <div class="descript mt-2 ml-2">
+            开源不易，如果你觉得本程序对你有所帮助，欢迎在能力范围内给予支持。
+        </div>
+        <div class=" mt-2 ml-2 grid grid-cols-2 justify-between gap-4">
+            <img class="rounded bg-gray-50 shadow-lg h-[480px]" src="@ResourceHelper.GetEmbeddedImage("MoqWord.Local.Image.aliPay.jpg")" />
+            <img class="rounded bg-gray-50 shadow-lg h-[480px]" src="@ResourceHelper.GetEmbeddedImage("MoqWord.Local.Image.weixinPay.jpg")" />
+        </div>
+    </div>
+</div>

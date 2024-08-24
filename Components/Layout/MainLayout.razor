@@ -22,7 +22,11 @@
             </MenuItem>
             <MenuItem Key="Settings" OnClick=@(()=>NavigateGo("/Settings"))>
                 <Icon Type="setting" Theme="outline" Style="font-weight:bold;" />
-                <span>设置</span>
+                <span>程序配置</span>
+            </MenuItem>
+            <MenuItem Key="About" OnClick=@(()=>NavigateGo("/About"))>
+                <Icon Type="send" Theme="outline" Style="font-weight:bold;" />
+                <span>关于我们</span>
             </MenuItem>
         </Menu>
     </Sider>
@@ -97,7 +101,8 @@
             {
                 <Drawer @bind-Visible="dayViewCollapsed" Title="@($"第{ViewModel.currentDay + 1}天")" Width="500">
                     <Virtualize Items="@ViewModel.playService.DayList" Context="item">
-                        <div class="@(item.IsGrasp ? " bg-green-300" : "bg-slate-300") relative flex flex-row hover:bg-slate-400 gap-3 my-3 p-3 rounded shadow-current">
+                        <div class="@(item.IsGrasp ? " bg-emerald-500" : "bg-gray-300") relative flex flex-row hover:bg-gray-400 cursor-pointer gap-3 my-3 p-3 rounded shadow-current"
+                             @onclick=@(()=> SelectGroupNumber(item.GroupDay))>
                             <span class="mr-auto">第@(item.GroupDay + 1)天</span>
                             <Tooltip Title="选择">
                                 <FaIcon Type="fa-hand-pointer" @onclick=@(()=> SelectGroupNumber(item.GroupDay)) />

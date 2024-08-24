@@ -22,6 +22,11 @@ namespace MoqWord.Model.Entity
         /// 调用的方法名
         /// </summary>
         [SugarColumn(IsNullable = true)]
+        public string? Interface { get; set; } = null;
+        /// <summary>
+        /// 调用的方法名
+        /// </summary>
+        [SugarColumn(IsNullable = true)]
         public string? Method { get; set; } = null;
         /// <summary>
         /// 快捷名

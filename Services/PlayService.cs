@@ -112,9 +112,9 @@ namespace MoqWord.Services
 
         public void Init(int? groupNumber = null)
         {
-            playSound = settingService.getCurrentSound();
             _toDayWords.Clear();
             _days.Clear();
+            // 根据指定日期来记忆单词，否则获取当天单词
             if (groupNumber is int g)
             {
                 _toDayWords.AddRange(categoryService.GetWordsToReviewByGroupNumber(g));
@@ -154,11 +154,14 @@ namespace MoqWord.Services
             }
             else
             {
+                IsLoopPlay = true;
                 Looped();
             }
         }
         public virtual void Play()
         {
+            // 获取音源
+            playSound = settingService.getCurrentSound();
             // 播放单词所需的时间
             var s = settingService.First();
             var readTime = CurrentWord.WordName.CalculateReadingTime(s.SpeechSpeed);
@@ -167,7 +170,8 @@ namespace MoqWord.Services
             // play text
             scheduler.AddTempTask(TimeSpan.FromSeconds(readTime + 0.3), () =>
             {
-                secondaryPlaySound.PlayAsync(CurrentWord.Translation.Split("；")[0], _cancellationTokenSource.Token);
+                var tran_s = CurrentWord.Translation.Split("；")[0].Split(".");
+                secondaryPlaySound.PlayAsync(tran_s.Length >= 1 ? tran_s[1] : tran_s[0], _cancellationTokenSource.Token);
             });
         }
 

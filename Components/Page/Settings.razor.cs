@@ -15,6 +15,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
+using static MoqWord.Core.KeyBoardHook;
 
 namespace MoqWord.Components.Page
 {
@@ -30,6 +32,7 @@ namespace MoqWord.Components.Page
         }
 
         private string currentTag = "default";
+        KeyDownHandle inputHandle = null;
         public List<SettingItem> SourceList { get; set; }
 
         protected override void OnInitialized()
@@ -44,16 +47,29 @@ namespace MoqWord.Components.Page
             item.Value = curr;
         }
 
-        private void installShowDeskTop()
+        void InputFocusOn(ShortcutKeys sk)
         {
-            KeyBoardHook.KeysHandle += (kes) =>
+            inputHandle = (keys) =>
             {
-
+                this.InvokeAsync(() =>
+                {
+                    sk.Keys = String.Join(',', keys.Select(k => KeyMap.keyMap.ContainsKey(k) ? KeyMap.keyMap[k] : ""));
+                    StateHasChanged();
+                });
             };
-        }
-        private void KeyboardHandle(HashSet<Keys> keys)
-        {
+            KeyBoardHook.KeysHandle += inputHandle;
+            // 设置钩子
+            KeyBoardHook.KeysHandle -= NotifyIconHelper.KeyListens;
 
+        }
+        void InputBlurOn(ShortcutKeys sk)
+        {
+            KeyBoardHook.KeysHandle -= inputHandle;// 设置钩子
+            KeyBoardHook.KeysHandle += NotifyIconHelper.KeyListens;
+            settingService.ShortcutKeysService.SetColumns(s => new()
+            {
+                Keys = sk.Keys
+            }, s => s.Id == sk.Id);
         }
     }
 }

@@ -64,7 +64,8 @@ namespace MoqWord.ModelView
         /// 
         /// </summary>
         SourceList<ShortcutKeys> shortcutKeys = new SourceList<ShortcutKeys>();
-        public IObservable<IChangeSet<ShortcutKeys>> ShortcutKeys => shortcutKeys.Connect();
+        public ReadOnlyObservableCollection<ShortcutKeys> _shortcutKeys;
+        public ReadOnlyObservableCollection<ShortcutKeys> ShortcutKeys => _shortcutKeys;
 
         public SettingModelView(ISettingService settingService, IShortcutKeysService _shortcutKeysService)
         {
@@ -80,6 +81,10 @@ namespace MoqWord.ModelView
                 .Bind(out _soundList)
                 .Subscribe();
 
+            shortcutKeys.Connect()
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(out _shortcutKeys)
+                .Subscribe();
             this.WhenAnyValue(v => v.Sound)
                 .Subscribe(r =>
                 {

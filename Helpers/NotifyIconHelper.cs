@@ -19,6 +19,9 @@ using System.Windows.Media;
 using Color = System.Windows.Media.Color;
 using Icon = System.Drawing.Icon;
 using MenuItem = System.Windows.Controls.MenuItem;
+using Flection_Sharp;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace MoqWord.Helpers
 {
@@ -103,20 +106,39 @@ namespace MoqWord.Helpers
 
             #region 键盘钩子
             // 设置钩子
-            KeyBoardHook.KeysHandle += (keys) =>
+            KeyBoardHook.KeysHandle += KeyListens;
+            #endregion
+        }
+        public static void KeyListens(HashSet<Keys> keys)
+        {
+            string key = String.Join(',', keys.Select(k => KeyMap.keyMap.ContainsKey(k) ? KeyMap.keyMap[k] : ""));
+            if (!string.IsNullOrEmpty(key))
             {
-                string key = String.Join(',', keys.Select(k => k.ToString()));
-                if (!string.IsNullOrEmpty(key))
+                var shortS = ServiceHelper.Services.GetService<IShortcutKeysService>();
+                var findKey = shortS.First(x => x.Keys == key);
+                if (findKey is not null && key.Equals(findKey.Keys, StringComparison.InvariantCulture))
                 {
-                    var shortS = ServiceHelper.Services.GetService<IShortcutKeysService>();
-                    var findKey = shortS.First(x => x.Keys == key && x.Name == "");
-                    if (findKey is not null && key.Equals(findKey.Keys) && findKey.ShortcutName == ShortcutName.OpenDeskTop)
+                    if (findKey.ShortcutName == ShortcutName.OpenDeskTop)
                     {
                         Show();
                     }
+                    else if (!string.IsNullOrEmpty(findKey.Method) && !string.IsNullOrEmpty(findKey.Interface))
+                    {
+                        dynamic s = null;
+                        var type = flecion.getSingleType("MoqWord", findKey.Interface);
+                        var getService = typeof(IServiceProvider).GetMethod("GetService");
+                        if (getService is not null)
+                        {
+                            s = getService.Invoke(ServiceHelper.Services, new object[] { type });
+                        }
+                        MethodInfo m = type.GetMethod(findKey.Method);
+                        if (s is not null && m is not null)
+                        {
+                            m.Invoke(s, null);
+                        }
+                    }
                 }
-            };
-            #endregion
+            }
         }
 
         private static void DeskTopNotify_SourceInitialized(object? sender, EventArgs e)

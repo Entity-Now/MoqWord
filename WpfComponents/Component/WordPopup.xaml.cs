@@ -38,6 +38,10 @@ namespace MoqWord.WpfComponents
                         {
                             _border.Background.Opacity = 0;
                         }
+                        else
+                        {
+                            _border.Background = new SolidColorBrush(Colors.Transparent);
+                        }
                         _tools.Opacity = 0;
                         _LockButton.Opacity = 1;
                     }
@@ -46,6 +50,10 @@ namespace MoqWord.WpfComponents
                         if (_border.Background is not null)
                         {
                             _border.Background.Opacity = 1;
+                        }
+                        else
+                        {
+                            _border.Background = new SolidColorBrush(Colors.Transparent);
                         }
                         _tools.Opacity = 1;
                         _LockButton.Opacity = 0;

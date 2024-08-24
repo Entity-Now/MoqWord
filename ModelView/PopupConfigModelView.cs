@@ -131,8 +131,7 @@ namespace MoqWord.ModelView
                 x=> x.Opacity,
                 x=> x.Color,
                 x=> x.Background,
-                x=> x.IsPenetrate,
-                x=> x.IsLock
+                x=> x.IsPenetrate
             )
             .Throttle(TimeSpan.FromMilliseconds(1000))
             .Subscribe(source =>
@@ -145,7 +144,7 @@ namespace MoqWord.ModelView
                     Color = source.Item4,
                     Background = source.Item5,
                     IsPenetrate = source.Item6,
-                    IsLock = source.Item7
+                    //IsLock = source.Item7
                 }, x => true);
             });
         }

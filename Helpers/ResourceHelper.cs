@@ -45,6 +45,22 @@ namespace MoqWord.Helpers
             return stream;
         }
         /// <summary>
+        /// 获取嵌入的资源文件，base64图片
+        /// </summary>
+        /// <returns></returns>
+        public static string GetEmbeddedImage(string resourceName)
+        {
+            var stream = GetEmbeddedResourceStream(resourceName);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                var imageBytes = memoryStream.ToArray();
+                var base64Image = Convert.ToBase64String(imageBytes);
+                return $"data:image/png;base64,{base64Image}";
+            }
+        }
+
+        /// <summary>
         /// 获取资源文件
         /// </summary>
         /// <param name="relativeUri"></param>

@@ -107,17 +107,17 @@
                 <span class="text-lg font-bold">快捷键设置</span>
                 </div>
                 <Divider Class="!m-4" />
-                @* <div class="flex flex-col mx-11 gap-1">
+                <div class="flex flex-col mx-11 gap-1">
                 @foreach (var item in ViewModel.ShortcutKeys)
                 {
                     <div class="flex flex-row items-center justify-between">
                         <div>@item.Name</div>
                         <div class="ml-auto min-w-[200px]">
-                            <Input TValue="string" @bind-Value="item.Keys"/>
+                            <Input TValue="string" @bind-Value="item.Keys" OnFocus="()=> InputFocusOn(item)" OnBlur="()=> InputBlurOn(item)" />
                         </div>
                     </div>
                 }
-                </div> *@
+                </div>
             </div>
         </TabPane>
 </Tabs>
