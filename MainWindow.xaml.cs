@@ -30,8 +30,6 @@ namespace MoqWord
             Resources.Add("services", ServiceHelper.getService());
             // 注册窗口事件类
             WindowHelper.Init();
-            // 
-            NotifyIconHelper.Icon();
         }
         public MainWindow(ISqlSugarClient _sqlSugar, ISettingRepository _settingRepository, IShortcutKeysService _shortcutKeysService) : this()
         {
@@ -40,6 +38,8 @@ namespace MoqWord
             shortcutKeysService = _shortcutKeysService;
             // 初始化数据库
             init();
+            // 
+            NotifyIconHelper.Icon();
         }
         private void init()
         {

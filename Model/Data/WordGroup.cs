@@ -8,7 +8,7 @@ namespace MoqWord.Model.Data
 {
     public class WordGroup
     {
-        public int CategoryId { get; set; }
+        public int BookId { get; set; }
         /// <summary>
         /// 哪一天
         /// </summary>

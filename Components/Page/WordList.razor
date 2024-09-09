@@ -5,49 +5,88 @@
 @using MoqWord.Components.Components.RandomColor
 @using System.IO
 @using MyTag = MoqWord.Model.Entity.Tag;
+@using ColorHelper;
+@using MoqWord.Utlis;
 
 @inject IMessageService _message
 @inject IConfirmService _confirmService
-@inject ICategoryService _service
+@inject IBookService _service
 @inject IWordService _wordService
 @inject ITagService _tagService
 @inject ISettingService _settingService
 @inject TypeAdapterConfig _config
 
-<div class="flex flex-col w-full h-full relative px-4">
-    <div class="grid grid-cols-4 gap-5">
-        @foreach (var item in categories)
+<div class="flex flex-col w-full h-full relative px-4 gap-4">
+    <div class="flex flex-row">
+        @foreach (var item in languageCategorys ?? [])
         {
-            <div class="group relative h-[320px] flex flex-col items-center justify-center shadow-md rounded transition-all duration-500 cursor-pointer hover:-translate-y-1"
-                style="background:#@(item.Color)">
-                <span class="text-2xl font-bold m-auto group-hover:text-sky-500 transition-all">@item.Name</span>
-                <div class="mt-auto flex flex-col w-full">
-                    <div class="flex justify-around">
-                        <span class="!block bg-gray-100 rounded-md p-1">背完@(item.GraspCount)个</span>
-                        <span class="!block bg-gray-100 rounded-md p-1">总共@(item.Count)个</span>
-                    </div>
-                    <Progress Class="!w-10/12 !m-auto" Percent=@(item.GraspCount / item.Count * 100) ShowInfo="false" />
-                </div>
-                @if (item.IsCurrent)
-                {
-                    <FaIcon Class="absolute right-3 top-3 text-white text-bold" Type="fa-check" IsInherit="true" />
-                }
-                <div class="absolute insert-0 flex items-center justify-center gap-5 bg-gray-100 transition-all opacity-0 group-hover:opacity-70 w-full h-full">
-                    <Button Type="@ButtonType.Primary" OnClick="()=> SelectCategory(item)">选择</Button>
-                    <Button Type="@ButtonType.Primary" OnClick="()=> openWordsView(item)">查看</Button>
-                </div>
-            </div>
+            if (string.IsNullOrEmpty(item))
+            {
+                continue;
+            }
+            <span class="bg-gray-200 shadow cursor-pointer hover:bg-gray-300 p-2 px-6 text-lg border-gray-300 border-b-4 @(curBook == item ? "border-blue-300" : "")" @onclick="()=> SetCurBook(item)">@getLanName(item)</span>
         }
     </div>
-    <div class="absolute right-12 bottom-12 w-[48px] h-[48px] flex items-center justify-center bg-white shadow-md rounded-full cursor-pointer hover:bg-gray-50" @onclick="()=>openModal()">
+
+    <div class="grid grid-cols-4 gap-5">
+        @{
+            if (!string.IsNullOrEmpty(curBook) && categories != null)
+            {
+                var bookList = categories?.Where(c => c.LanguageCategory == getLanKey(curBook))
+                    .GroupBy(c => c.Category).Where(k => !string.IsNullOrEmpty(k.Key));
+                foreach (var item in bookList ?? [])
+                {
+                    var tags = item.SelectMany(c => c.Tags)
+                        .GroupBy(c => c.Name)
+                        .Select(c => c.First())
+                        .ToList();
+                    if (bookList != null && currentTags.Count < bookList?.Count())
+                    {
+                        currentTags.Add(item.Key, tags[0]);
+                    }
+                    <div class="col-span-4 flex flex-row flex-wrap gap-2">
+                        @foreach (var t_item in tags)
+                        {
+                            <span class="bg-gray-200 shadow rounded cursor-pointer hover:bg-gray-300 p-2 px-6 text-lg border-b-4" @onclick="()=> SetCurTag(item.Key, t_item)">@t_item.Name</span>
+                        }
+                    </div>
+                        foreach (var b_item in item.Where(b => b.Tags.Any(t => t.Name == currentTags[item.Key].Name)))
+                        {
+                            <div class="group relative h-[320px] flex flex-col items-center justify-center shadow-md rounded transition-all duration-500 cursor-pointer hover:-translate-y-1"
+                                 style="background:#@(b_item.Color)">
+                                <span class="text-2xl font-bold m-auto group-hover:text-sky-500 transition-all">@b_item.Name</span>
+                                <div class="mt-auto flex flex-col w-full">
+                                    <div class="flex justify-around">
+                                        <span class="!block bg-gray-100 rounded-md p-1">背完@(b_item.GraspCount)个</span>
+                                        <span class="!block bg-gray-100 rounded-md p-1">总共@(b_item.Count)个</span>
+                                    </div>
+                                    <Progress Class="!w-10/12 !m-auto" Percent=@(b_item.GraspCount / b_item.Count * 100) ShowInfo="false" />
+                                </div>
+                                @if (b_item.IsCurrent)
+                                {
+                                    <FaIcon Class="absolute right-3 top-3 text-white text-bold" Type="fa-check" IsInherit="true" />
+                                }
+                                <div class="absolute insert-0 flex items-center justify-center gap-5 bg-gray-100 transition-all opacity-0 group-hover:opacity-70 w-full h-full">
+                                    <Button Type="@ButtonType.Primary" OnClick="()=> SelectBook(b_item)">选择</Button>
+                                    <Button Type="@ButtonType.Primary" OnClick="()=> openWordsView(b_item)">查看</Button>
+                                </div>
+                            </div>
+                        }
+                }
+            }
+        }
+        
+
+    </div>
+    <div class="fixed right-12 bottom-12 w-[48px] h-[48px] flex items-center justify-center bg-white shadow-md rounded-full cursor-pointer hover:bg-gray-50" @onclick="()=>openModal()">
         <FaIcon Type="fa-plus" IsInherit="true"/>
     </div>
 </div>
 
-@if (currCategory != null)
+@if (currSelectBook != null)
 {
-    <Drawer @bind-Visible="wordsView" Title="@($"{currCategory.Name}单词列表")" Width="500">
-        <Virtualize Items="@currCategory.Words" Context="item">
+    <Drawer @bind-Visible="wordsView" Title="@($"{currSelectBook.Name}单词列表")" Width="500">
+        <Virtualize Items="@currSelectBook.Words" Context="item">
             <div class="relative flex flex-col bg-slate-300 gap-3 my-3 p-3 rounded shadow-current">
                 <div class="flex flex-row gap-2">
                     <span class="text-base text-black font-medium">@item.WordName</span>
@@ -70,8 +109,14 @@
                 <Radio RadioButton Value="@("有道")" Disabled>有道</Radio>
             </RadioGroup>
         </FormItem>
-        <FormItem Label="分类名">
+        <FormItem Label="分类名称">
+            <Input @bind-Value="model.LanguageCategory"></Input>
+        </FormItem>
+        <FormItem Label="字典名称">
             <Input @bind-Value="model.Name"></Input>
+        </FormItem>
+        <FormItem Label="语言">
+            <Input @bind-Value="model.Language"></Input>
         </FormItem>
         <FormItem Label="标签列表">
             <Select Bordered ShowArrowIcon Mode="tags" TItem="MyTag" TItemValue="string" ValueName="@nameof(MyTag.Name)" LabelName="@nameof(MyTag.Name)" @bind-Values="selectTags" AllowClear>
@@ -89,115 +134,3 @@
         </div>
     </Form>
 </Modal>
-
-@code{
-    // 表单是否显示
-    bool modalIsVisible = false;
-    bool wordsView = false;
-    // 当前选中的导入平台
-    string selectPlatform = "Qwerty";
-    Dictionary<string, Func<IImportWords>> importPlatform = new()
-    {
-        ["Qwerty"] = ()=> new QwertyLearnerImport(),
-        ["不背单词"] = () => new QwertyLearnerImport(),
-        ["有道"] = () => new QwertyLearnerImport(),
-    };
-    List<MyTag> tags { get; set; }
-    IEnumerable<string> selectTags = new List<string>();
-    List<CategoryDTO> categories { get; set; }
-    CategoryDTO currCategory { get; set; }
-    Category model = new Category();
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        tags = _tagService.All().ToList();
-        categories = _service.GetAllCategory().ToList();
-    }
-    void openModal(){
-        modalIsVisible = true;
-    }
-    void openWordsView(CategoryDTO item)
-    {
-        if (item.Words is null or default(List<Word>))
-        {
-            item.Words = _wordService.Query(x => x.CategoryId == item.Id).ToList();
-        }
-        wordsView = true;
-        currCategory = item;
-    }
-    void OkHandle(EditContext context)
-    {
-        Task.Run( async () =>
-        {
-            try
-            {
-                var open = new OpenFileDialog();
-                var showDialog = open.ShowDialog();
-                if (showDialog == true)
-                {
-                    var haveTags = tags.Where(x => selectTags.Any(i => i == x.Name));
-                    var addTags = selectTags.Where(x => !haveTags.Any(i => i.Name == x)).Select(item => new MyTag
-                    {
-                        Name = item,
-                        CreateDT = DateTime.Now,
-                        UpdateDT = DateTime.Now
-                    });
-                    var wordSource = File.ReadAllText(open.FileName);
-                    model.CreateDT = DateTime.Now;
-                    model.UpdateDT = DateTime.Now;
-                    model.Tags = haveTags.Concat(addTags).ToList();
-                    // handle words
-                    var importHandle = importPlatform[selectPlatform]();
-                    model.Words = importHandle.ImportWords(wordSource).ToList();
-                    // save words
-                    var insertState = await _service.InsertNav(model)
-                    .Include(x => x.Words)
-                    .Include(x => x.Tags)
-                    .ExecuteCommandAsync();
-                    if (insertState)
-                    {
-                        _message.Success("导入成功~");
-                        modalIsVisible = false;
-                        InvokeAsync(StateHasChanged);
-                    }
-                    else
-                    {
-                        _message.Error("导入失败~");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _message.Error(ex.Message);
-            }
-
-        });
-    }
-    async void SelectCategory(CategoryDTO c)
-    {
-        void update()
-        {
-            var isOk = _service.SelectCategory(c.Adapt<CategoryDTO, Category>(_config));
-            c.IsCurrent = true;
-        }
-        var exist = _service.IsSelectCategory();
-        var setting = _settingService.First();
-        if (exist is not null)
-        {
-            var result = await _confirmService.Show("当前有未背完的词库，是否继续更换词库？", "警告", ConfirmButtons.YesNo);
-            if (result == ConfirmResult.Yes)
-            {
-                update();
-            }
-
-            return;
-        }
-        update();
-    }
-
-    async void PlayWord(Word word){
-        var sound = _settingService.getCurrentSound();
-        sound.PlayAsync(word.WordName);
-    }
-}

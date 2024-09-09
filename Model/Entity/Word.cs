@@ -72,8 +72,8 @@ namespace MoqWord.Model.Entity
         /// 掌握时间
         /// </summary>
         public DateTime? ReciteTime { get; set; }
-        public int CategoryId { get; set; }
-        [Navigate(NavigateType.ManyToOne, nameof(CategoryId))]
-        public Category Category { get; set; }
+        public int BookId { get; set; }
+        [Navigate(NavigateType.ManyToOne, nameof(BookId))]
+        public Book Book { get; set; }
     }
 }

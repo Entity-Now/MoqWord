@@ -41,7 +41,7 @@ namespace MoqWord.Helpers
             {
                 List<Assembly> assemblies = new List<Assembly>
                 {
-                    typeof(INotificationHandler<CategoryNotify>).Assembly,
+                    typeof(INotificationHandler<BookNotify>).Assembly,
                     typeof(INotificationHandler<SettingNotify>).Assembly
                 };
                 x.RegisterServicesFromAssemblies(assemblies.ToArray());
@@ -91,7 +91,7 @@ namespace MoqWord.Helpers
 
             // 注册服务
             _serviceCollection.AddTransient(typeof(BaseRepository<>));
-            _serviceCollection.AddTransient<ICategoryRepository, CategoryRepository>();
+            _serviceCollection.AddTransient<IBookRepository, BookRepository>();
             _serviceCollection.AddTransient<IPersonalRepository, PersonalRepository>();
             _serviceCollection.AddTransient<ISettingRepository, SettingRepository>();
             _serviceCollection.AddTransient<IWordRepository, WordRepository>();
@@ -100,7 +100,7 @@ namespace MoqWord.Helpers
             _serviceCollection.AddTransient<IPopupConfigRepository, PopupConfigRepository>();
             _serviceCollection.AddTransient<IShortcutKeysRepository, ShortcutKeysRepository>();
             _serviceCollection.AddTransient(typeof(BaseService<>));
-            _serviceCollection.AddTransient<ICategoryService, CategoryService>();
+            _serviceCollection.AddTransient<IBookService, BookService>();
             _serviceCollection.AddTransient<IPersonalService, PersonalService>();
             _serviceCollection.AddTransient<ISettingService, SettingService>();
             _serviceCollection.AddTransient<IWordService, WordService>();
@@ -115,7 +115,7 @@ namespace MoqWord.Helpers
             _serviceCollection.AddSingleton<IPlayService, PlayService>();
             _serviceCollection.AddSingleton(typeof(GlobalService));
             // 指定 GlobalService 实现的接口
-            _serviceCollection.AddSingleton<INotificationHandler<CategoryNotify>>(provider => provider.GetService<GlobalService>());
+            _serviceCollection.AddSingleton<INotificationHandler<BookNotify>>(provider => provider.GetService<GlobalService>());
             _serviceCollection.AddSingleton<INotificationHandler<SettingNotify>>(provider => provider.GetService<GlobalService>());
             // 注入scheduler
             _serviceCollection.AddSingleton(SchedulerService.getScheduler());

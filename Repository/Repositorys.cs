@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MoqWord.Repository
 {
-    public class CategoryRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<Category>(db, _config), ICategoryRepository;
+    public class BookRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<Book>(db, _config), IBookRepository;
     public class PersonalRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<Personal>(db, _config), IPersonalRepository;
     public class SettingRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<Setting>(db, _config), ISettingRepository;
     public class WordRepository(ISqlSugarClient db, TypeAdapterConfig _config) : BaseRepository<Word>(db, _config), IWordRepository;

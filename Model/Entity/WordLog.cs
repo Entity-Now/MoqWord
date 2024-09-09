@@ -11,6 +11,9 @@ namespace MoqWord.Model.Entity
     [SugarTable]
     public class WordLog : BaseEntity
     {
+        public int? WordId { get; set; }
+        [Navigate(NavigateType.OneToMany, nameof(WordId))]
+        public Word? Word { get; set; }
         /// <summary>
         /// 难度等级
         /// </summary>

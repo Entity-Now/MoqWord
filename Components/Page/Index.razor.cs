@@ -17,7 +17,7 @@ namespace MoqWord.Components.Page
         [Inject]
         protected IMessageService _message { get; set; }
         [Inject]
-        protected ICategoryService _categoryService { get; set; }
+        protected IBookService _BookService { get; set; }
         [Inject]
         public IPlayService playService
         {
@@ -34,7 +34,7 @@ namespace MoqWord.Components.Page
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            var SelectIsTrue = _categoryService.IsSelectCategory();
+            var SelectIsTrue = _BookService.IsSelectBook();
             if (SelectIsTrue is null)
             {
                 _message.Warning("请选择单词~");

@@ -7,7 +7,7 @@ using MoqWord.Model.EntityDTO;
 
 namespace MoqWord.Repository.Interface
 {
-    public interface ICategoryRepository : IBaseRepository<Category>;
+    public interface IBookRepository : IBaseRepository<Book>;
     public interface IPersonalRepository : IBaseRepository<Personal>;
     public interface ISettingRepository : IBaseRepository<Setting>;
     public interface IWordRepository : IBaseRepository<Word>;

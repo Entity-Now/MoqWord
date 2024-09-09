@@ -27,13 +27,14 @@ namespace MoqWord.Model.Entity
         /// 当前记忆的单词本ID
         /// </summary>
         [CellType(Visible = false)]
-        public int? CurrentCategoryId { get; set; }
+        [SugarColumn(IsNullable = true)]
+        public int CurrentBookId { get; set; }
         /// <summary>
         /// 当前记忆的单词本
         /// </summary>
         [CellType(Visible = false)]
-        [Navigate(NavigateType.OneToOne, nameof(CurrentCategoryId))]
-        public Category? CurrentCategory { get; set; }
+        [Navigate(NavigateType.OneToOne, nameof(CurrentBookId))]
+        public Book? CurrentBook { get; set; }
         /// <summary>
         /// 每日记忆数量
         /// </summary>

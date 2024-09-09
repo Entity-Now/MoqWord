@@ -98,5 +98,20 @@ namespace MoqWord.Helpers
                 return reader.ReadToEnd();
             }
         }
+        /// <summary>
+        /// 获取指定路径的文件内容
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string GetFileText(string filePath)
+        {
+            var file = new FileInfo(filePath);
+            if (file.Exists)
+            {
+                var readStream = file.OpenText();
+                return readStream.ReadToEnd();
+            }
+            return string.Empty;
+        }
     }
 }

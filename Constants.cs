@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MoqWord
 {
@@ -11,8 +13,8 @@ namespace MoqWord
         public const string Title = "莫欺单词";
         public const string ProgramName = "MoqWord";
         public const string Icon = "MoqWord.wwwroot.MOQ.ico";
-        public const string Connection = "DataSource=MoqWord.db";
         public const string ThemeAccent = "Light";
-
+        public static string SelfPath = AppContext.BaseDirectory;
+        public static string Connection = $"DataSource={Path.Combine(SelfPath, "MoqWord.db")}";
     }
 }

@@ -1,5 +1,6 @@
 ﻿using ColorHelper;
 using MoqWord.Core.Interface;
+using MoqWord.Model.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,21 +15,34 @@ namespace MoqWord.Core
         {
             var words = wordList.StringToAny<List<QwertyLearnerWord>>();
 
-            return words.Select(x => new Word
-            {
-                WordName = x.name,
-                Reps = 0,
-                Lapses = 0,
-                Grasp = false,
-                UpdateDT = DateTime.Now,
-                CreateDT = DateTime.Now,
-                AnnotationUs = x.usphone ?? "",
-                AnnotationUk = x.ukphone ?? "",
-                Definition = "",
-                Interval = 0,
-                PartOfSpeech = "",
-                Translation = string.Join("\n", x.trans),
-            });
+            return ToWords(words);
+        }
+
+        public IEnumerable<Word> ToWords<T>(IEnumerable<T> source)
+        {
+            if (source is IEnumerable<QwertyLearnerWord> word)
+                return word.Select(x => new Word
+                {
+                    WordName = x.name,
+                    Due = DateTime.Now,
+                    EasinessFactor = 0,
+                    ReciteTime = DateTime.Now,
+                    Repetition = 0,
+                    Reps = 0,
+                    Lapses = 0,
+                    Grasp = false,
+                    LastReview = DateTime.Now,
+                    UpdateDT = DateTime.Now,
+                    CreateDT = DateTime.Now,
+                    AnnotationUs = x.usphone ?? "",
+                    AnnotationUk = x.ukphone ?? "",
+                    Definition = "",
+                    Interval = 0,
+                    PartOfSpeech = "",
+                    Translation = string.Join("\n", x.trans),
+                });
+            else
+                return Enumerable.Empty<Word>();
         }
     }
 }

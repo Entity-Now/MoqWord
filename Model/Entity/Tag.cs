@@ -14,7 +14,7 @@ namespace MoqWord.Model.Entity
     {
         [Required]
         public string Name { get; set; }
-        [Navigate(typeof(CategoryTag), nameof(CategoryTag.TagId), nameof(CategoryTag.CategoryId))]
-        public IEnumerable<Category> Categories { get; set; }
+        [Navigate(typeof(BookTag), nameof(BookTag.TagId), nameof(BookTag.BookId))]
+        public IEnumerable<Book> Books { get; set; }
     }
 }

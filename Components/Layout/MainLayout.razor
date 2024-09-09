@@ -45,7 +45,7 @@
                     <Flex Gap="large" Align="center" Justify="center" Style="height: 100%;margin: 0 10px;">
                         <Tooltip Title="请选择字典">
                             <div class="cursor-pointer p-2 box-border font-bold text-lg transition-all rounded bg-gray-100 hover:bg-gray-300" @onclick=@(()=>NavigateGo("/WordList"))>
-                                @(ViewModel?.currentCategory?.Name ?? "未选择")
+                                @(ViewModel?.currentBook?.Name ?? "未选择")
                             </div>
                         </Tooltip>
                         <Tooltip Title="选择章节">

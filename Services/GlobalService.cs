@@ -14,21 +14,21 @@ using ReactiveUI;
 
 namespace MoqWord.Services
 {
-    public class GlobalService : ReactiveObject, INotificationHandler<CategoryNotify>, INotificationHandler<SettingNotify>
+    public class GlobalService : ReactiveObject, INotificationHandler<BookNotify>, INotificationHandler<SettingNotify>
     {
-        ICategoryService categoryService { get; set; }
+        IBookService BookService { get; set; }
         ISettingService settingService { get; set; }
         public IPlayService playService { get; set; }
 
         /// <summary>
         /// 当前选择的词库
         /// </summary>
-        Category? _currentCategory;
-        public Category? currentCategory
+        Book? _currentBook;
+        public Book? currentBook
         {
-            get => _currentCategory;
+            get => _currentBook;
             set{
-                this.RaiseAndSetIfChanged(ref _currentCategory, value);
+                this.RaiseAndSetIfChanged(ref _currentBook, value);
             }
         }
         /// <summary>
@@ -50,15 +50,15 @@ namespace MoqWord.Services
             set => this.RaiseAndSetIfChanged(ref _currentDay, value);
         }
 
-        public GlobalService(ICategoryService _categoryService, ISettingService _settingService, IPlayService _playService)
+        public GlobalService(IBookService _BookService, ISettingService _settingService, IPlayService _playService)
         {
-            categoryService = _categoryService;
+            BookService = _BookService;
             settingService = _settingService;
-            currentCategory = categoryService.IsSelectCategory();
+            currentBook = BookService.IsSelectBook();
             currentSetting = settingService.First(s => s.Id > 0);
-            if (currentCategory is not null)
+            if (currentBook is not null)
             {
-                currentDay = categoryService.GetCurrentDay(currentCategory.Id);
+                currentDay = BookService.GetCurrentDay(currentBook.Id);
             }
             playService = _playService;
 
@@ -77,7 +77,7 @@ namespace MoqWord.Services
 
         public void SetGroupState(WordGroup wordGroup, bool state)
         {
-            categoryService.SetGroupState(wordGroup, state);
+            BookService.SetGroupState(wordGroup, state);
         }
 
         public void SetRepeatCount(RepeatType repeatType)
@@ -86,10 +86,10 @@ namespace MoqWord.Services
             settingService.SetRepeatCount(repeatType);
         }
 
-        public Task Handle(CategoryNotify notification, CancellationToken cancellationToken)
+        public Task Handle(BookNotify notification, CancellationToken cancellationToken)
         {
-            currentCategory = categoryService.IsSelectCategory();
-            currentDay = categoryService.GetCurrentDay(currentCategory.Id);
+            currentBook = BookService.IsSelectBook();
+            currentDay = BookService.GetCurrentDay(currentBook.Id);
             playService.Init();
             return Task.CompletedTask;
         }

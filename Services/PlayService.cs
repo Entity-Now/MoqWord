@@ -24,8 +24,10 @@ namespace MoqWord.Services
 
     public class PlayService : ReactiveObject, IPlayService
     {
-        public ICategoryService categoryService { get; set; }
+        public IBookService BookService { get; set; }
         public ISettingService settingService { get; set; }
+        public IWordService wordService { get; set; }
+        public IWordLogService wordLogService { get; set; }
         public IPlaySound playSound { get; set; }
         public IPlaySound secondaryPlaySound { get; set; }
         public Scheduler scheduler { get; set; }
@@ -88,11 +90,13 @@ namespace MoqWord.Services
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        public PlayService(ICategoryService _categoryService, ISettingService _settingService, DefaultPlaySound _secondaryPlay, Scheduler _scheduler)
+        public PlayService(IBookService _BookService, ISettingService _settingService, DefaultPlaySound _secondaryPlay, Scheduler _scheduler, IWordLogService wordLogService, IWordService wordService)
         {
-            categoryService = _categoryService;
+            BookService = _BookService;
             settingService = _settingService;
             secondaryPlaySound = _secondaryPlay;
+            this.wordLogService = wordLogService;
+            this.wordService = wordService;
             scheduler = _scheduler;
 
             _toDayWords.Connect()
@@ -117,16 +121,16 @@ namespace MoqWord.Services
             // 根据指定日期来记忆单词，否则获取当天单词
             if (groupNumber is int g)
             {
-                _toDayWords.AddRange(categoryService.GetWordsToReviewByGroupNumber(g));
+                _toDayWords.AddRange(BookService.GetWordsToReviewByGroupNumber(g));
             }
             else
             {
-                _toDayWords.AddRange(categoryService.GetWordsToReview());
+                _toDayWords.AddRange(BookService.GetWordsToReview());
             }
             DailyLimit = ToDayWords.Count;
             if (DailyLimit > 0)
             {
-                _days.AddRange(categoryService.GetGroupNumbersByCategoryId(ToDayWords[0].CategoryId));
+                _days.AddRange(BookService.GetGroupNumbersByBookId(ToDayWords[0].BookId));
             }
             CurrentIndex = 0; // 确保在初始化时将 CurrentIndex 设置为 0
             UpdateWords();    // 确保在初始化时调用 UpdateWords 更新单词
@@ -171,8 +175,26 @@ namespace MoqWord.Services
             scheduler.AddTempTask(TimeSpan.FromSeconds(readTime + 0.3), () =>
             {
                 var tran_s = CurrentWord.Translation.Split("；")[0].Split(".");
-                secondaryPlaySound.PlayAsync(tran_s.Length >= 1 ? tran_s[1] : tran_s[0], _cancellationTokenSource.Token);
+                secondaryPlaySound.PlayAsync(tran_s.Length > 1 ? tran_s[1] : tran_s[0], _cancellationTokenSource.Token);
             });
+            // add log
+            wordLogService.InsertList(new List<WordLog> { new WordLog
+            {
+                WordId = CurrentWord.Id,
+                IsRead = true,
+                ElapsedDays = 0,
+                ScheduledDays = 0,
+                Review = DateTime.Now,
+                CreateDT = DateTime.Now,
+                Rating = WordRating.Easy,
+                State = WordState.Learning,
+            }});
+            // update read count
+            wordService.SetColumns(w => new Word()
+            {
+                Repetition = w.Repetition + 1,
+                LastReview = DateTime.Now
+            }, w => w.Id == CurrentWord.Id);
         }
 
         public virtual void Previous()

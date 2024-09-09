@@ -9,5 +9,7 @@ namespace MoqWord.Core.Interface
     public interface IImportWords
     {
         IEnumerable<Word> ImportWords(string wordList);
+
+        IEnumerable<Word> ToWords<T>(IEnumerable<T> source);
     }
 }
