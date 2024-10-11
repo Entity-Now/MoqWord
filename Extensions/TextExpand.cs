@@ -20,6 +20,39 @@ namespace MoqWord.Extensions
             return Regex.Split(source, pattern)[0];
         }
         /// <summary>
+        /// 替换词性
+        /// </summary>
+        /// <returns></returns>
+        public static string ReplacePartOfSpeech(this string trans)
+        {
+            int periodIndex = trans.IndexOf('.');
+            string preStr = periodIndex != -1 ? trans.Substring(0, periodIndex) : string.Empty;
+            Dictionary<string, string> PartOfSpeech = new Dictionary<string, string> 
+            {
+                { "adj", "形容词" },
+                { "n", "名词" },
+                { "v", "动词" },
+                { "adv", "副词" },
+                { "pron", "代词" },
+                { "prep", "介词" },
+                { "conj", "连词" },
+                { "det", "限定词" },
+                { "int", "感叹词" },
+                { "art", "冠词" },
+                { "num", "数词" },
+                { "aux", "助动词" },
+                { "modal", "情态动词" },
+                { "part", "分词" },
+                { "ger", "动名词" },
+                { "inf", "不定式" },
+            };
+            if (PartOfSpeech.ContainsKey(preStr))
+            {
+                return PartOfSpeech[preStr] + trans.Substring(periodIndex);
+            }
+            return trans;
+        }
+        /// <summary>
         /// 根据汉字和英文字符的数量计算读出文本所需的秒数。
         /// </summary>
         /// <param name="text">输入的文本。</param>

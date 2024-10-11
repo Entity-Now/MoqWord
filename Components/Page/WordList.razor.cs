@@ -109,6 +109,17 @@ namespace MoqWord.Components.Page
             {
                 try
                 {
+                    var findBook = await _service.FirstAsync(b => b.Name == model.Name && b.Language == model.Language);
+                    if (findBook != null)
+                    {
+                        if (_service.SelectBook(findBook))
+                        {
+                            await _message.Success("已经有导入记录，已将其设置为默认~");
+                            await InvokeAsync(StateHasChanged);
+                            return;
+                        }
+                        return;
+                    }
                     var open = new OpenFileDialog();
                     var showDialog = open.ShowDialog();
                     if (showDialog == true)

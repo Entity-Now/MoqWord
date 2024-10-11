@@ -67,7 +67,6 @@ namespace MoqWord.Services
                 {
                     playService.Init(day);
                 });
-
         }
 
         public void SelectGroupNumber(int groupNumber)

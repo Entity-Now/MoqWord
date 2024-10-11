@@ -175,7 +175,7 @@ namespace MoqWord.Services
             scheduler.AddTempTask(TimeSpan.FromSeconds(readTime), () =>
             {
                 var tran_s = CurrentWord.Translates[0];
-                secondaryPlaySound.PlayAsync(tran_s.Trans, _cancellationTokenSource.Token);
+                secondaryPlaySound.PlayAsync(tran_s.Trans.ReplacePartOfSpeech(), _cancellationTokenSource.Token);
             });
             // add log
             wordLogService.InsertList(new List<WordLog> { new WordLog
