@@ -172,10 +172,10 @@ namespace MoqWord.Services
             // play
             playSound.PlayAsync(CurrentWord.WordName, _cancellationTokenSource.Token);
             // play text
-            scheduler.AddTempTask(TimeSpan.FromSeconds(readTime + 0.3), () =>
+            scheduler.AddTempTask(TimeSpan.FromSeconds(readTime), () =>
             {
-                var tran_s = CurrentWord.Translation.Split("；")[0].Split(".");
-                secondaryPlaySound.PlayAsync(tran_s.Length > 1 ? tran_s[1] : tran_s[0], _cancellationTokenSource.Token);
+                var tran_s = CurrentWord.Translates[0];
+                secondaryPlaySound.PlayAsync(tran_s.Trans, _cancellationTokenSource.Token);
             });
             // add log
             wordLogService.InsertList(new List<WordLog> { new WordLog
@@ -223,7 +223,7 @@ namespace MoqWord.Services
             var s = settingService.First();
             // 计算下次播放时间
             var wordNameTime = CurrentWord.WordName.CalculateReadingTime(s.SpeechSpeed);
-            var translateTime = CurrentWord.Translation.Split("；")[0].CalculateReadingTime(s.SpeechSpeed);
+            var translateTime = CurrentWord.Translates[0].Trans.CalculateReadingTime(s.SpeechSpeed);
             var nextTime = wordNameTime + translateTime + 0.3;
             int playCount = 0;
             void playSound()

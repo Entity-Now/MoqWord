@@ -23,6 +23,7 @@ namespace MoqWord.Services
         {
             try
             {
+                //Edge_tts.Await = true;
                 var setting = settingRepository.First();
                 Voice useVoice = null;
                 if (setting.SoundSource == Sound.Edge && !string.IsNullOrEmpty(setting.SoundName))
@@ -33,22 +34,25 @@ namespace MoqWord.Services
                 {
                     useVoice = GetVoice().First(x => x.Name.Contains("zh"));
                 }
-                Edge_tts.Invoke(word, new eVoice
+                Edge_tts.Invoke(new PlayOption
+                {
+                    Text = word,
+                    Volume = (int)setting.SoundVolume / 100,
+                    Rate = (int)setting.SpeechSpeed
+                }, new eVoice
                 {
                     Name = useVoice.Name,
                     SuggestedCodec = useVoice.SuggestedCodec,
                     Locale = useVoice.Locale,
                     Gender = useVoice.Gender,
                     ShortName = useVoice.ShortName
-                }, (int)setting.SpeechSpeed, async (sound) =>
+                }, async (sound) =>
                 {
                     if (!cancelToken.IsCancellationRequested)
                     {
                         await Audio.PlayToByteAsync(
                             sound.ToArray(),
-                            (int)setting.SpeechSpeed,
-                            (float)setting.SoundVolume / 100,
-                            cancelToken
+                            cancellationToken: cancelToken
                         );
                     }
                 });

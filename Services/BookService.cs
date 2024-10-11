@@ -26,6 +26,11 @@ namespace MoqWord.Services
             {
                 Id = x.Id,
                 Name = x.Name,
+                Category = x.Category,
+                Language = x.Language,
+                LanguageCategory = x.LanguageCategory,
+                IsExternal = false,
+                Tags = x.Tags,
                 Color = x.Color,
                 Count = wordService.Count(sub_x => sub_x.BookId == x.Id),
                 GraspCount = wordService.Count(sub_x => sub_x.BookId == x.Id && sub_x.Grasp)
@@ -53,10 +58,7 @@ namespace MoqWord.Services
         {
             var settings = settingService.First();
             var Book = First(x => x.Id == c.Id);
-            if (!Book.IsCurrent)
-            {
-                Initialization(c.Id, settings.EverDayCount);
-            }
+            Initialization(c.Id, settings.EverDayCount);
             var result = settingService.SetColumns(s => new()
             {
                 CurrentBookId = c.Id,
@@ -139,7 +141,7 @@ namespace MoqWord.Services
             var today = DateTime.Today.Date.AddDays(1);
 
             // 筛选出今天或之前需要复习的单词
-            var wordsToReview = wordService.Query(w => /*w.Due <= today && */!w.Grasp && w.BookId == settings.CurrentBookId).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
+            var wordsToReview = wordService.All().Includes(w => w.Translates).Where(w => /*w.Due <= today && */!w.Grasp && w.BookId == settings.CurrentBookId).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
 
             return wordsToReview;
         }
@@ -157,7 +159,7 @@ namespace MoqWord.Services
                 return default(List<Word>);
             }
             // 获取指定GroupNumber的单词
-            var wordsToReview = wordService.Query(w => w.GroupNumber == groupNumber && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
+            var wordsToReview = wordService.All().Includes(w => w.Translates).Where(w => w.GroupNumber == groupNumber && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
 
             return wordsToReview;
         }

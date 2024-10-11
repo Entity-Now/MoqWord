@@ -23,11 +23,11 @@ namespace MoqWord.Components.Page
         bool wordsView = false;
         // 当前选中的导入平台
         string selectPlatform = "Qwerty";
-        Dictionary<string, Func<IImportWords>> importPlatform = new()
+        Dictionary<string, QwertyLearnerImport> importPlatform = new()
         {
-            ["Qwerty"] = () => new QwertyLearnerImport(),
-            ["不背单词"] = () => new QwertyLearnerImport(),
-            ["有道"] = () => new QwertyLearnerImport(),
+            ["Qwerty"] = new QwertyLearnerImport(),
+            ["不背单词"] = new QwertyLearnerImport(),
+            ["有道"] = new QwertyLearnerImport(),
         };
         Dictionary<string, string> langType = new()
         {
@@ -52,7 +52,7 @@ namespace MoqWord.Components.Page
             tags = _tagService.All().ToList();
             categories = _service.GetAllBook().ToList();
             // 读取本地字典
-            var distConfs = ResourceHelper.GetFileText("Local/dist_conf.json").StringToAny<List<DistConf>>();
+            var distConfs = ResourceHelper.GetFileText(Constants.DistConf).StringToAny<List<DistConf>>();
 
             categories.AddRange(distConfs.Where(d => !categories.Any(c => d.name == c.Name)).Select(d =>
             {
@@ -90,7 +90,15 @@ namespace MoqWord.Components.Page
         {
             if (item.Words is null or default(List<Word>))
             {
-                item.Words = _wordService.Query(x => x.BookId == item.Id).ToList();
+                var findWords = _wordService.Query(x => x.BookId == item.Id).ToList();
+                if(findWords.Count > 0)
+                {
+                    item.Words = findWords;
+                }else
+                {
+                    var dictPath = string.Format(Constants.BooksPath, item.Path);
+                    item.Words = importPlatform["Qwerty"].ImportWords(ResourceHelper.GetFileText(dictPath)).ToList();
+                }
             }
             wordsView = true;
             currSelectBook = item;
@@ -117,28 +125,28 @@ namespace MoqWord.Components.Page
                         model.UpdateDT = DateTime.Now;
                         model.Tags = haveTags.Concat(addTags).ToList();
                         // handle words
-                        var importHandle = importPlatform[selectPlatform]();
-                        model.Words = importHandle.ImportWords(wordSource).ToList();
+                        model.Words = importPlatform[selectPlatform].ImportWords(wordSource).ToList();
                         // save words
                         var insertState = await _service.InsertNav(model)
                         .Include(x => x.Words)
+                        .ThenInclude(x => x.Translates)
                         .Include(x => x.Tags)
                         .ExecuteCommandAsync();
                         if (insertState)
                         {
-                            _message.Success("导入成功~");
+                            await _message.Success("导入成功~");
                             modalIsVisible = false;
-                            InvokeAsync(StateHasChanged);
+                            await InvokeAsync(StateHasChanged);
                         }
                         else
                         {
-                            _message.Error("导入失败~");
+                            await _message.Error("导入失败~");
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    _message.Error(ex.Message);
+                    await _message.Error(ex.Message);
                 }
 
             });
@@ -152,24 +160,27 @@ namespace MoqWord.Components.Page
                 if (_service.SelectBook(book))
                 {
                     await _message.Success("设置成功~");
+                    await InvokeAsync(StateHasChanged);
                     return;
                 }
                 await _message.Warning("设置失败~");
                 return;
             }
             // 导入json文件
-            var readBook = ResourceHelper.GetFileText($"{Constants.SelfPath}/Local/{c.Path.Replace("/", @"\")}");
-            var qwerty = importPlatform["Qwerty"]();
+            book.Path = string.Format(Constants.BooksPath, c.Path);
+            var readBook = ResourceHelper.GetFileText(book.Path);
             book.IsCurrent = true;
-            book.Words = qwerty.ToWords(JsonHelpaer.StringToAny<QwertyLearnerWord[]>(readBook)).ToList();
+            book.Words = importPlatform["Qwerty"].ImportWords(readBook).ToList();
             var insertRes = await _service.InsertNav(book)
                 .Include(b => b.Words)
+                .ThenInclude(t => t.Translates)
                 .Include(w => w.Tags)
                 .ExecuteCommandAsync();
             if (insertRes)
             {
                 await _message.Success("导入成功！");
                 _service.SelectBook(_service.First(b => b.Name == book.Name));
+                await InvokeAsync(StateHasChanged);
             }
             else
             {

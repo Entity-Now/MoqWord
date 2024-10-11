@@ -14,7 +14,10 @@
                     <FaIcon IsInherit="true" Class="arrow" Type="fa-arrow-left-long" />
                     <div class="wordInfo">
                         <span class="word">@playService.PreviousWord?.WordName</span>
-                        <span class="describe">@playService.PreviousWord?.Translation</span>
+                        @foreach (var item in playService.PreviousWord?.Translates ?? [])
+                        {
+                            <span class="describe">@item.Trans</span>
+                        }
                     </div>
                 </div>
             }
@@ -23,7 +26,11 @@
             <div class="switch right" @onclick="playService.Next">
                 <div class="wordInfo">
                     <span class="word">@playService.LastWord?.WordName</span>
-                    <span class="describe">@playService.LastWord?.Translation</span>
+                        
+                        @foreach (var item in playService.LastWord?.Translates ?? [])
+                        {
+                            <span class="describe">@item.Trans</span>
+                        }
                 </div>
                     <FaIcon IsInherit="true" Class="arrow" Type="fa-arrow-right-long" />
             </div>
@@ -34,13 +41,13 @@
             <div class="currentWord">
                 <Title Level="1" class="word">@playService.CurrentWord?.WordName</Title>
                 <Text class="annotation">美：@playService.CurrentWord?.AnnotationUk  英：@playService.CurrentWord?.AnnotationUs</Text>
-                <Text Strong="true" class="translation">@playService.CurrentWord?.Translation</Text>
+                <Text Strong="true" class="translation">@playService.CurrentWord?.Translates[0].Trans</Text>
             </div>
         </div>
     </div>
-    <div class="absolute bottom-0 left-0 w-full min-h-[120px] flex flex-row p-[20px] box-border items-center justify-center gap-6 bg-white">
+    <div class="bottom-0 left-0 gap-6 bg-white absolute box-border flex min-h-[120px] w-full flex-row items-center justify-center p-[20px]">
         <FaIcon Type="fa-backward-step" Size="38px" OnClick=@(()=> playService.Previous()) />
-        <div @onclick=@(PlayOrStop) class="rounded-full bg-gray-300 hover:bg-gray-200 hover:cursor-pointer hover:text-blue-300 flex items-center justify-center w-[60px] h-[60px]">
+        <div @onclick=@(PlayOrStop) class="bg-gray-300 flex h-[60px] w-[60px] items-center justify-center rounded-full hover:bg-gray-200 hover:cursor-pointer hover:text-blue-300">
             @if (!playService.IsLoopPlay)
             {
                 <FaIcon Type="fa-play" IsInherit="true"/>

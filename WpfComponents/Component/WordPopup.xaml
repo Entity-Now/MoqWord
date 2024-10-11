@@ -32,7 +32,7 @@
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Orientation="Horizontal">
-                        <!--WPF不能识别X，所以加上x-->
+                        <!--WPF中unicode图标不能识别X，所以加上x-->
                         <Button Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf048;" Command="{Binding PreviousCommand}"/>
                         <Button x:Name="loopButton" Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf04b;" Margin="10 0" Command="{Binding LoopedCommand}"/>
                         <Button x:Name="stopButton" Foreground="{Binding popupConfigModelView.Color}" Style="{ StaticResource textButton }" Content="&#xf04d;" Margin="10 0" Command="{Binding StopCommand}"/>
@@ -46,7 +46,17 @@
                 </Grid>
                 <Button x:Name="_LockButton" Foreground="{Binding popupConfigModelView.Color}" HorizontalAlignment="Center" Style="{ StaticResource textButton }" Content="&#xf023;" Command="{Binding LookCommand}"/>
                 <StackPanel Grid.Row="1" Orientation="Vertical">
-                    <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.WordNameFontSize }" Style="{StaticResource desktopWordNameFontSize}" Text="{Binding playService.CurrentWord.WordName}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.WordNameFontSize }" Style="{StaticResource desktopWordNameFontSize}" Text="{Binding playService.CurrentWord.WordName}"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Text="{Binding playService.CurrentWord.AnnotationUs}"/>
+                            <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Text="{Binding playService.CurrentWord.AnnotationUk}" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </Grid>
                     <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Style="{StaticResource desktopTranslateFontSize}" Text="{Binding playService.CurrentWord.Translation}"/>
                 </StackPanel>
             </Grid>

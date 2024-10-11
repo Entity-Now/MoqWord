@@ -21,10 +21,6 @@ namespace MoqWord.Model.Entity
         public string AnnotationUs { get; set; }
         public string AnnotationUk { get; set; }
         /// <summary>
-        /// 译文2
-        /// </summary>
-        public string Translation { get; set; }
-        /// <summary>
         /// 单词的定义
         /// </summary>
         public string? Definition { get; set; }
@@ -75,5 +71,10 @@ namespace MoqWord.Model.Entity
         public int BookId { get; set; }
         [Navigate(NavigateType.ManyToOne, nameof(BookId))]
         public Book Book { get; set; }
+        /// <summary>
+        /// 译文列表
+        /// </summary>
+        [Navigate(NavigateType.OneToMany, nameof(Translate.WordId))]
+        public List<Translate> Translates { get; set; }
     }
 }

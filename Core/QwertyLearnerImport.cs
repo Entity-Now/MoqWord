@@ -39,7 +39,11 @@ namespace MoqWord.Core
                     Definition = "",
                     Interval = 0,
                     PartOfSpeech = "",
-                    Translation = string.Join("\n", x.trans),
+                    Translates = x.trans.Select(t => new Translate{
+                        Trans = t,
+                        UpdateDT= DateTime.Now,
+                        CreateDT = DateTime.Now,
+                    }).ToList(),
                 });
             else
                 return Enumerable.Empty<Word>();

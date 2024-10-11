@@ -5,7 +5,7 @@
       "description": "GMAT 词库",
       "category": "国际考试",
       "tags": ["GMAT"],
-      "url": "/dicts/GMAT_3_T.json",
+      "url": "GMAT_3_T.json",
       "length": 3047,
       "language": "en",
       "languageCategory": "en"
@@ -16,7 +16,7 @@
       "description": "GRE 词库",
       "category": "国际考试",
       "tags": ["GRE"],
-      "url": "/dicts/GRE_3_T.json",
+      "url": "GRE_3_T.json",
       "length": 6515,
       "language": "en",
       "languageCategory": "en"
@@ -27,7 +27,7 @@
       "description": "GRE & TEM8 重叠高频词汇",
       "category": "国际考试",
       "tags": ["GRE"],
-      "url": "/dicts/GRE_1500.json",
+      "url": "GRE_1500.json",
       "length": 1533,
       "language": "en",
       "languageCategory": "en"
@@ -38,7 +38,7 @@
       "description": "GRE3000 词库",
       "category": "国际考试",
       "tags": ["GRE"],
-      "url": "/dicts/GRE3000_3_T.json",
+      "url": "GRE3000_3_T.json",
       "length": 3041,
       "language": "en",
       "languageCategory": "en"
@@ -49,7 +49,7 @@
       "description": "GRE机经词汇",
       "category": "国际考试",
       "tags": ["GRE"],
-      "url": "/dicts/GRE-computer-based-test.json",
+      "url": "GRE-computer-based-test.json",
       "length": 1451,
       "language": "en",
       "languageCategory": "en"
@@ -60,7 +60,7 @@
       "description": "再要你命GRE3000词库-有词性新版",
       "category": "国际考试",
       "tags": ["GRE"],
-      "url": "/dicts/ZaiYaoNiMing_GRE3000.json",
+      "url": "ZaiYaoNiMing_GRE3000.json",
       "length": 3041,
       "language": "en",
       "languageCategory": "en"
@@ -71,7 +71,7 @@
       "description": "GRE等价词",
       "category": "国际考试",
       "tags": ["GRE"],
-      "url": "/dicts/GRE_equivalent.json",
+      "url": "GRE_equivalent.json",
       "length": 827,
       "language": "en",
       "languageCategory": "en"
@@ -82,7 +82,7 @@
       "description": "GRE词以类记",
       "category": "国际考试",
       "tags": ["GRE"],
-      "url": "/dicts/gre-ciyileiji.json",
+      "url": "gre-ciyileiji.json",
       "length": 8785,
       "language": "en",
       "languageCategory": "en"
@@ -93,7 +93,7 @@
       "description": "雅思听力场景词汇",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_tinglichangjing.json",
+      "url": "IELTS_tinglichangjing.json",
       "length": 1204,
       "language": "en",
       "languageCategory": "en"
@@ -104,7 +104,7 @@
       "description": "IELTS乱序完整版",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_disorder.json",
+      "url": "IELTS_disorder.json",
       "length": 9389,
       "language": "en",
       "languageCategory": "en"
@@ -115,7 +115,7 @@
       "description": "IELTS顺序完整版",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_order.json",
+      "url": "IELTS_order.json",
       "length": 9389,
       "language": "en",
       "languageCategory": "en"
@@ -126,7 +126,7 @@
       "description": "雅思词库",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_3_T.json",
+      "url": "IELTS_3_T.json",
       "length": 3575,
       "language": "en",
       "languageCategory": "en"
@@ -137,7 +137,7 @@
       "description": "综合测试",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/HeQiong_IELTS.json",
+      "url": "HeQiong_IELTS.json",
       "length": 2529,
       "language": "en",
       "languageCategory": "en"
@@ -148,7 +148,7 @@
       "description": "雅思听力特别名词语料库",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_WANG_3.json",
+      "url": "IELTS_WANG_3.json",
       "length": 1135,
       "language": "en",
       "languageCategory": "en"
@@ -159,7 +159,7 @@
       "description": "雅思听力形容词副词语料库",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_WANG_4.json",
+      "url": "IELTS_WANG_4.json",
       "length": 346,
       "language": "en",
       "languageCategory": "en"
@@ -170,7 +170,7 @@
       "description": "吞音连读混合训练语料库",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_WANG_5.json",
+      "url": "IELTS_WANG_5.json",
       "length": 1569,
       "language": "en",
       "languageCategory": "en"
@@ -181,7 +181,7 @@
       "description": "综合测试",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_WANG_11.json",
+      "url": "IELTS_WANG_11.json",
       "length": 1738,
       "language": "en",
       "languageCategory": "en"
@@ -192,7 +192,7 @@
       "description": "鸭圈雅思核心词",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/DuckCircle_IELTS.json",
+      "url": "DuckCircle_IELTS.json",
       "length": 2644,
       "language": "en",
       "languageCategory": "en"
@@ -203,7 +203,7 @@
       "description": "雅思词汇真经",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTSVocabularyBible.json",
+      "url": "IELTSVocabularyBible.json",
       "length": 3673,
       "language": "en",
       "languageCategory": "en"
@@ -214,7 +214,7 @@
       "description": "雅思 wanglu 807",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/ielts-807.json",
+      "url": "ielts-807.json",
       "length": 4340,
       "language": "en",
       "languageCategory": "en"
@@ -225,7 +225,7 @@
       "description": "雅思 real 词汇（高频词汇）",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/ielts-real-high.json",
+      "url": "ielts-real-high.json",
       "length": 524,
       "language": "en",
       "languageCategory": "en"
@@ -236,7 +236,7 @@
       "description": "雅思 real 词汇 （5频词汇及变频）",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/ielts-real-5.json",
+      "url": "ielts-real-5.json",
       "length": 183,
       "language": "en",
       "languageCategory": "en"
@@ -247,7 +247,7 @@
       "description": "雅思 real 词汇 （4频词汇及变频）",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/ielts-real-4.json",
+      "url": "ielts-real-4.json",
       "length": 201,
       "language": "en",
       "languageCategory": "en"
@@ -258,7 +258,7 @@
       "description": "雅思 real 词汇 （3频词汇及变频）",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/ielts-real-3.json",
+      "url": "ielts-real-3.json",
       "length": 256,
       "language": "en",
       "languageCategory": "en"
@@ -269,7 +269,7 @@
       "description": "雅思 real 词汇 （2频词汇及变频）",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/ielts-real-2.json",
+      "url": "ielts-real-2.json",
       "length": 402,
       "language": "en",
       "languageCategory": "en"
@@ -280,7 +280,7 @@
       "description": "雅思 real 词汇 （1频词汇及变频）",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/ielts-real-1.json",
+      "url": "ielts-real-1.json",
       "length": 737,
       "language": "en",
       "languageCategory": "en"
@@ -291,7 +291,7 @@
       "description": "雅思9988wangyong",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS9988wangyong.json",
+      "url": "IELTS9988wangyong.json",
       "length": 3663,
       "language": "en",
       "languageCategory": "en"
@@ -302,7 +302,7 @@
       "description": "雅思阅读 liuhongbo 538考点词",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTSLiuHongbo538.json",
+      "url": "IELTSLiuHongbo538.json",
       "length": 376,
       "language": "en",
       "languageCategory": "en"
@@ -313,7 +313,7 @@
       "description": "wanglu807雅思词汇听力第2版",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTSKingLu807.json",
+      "url": "IELTSKingLu807.json",
       "length": 1916,
       "language": "en",
       "languageCategory": "en"
@@ -324,7 +324,7 @@
       "description": "新东方 100个句子记完7000个雅思单词 词汇表",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS_XDF_7000.json",
+      "url": "IELTS_XDF_7000.json",
       "length": 5567,
       "language": "en",
       "languageCategory": "en"
@@ -335,7 +335,7 @@
       "description": "雅思口语 900 句, 需在 qwerty 设置中调小英语字体",
       "category": "国际考试",
       "tags": ["IELTS"],
-      "url": "/dicts/IELTS-oral-900.json",
+      "url": "IELTS-oral-900.json",
       "length": 900,
       "language": "en",
       "languageCategory": "en"
@@ -346,7 +346,7 @@
       "description": "KET 2021单词",
       "category": "国际考试",
       "tags": ["KET"],
-      "url": "./dicts/ket2021.json",
+      "url": ".ket2021.json",
       "length": 1147,
       "language": "en",
       "languageCategory": "en"
@@ -357,7 +357,7 @@
       "description": "美国 SAT 考试词库",
       "category": "国际考试",
       "tags": ["SAT"],
-      "url": "/dicts/SAT_3_T.json",
+      "url": "SAT_3_T.json",
       "length": 4464,
       "language": "en",
       "languageCategory": "en"
@@ -368,7 +368,7 @@
       "description": "SAT英英",
       "category": "国际考试",
       "tags": ["SAT"],
-      "url": "/dicts/SATen.json",
+      "url": "SATen.json",
       "length": 2681,
       "language": "en",
       "languageCategory": "en"
@@ -379,7 +379,7 @@
       "description": "托福考试常见词",
       "category": "国际考试",
       "tags": ["TOEFL"],
-      "url": "/dicts/TOEFL_3_T.json",
+      "url": "TOEFL_3_T.json",
       "length": 4264,
       "language": "en",
       "languageCategory": "en"
@@ -390,7 +390,7 @@
       "description": "商务英语常见词",
       "category": "国际考试",
       "tags": ["BEC"],
-      "url": "/dicts/BEC_2_T.json",
+      "url": "BEC_2_T.json",
       "length": 2753,
       "language": "en",
       "languageCategory": "en"
@@ -401,7 +401,7 @@
       "description": "BEC考试常见词",
       "category": "国际考试",
       "tags": ["BEC"],
-      "url": "/dicts/BEC_3_T.json",
+      "url": "BEC_3_T.json",
       "length": 2825,
       "language": "en",
       "languageCategory": "en"
@@ -412,7 +412,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_junior.json",
+      "url": "PTE_junior.json",
       "length": 2651,
       "language": "en",
       "languageCategory": "en"
@@ -423,7 +423,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_senior.json",
+      "url": "PTE_senior.json",
       "length": 3170,
       "language": "en",
       "languageCategory": "en"
@@ -434,7 +434,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_FIB_R_junior.json",
+      "url": "PTE_FIB_R_junior.json",
       "length": 941,
       "language": "en",
       "languageCategory": "en"
@@ -445,7 +445,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_FIB_R_senior.json",
+      "url": "PTE_FIB_R_senior.json",
       "length": 1272,
       "language": "en",
       "languageCategory": "en"
@@ -456,7 +456,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_WFD.json",
+      "url": "PTE_WFD.json",
       "length": 1212,
       "language": "en",
       "languageCategory": "en"
@@ -467,7 +467,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_FIB_L.json",
+      "url": "PTE_FIB_L.json",
       "length": 646,
       "language": "en",
       "languageCategory": "en"
@@ -478,7 +478,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_Basic_apeuni.json",
+      "url": "PTE_Basic_apeuni.json",
       "length": 2652,
       "language": "en",
       "languageCategory": "en"
@@ -489,7 +489,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_Advanced_apeuni.json",
+      "url": "PTE_Advanced_apeuni.json",
       "length": 3169,
       "language": "en",
       "languageCategory": "en"
@@ -500,7 +500,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_Read_apeuni.json",
+      "url": "PTE_Read_apeuni.json",
       "length": 630,
       "language": "en",
       "languageCategory": "en"
@@ -511,7 +511,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["PTE"],
-      "url": "/dicts/PTE_Listening_apeuni.json",
+      "url": "PTE_Listening_apeuni.json",
       "length": 674,
       "language": "en",
       "languageCategory": "en"
@@ -522,7 +522,7 @@
       "description": "",
       "category": "国际考试",
       "tags": ["TOEIC"],
-      "url": "/dicts/TOEIC.json",
+      "url": "TOEIC.json",
       "length": 1694,
       "language": "en",
       "languageCategory": "en"
@@ -533,7 +533,7 @@
       "description": "多邻国分级词汇B1",
       "category": "国际考试",
       "tags": ["CEFR"],
-      "url": "/dicts/Duolingo_Vocabulary_B1.json",
+      "url": "Duolingo_Vocabulary_B1.json",
       "length": 801,
       "language": "en",
       "languageCategory": "en"
@@ -544,7 +544,7 @@
       "description": "多邻国分级词汇B2",
       "category": "国际考试",
       "tags": ["CEFR"],
-      "url": "/dicts/Duolingo_Vocabulary_B2.json",
+      "url": "Duolingo_Vocabulary_B2.json",
       "length": 1423,
       "language": "en",
       "languageCategory": "en"
@@ -555,7 +555,7 @@
       "description": "多邻国分级词汇C1",
       "category": "国际考试",
       "tags": ["CEFR"],
-      "url": "/dicts/Duolingo_Vocabulary_C1.json",
+      "url": "Duolingo_Vocabulary_C1.json",
       "length": 1314,
       "language": "en",
       "languageCategory": "en"
@@ -566,7 +566,7 @@
       "description": "牛津3000词",
       "category": "国际考试",
       "tags": ["牛津版"],
-      "url": "/dicts/Oxford3000.json",
+      "url": "Oxford3000.json",
       "length": 1342,
       "language": "en",
       "languageCategory": "en"
@@ -577,7 +577,7 @@
       "description": "牛津5000词",
       "category": "国际考试",
       "tags": ["牛津版"],
-      "url": "/dicts/Oxford5000.json",
+      "url": "Oxford5000.json",
       "length": 5836,
       "language": "en",
       "languageCategory": "en"
@@ -588,7 +588,7 @@
       "description": "VOA 基础词库",
       "category": "国际考试",
       "tags": ["其他"],
-      "url": "/dicts/voa.json",
+      "url": "voa.json",
       "length": 1505,
       "language": "en",
       "languageCategory": "en"
@@ -599,7 +599,7 @@
       "description": "大学英语四级词库",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/CET4_T.json",
+      "url": "CET4_T.json",
       "length": 2607,
       "language": "en",
       "languageCategory": "en"
@@ -610,7 +610,7 @@
       "description": "大学英语六级词库",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/CET6_T.json",
+      "url": "CET6_T.json",
       "length": 2345,
       "language": "en",
       "languageCategory": "en"
@@ -621,7 +621,7 @@
       "description": "四级巧记速记",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/xinghuoqiaoji_4.json",
+      "url": "xinghuoqiaoji_4.json",
       "length": 2522,
       "language": "en",
       "languageCategory": "en"
@@ -632,7 +632,7 @@
       "description": "六级巧记速记",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/xinghuoqiaoji_6.json",
+      "url": "xinghuoqiaoji_6.json",
       "length": 7520,
       "language": "en",
       "languageCategory": "en"
@@ -643,7 +643,7 @@
       "description": "单词的减法-四级",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/DanCiDeJianFa_4.json",
+      "url": "DanCiDeJianFa_4.json",
       "length": 1957,
       "language": "en",
       "languageCategory": "en"
@@ -654,7 +654,7 @@
       "description": "单词的减法-六级",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/DanCiDeJianFa_6.json",
+      "url": "DanCiDeJianFa_6.json",
       "length": 1949,
       "language": "en",
       "languageCategory": "en"
@@ -665,7 +665,7 @@
       "description": "研究生英语入学考试词库",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/KaoYan_3_T.json",
+      "url": "KaoYan_3_T.json",
       "length": 3728,
       "language": "en",
       "languageCategory": "en"
@@ -676,7 +676,7 @@
       "description": "研究生英语入学考试词库 2024",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/KaoYan_2024.json",
+      "url": "KaoYan_2024.json",
       "length": 3731,
       "language": "en",
       "languageCategory": "en"
@@ -687,7 +687,7 @@
       "description": "高中低频词2023",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/KaoYanShanGuo_2023.json",
+      "url": "KaoYanShanGuo_2023.json",
       "length": 1771,
       "language": "en",
       "languageCategory": "en"
@@ -698,7 +698,7 @@
       "description": "单词的秘密英语（一）",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/DanCiDeMimi_1.json",
+      "url": "DanCiDeMimi_1.json",
       "length": 5657,
       "language": "en",
       "languageCategory": "en"
@@ -709,7 +709,7 @@
       "description": "单词的秘密英语（二）",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/DanCiDeMimi_2.json",
+      "url": "DanCiDeMimi_2.json",
       "length": 3827,
       "language": "en",
       "languageCategory": "en"
@@ -720,7 +720,7 @@
       "description": "2024考研英语hongbaoshu必考词（上）",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/2024HongBao_T1.json",
+      "url": "2024HongBao_T1.json",
       "length": 997,
       "language": "en",
       "languageCategory": "en"
@@ -731,7 +731,7 @@
       "description": "2024考研英语hongbaoshu必考词（下）",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/2024HongBao_T2.json",
+      "url": "2024HongBao_T2.json",
       "length": 854,
       "language": "en",
       "languageCategory": "en"
@@ -742,7 +742,7 @@
       "description": "考研英语二单词书",
       "category": "中国考试",
       "tags": ["考研"],
-      "url": "/dicts/English_II.json",
+      "url": "English_II.json",
       "length": 4559,
       "language": "en",
       "languageCategory": "en"
@@ -753,7 +753,7 @@
       "description": "英语专业四级词库",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/Level4luan_2_T.json",
+      "url": "Level4luan_2_T.json",
       "length": 4025,
       "language": "en",
       "languageCategory": "en"
@@ -764,7 +764,7 @@
       "description": "英语专业八级词库",
       "category": "中国考试",
       "tags": ["大学英语"],
-      "url": "/dicts/Level8luan_2_T.json",
+      "url": "Level8luan_2_T.json",
       "length": 12197,
       "language": "en",
       "languageCategory": "en"
@@ -775,7 +775,7 @@
       "description": "大学建筑专业英语词汇",
       "category": "中国考试",
       "tags": ["专业英语"],
-      "url": "/dicts/archVocabulary.json",
+      "url": "archVocabulary.json",
       "length": 630,
       "language": "en",
       "languageCategory": "en"
@@ -786,7 +786,7 @@
       "description": "大学计算机专业英语词汇",
       "category": "中国考试",
       "tags": ["专业英语"],
-      "url": "/dicts/itVocabulary.json",
+      "url": "itVocabulary.json",
       "length": 1665,
       "language": "en",
       "languageCategory": "en"
@@ -797,7 +797,7 @@
       "description": "全国英语等级考试常考词汇",
       "category": "中国考试",
       "tags": ["PET"],
-      "url": "/dicts/PETS_3.json",
+      "url": "PETS_3.json",
       "length": 1942,
       "language": "en",
       "languageCategory": "en"
@@ -808,7 +808,7 @@
       "description": "全国英语等级考试常考词汇",
       "category": "中国考试",
       "tags": ["PET"],
-      "url": "/dicts/PETS3-2023.json",
+      "url": "PETS3-2023.json",
       "length": 4449,
       "language": "en",
       "languageCategory": "en"
@@ -819,7 +819,7 @@
       "description": "自考1800高频单词",
       "category": "中国考试",
       "tags": ["自考英语二"],
-      "url": "/dicts/self-study_English1.json",
+      "url": "self-study_English1.json",
       "length": 1800,
       "language": "en",
       "languageCategory": "en"
@@ -830,7 +830,7 @@
       "description": "自考英语二高频悠悠单词",
       "category": "中国考试",
       "tags": ["自考英语二"],
-      "url": "/dicts/self-study_English2.json",
+      "url": "self-study_English2.json",
       "length": 2181,
       "language": "en",
       "languageCategory": "en"
@@ -841,7 +841,7 @@
       "description": "00015自考英语二完整单词书",
       "category": "中国考试",
       "tags": ["自考英语二"],
-      "url": "/dicts/self-study_English3.json",
+      "url": "self-study_English3.json",
       "length": 4603,
       "language": "en",
       "languageCategory": "en"
@@ -852,7 +852,7 @@
       "description": "COCA20000词",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/coca20000.json",
+      "url": "coca20000.json",
       "length": 20199,
       "language": "en",
       "languageCategory": "en"
@@ -863,7 +863,7 @@
       "description": "4000 Essential English Words meaning",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/4000_Essential_English_Words-meaning.json",
+      "url": "4000_Essential_English_Words-meaning.json",
       "length": 3600,
       "language": "en",
       "languageCategory": "en"
@@ -874,7 +874,7 @@
       "description": "4000 Essential English Words sentence",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/4000_Essential_English_Words-sentence.json",
+      "url": "4000_Essential_English_Words-sentence.json",
       "length": 3600,
       "language": "en",
       "languageCategory": "en"
@@ -885,7 +885,7 @@
       "description": "Most frequent words in both spoken and written English",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Longman_Communication_3000.json",
+      "url": "Longman_Communication_3000.json",
       "length": 3168,
       "language": "en",
       "languageCategory": "en"
@@ -896,7 +896,7 @@
       "description": "with highest frequency",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/top2000words.json",
+      "url": "top2000words.json",
       "length": 1867,
       "language": "en",
       "languageCategory": "en"
@@ -907,7 +907,7 @@
       "description": "with highest frequency",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Top1500NounWords.json",
+      "url": "Top1500NounWords.json",
       "length": 1525,
       "language": "en",
       "languageCategory": "en"
@@ -918,7 +918,7 @@
       "description": "with highest frequency",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Top1000VerbWords.json",
+      "url": "Top1000VerbWords.json",
       "length": 1011,
       "language": "en",
       "languageCategory": "en"
@@ -929,7 +929,7 @@
       "description": "with highest frequency",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Top500AdjectiveWords.json",
+      "url": "Top500AdjectiveWords.json",
       "length": 527,
       "language": "en",
       "languageCategory": "en"
@@ -940,7 +940,7 @@
       "description": "with highest frequency",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Top250AdverbWords.json",
+      "url": "Top250AdverbWords.json",
       "length": 255,
       "language": "en",
       "languageCategory": "en"
@@ -951,7 +951,7 @@
       "description": "with highest frequency",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Top60Pronouns.json",
+      "url": "Top60Pronouns.json",
       "length": 59,
       "language": "en",
       "languageCategory": "en"
@@ -962,7 +962,7 @@
       "description": "with highest frequency",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Top50Prepositions.json",
+      "url": "Top50Prepositions.json",
       "length": 46,
       "language": "en",
       "languageCategory": "en"
@@ -973,7 +973,7 @@
       "description": "common suffix",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/suffix_word.json",
+      "url": "suffix_word.json",
       "length": 126,
       "language": "en",
       "languageCategory": "en"
@@ -984,7 +984,7 @@
       "description": "common roots",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/word_roots1.json",
+      "url": "word_roots1.json",
       "length": 369,
       "language": "en",
       "languageCategory": "en"
@@ -996,7 +996,7 @@
       "description": "专升本词汇",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/adult-self-study-examination.json",
+      "url": "adult-self-study-examination.json",
       "length": 3692,
       "language": "en",
       "languageCategory": "en"
@@ -1007,7 +1007,7 @@
       "description": "专插本英语词汇",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/zhuan-cha-ben.json",
+      "url": "zhuan-cha-ben.json",
       "length": 3217,
       "language": "en",
       "languageCategory": "en"
@@ -1018,7 +1018,7 @@
       "description": "专升本学士学位的英语",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/xueshiyingyu.json",
+      "url": "xueshiyingyu.json",
       "length": 897,
       "language": "en",
       "languageCategory": "en"
@@ -1029,7 +1029,7 @@
       "description": "牛津5000词",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Oxford5000.json",
+      "url": "Oxford5000.json",
       "length": 5836,
       "language": "en",
       "languageCategory": "en"
@@ -1040,7 +1040,7 @@
       "description": "韦氏词根词典",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Merriam_Webster_sVocabularyBuilder.json",
+      "url": "Merriam_Webster_sVocabularyBuilder.json",
       "length": 1191,
       "language": "en",
       "languageCategory": "en"
@@ -1051,7 +1051,7 @@
       "description": "听说考试16个场景常见词汇量",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/tingshuokaoshi.json",
+      "url": "tingshuokaoshi.json",
       "length": 557,
       "language": "en",
       "languageCategory": "en"
@@ -1062,7 +1062,7 @@
       "description": "ZhangHongYan的TOEFL词汇书-词以类记",
       "category": "国际考试",
       "tags": ["TOEFL"],
-      "url": "/dicts/TOEFL_ZhangHongYan.json",
+      "url": "TOEFL_ZhangHongYan.json",
       "length": 4032,
       "language": "en",
       "languageCategory": "en"
@@ -1073,7 +1073,7 @@
       "description": "高考常见词 3500",
       "category": "青少年英语",
       "tags": ["通用"],
-      "url": "/dicts/GaoKao_3500.json",
+      "url": "GaoKao_3500.json",
       "length": 3893,
       "language": "en",
       "languageCategory": "en"
@@ -1084,7 +1084,7 @@
       "description": "高考历年真题核心高频",
       "category": "青少年英语",
       "tags": ["通用"],
-      "url": "/dicts/GaoKaoZhenTiHeXinGaoPin.json",
+      "url": "GaoKaoZhenTiHeXinGaoPin.json",
       "length": 799,
       "language": "en",
       "languageCategory": "en"
@@ -1095,7 +1095,7 @@
       "description": "高考英语阅读高频词汇",
       "category": "青少年英语",
       "tags": ["通用"],
-      "url": "/dicts/gaokao-yuedu-gaopin.json",
+      "url": "gaokao-yuedu-gaopin.json",
       "length": 688,
       "language": "en",
       "languageCategory": "en"
@@ -1106,7 +1106,7 @@
       "description": "中考核心词",
       "category": "青少年英语",
       "tags": ["通用"],
-      "url": "/dicts/ZhongKaoHeXin.json",
+      "url": "ZhongKaoHeXin.json",
       "length": 2140,
       "language": "en",
       "languageCategory": "en"
@@ -1117,7 +1117,7 @@
       "description": "新概念英语第一册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/NCE_1.json",
+      "url": "NCE_1.json",
       "length": 900,
       "language": "en",
       "languageCategory": "en"
@@ -1128,7 +1128,7 @@
       "description": "新概念英语第二册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/NCE_2.json",
+      "url": "NCE_2.json",
       "length": 858,
       "language": "en",
       "languageCategory": "en"
@@ -1139,7 +1139,7 @@
       "description": "新概念英语第三册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/NCE_3.json",
+      "url": "NCE_3.json",
       "length": 1052,
       "language": "en",
       "languageCategory": "en"
@@ -1150,7 +1150,7 @@
       "description": "新概念英语第四册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/NCE_4.json",
+      "url": "NCE_4.json",
       "length": 784,
       "language": "en",
       "languageCategory": "en"
@@ -1161,7 +1161,7 @@
       "description": "新概念英语新版第一册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/nce-new-1.json",
+      "url": "nce-new-1.json",
       "length": 908,
       "language": "en",
       "languageCategory": "en"
@@ -1172,7 +1172,7 @@
       "description": "新概念英语新版第二册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/nce-new-2.json",
+      "url": "nce-new-2.json",
       "length": 862,
       "language": "en",
       "languageCategory": "en"
@@ -1183,7 +1183,7 @@
       "description": "新概念英语新版第三册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/nce-new-3.json",
+      "url": "nce-new-3.json",
       "length": 1062,
       "language": "en",
       "languageCategory": "en"
@@ -1194,7 +1194,7 @@
       "description": "新概念英语新版第四册",
       "category": "青少年英语",
       "tags": ["新概念英语"],
-      "url": "/dicts/nce-new-4.json",
+      "url": "nce-new-4.json",
       "length": 793,
       "language": "en",
       "languageCategory": "en"
@@ -1205,7 +1205,7 @@
       "description": "上海初中牛津词汇",
       "category": "青少年英语",
       "tags": ["牛津版"],
-      "url": "/dicts/OxfordVocabulary_juniorMiddleSH.json",
+      "url": "OxfordVocabulary_juniorMiddleSH.json",
       "length": 1270,
       "language": "en",
       "languageCategory": "en"
@@ -1216,7 +1216,7 @@
       "description": "人教版三年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue3_1_T.json",
+      "url": "PEPXiaoXue3_1_T.json",
       "length": 64,
       "language": "en",
       "languageCategory": "en"
@@ -1227,7 +1227,7 @@
       "description": "人教版三年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue3_2_T.json",
+      "url": "PEPXiaoXue3_2_T.json",
       "length": 72,
       "language": "en",
       "languageCategory": "en"
@@ -1238,7 +1238,7 @@
       "description": "人教版四年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue4_1_T.json",
+      "url": "PEPXiaoXue4_1_T.json",
       "length": 84,
       "language": "en",
       "languageCategory": "en"
@@ -1249,7 +1249,7 @@
       "description": "人教版四年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue4_2_T.json",
+      "url": "PEPXiaoXue4_2_T.json",
       "length": 104,
       "language": "en",
       "languageCategory": "en"
@@ -1260,7 +1260,7 @@
       "description": "人教版五年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue5_1_T.json",
+      "url": "PEPXiaoXue5_1_T.json",
       "length": 131,
       "language": "en",
       "languageCategory": "en"
@@ -1271,7 +1271,7 @@
       "description": "人教版五年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue5_2_T.json",
+      "url": "PEPXiaoXue5_2_T.json",
       "length": 156,
       "language": "en",
       "languageCategory": "en"
@@ -1282,7 +1282,7 @@
       "description": "人教版六年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue6_1_T.json",
+      "url": "PEPXiaoXue6_1_T.json",
       "length": 130,
       "language": "en",
       "languageCategory": "en"
@@ -1293,7 +1293,7 @@
       "description": "人教版六年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPXiaoXue6_2_T.json",
+      "url": "PEPXiaoXue6_2_T.json",
       "length": 108,
       "language": "en",
       "languageCategory": "en"
@@ -1304,7 +1304,7 @@
       "description": "人教版一年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue1_1_t.json",
+      "url": "PEP_SL_XiaoXue1_1_t.json",
       "length": 52,
       "language": "en",
       "languageCategory": "en"
@@ -1315,7 +1315,7 @@
       "description": "人教版一年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue1_2_t.json",
+      "url": "PEP_SL_XiaoXue1_2_t.json",
       "length": 45,
       "language": "en",
       "languageCategory": "en"
@@ -1326,7 +1326,7 @@
       "description": "人教版二年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue2_1_t.json",
+      "url": "PEP_SL_XiaoXue2_1_t.json",
       "length": 54,
       "language": "en",
       "languageCategory": "en"
@@ -1337,7 +1337,7 @@
       "description": "人教版二年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue2_2_t.json",
+      "url": "PEP_SL_XiaoXue2_2_t.json",
       "length": 55,
       "language": "en",
       "languageCategory": "en"
@@ -1348,7 +1348,7 @@
       "description": "人教版三年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue3_1_t.json",
+      "url": "PEP_SL_XiaoXue3_1_t.json",
       "length": 103,
       "language": "en",
       "languageCategory": "en"
@@ -1359,7 +1359,7 @@
       "description": "人教版三年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue3_2_t.json",
+      "url": "PEP_SL_XiaoXue3_2_t.json",
       "length": 84,
       "language": "en",
       "languageCategory": "en"
@@ -1370,7 +1370,7 @@
       "description": "人教版四年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue4_1_t.json",
+      "url": "PEP_SL_XiaoXue4_1_t.json",
       "length": 116,
       "language": "en",
       "languageCategory": "en"
@@ -1381,7 +1381,7 @@
       "description": "人教版四年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue4_2_t.json",
+      "url": "PEP_SL_XiaoXue4_2_t.json",
       "length": 87,
       "language": "en",
       "languageCategory": "en"
@@ -1392,7 +1392,7 @@
       "description": "人教版五年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue5_1_t.json",
+      "url": "PEP_SL_XiaoXue5_1_t.json",
       "length": 66,
       "language": "en",
       "languageCategory": "en"
@@ -1403,7 +1403,7 @@
       "description": "人教版五年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue5_2_t.json",
+      "url": "PEP_SL_XiaoXue5_2_t.json",
       "length": 96,
       "language": "en",
       "languageCategory": "en"
@@ -1414,7 +1414,7 @@
       "description": "人教版六年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue6_1_t.json",
+      "url": "PEP_SL_XiaoXue6_1_t.json",
       "length": 102,
       "language": "en",
       "languageCategory": "en"
@@ -1425,7 +1425,7 @@
       "description": "人教版六年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEP_SL_XiaoXue6_2_t.json",
+      "url": "PEP_SL_XiaoXue6_2_t.json",
       "length": 41,
       "language": "en",
       "languageCategory": "en"
@@ -1436,7 +1436,7 @@
       "description": "人教版七年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPChuZhong7_1_T.json",
+      "url": "PEPChuZhong7_1_T.json",
       "length": 392,
       "language": "en",
       "languageCategory": "en"
@@ -1447,7 +1447,7 @@
       "description": "人教版七年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPChuZhong7_2_T.json",
+      "url": "PEPChuZhong7_2_T.json",
       "length": 492,
       "language": "en",
       "languageCategory": "en"
@@ -1458,7 +1458,7 @@
       "description": "人教版八年级上册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPChuZhong8_1_T.json",
+      "url": "PEPChuZhong8_1_T.json",
       "length": 419,
       "language": "en",
       "languageCategory": "en"
@@ -1469,7 +1469,7 @@
       "description": "人教版八年级下册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPChuZhong8_2_T.json",
+      "url": "PEPChuZhong8_2_T.json",
       "length": 466,
       "language": "en",
       "languageCategory": "en"
@@ -1480,7 +1480,7 @@
       "description": "人教版九年级全册",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPChuZhong9_1_T.json",
+      "url": "PEPChuZhong9_1_T.json",
       "length": 551,
       "language": "en",
       "languageCategory": "en"
@@ -1491,7 +1491,7 @@
       "description": "人教版高中必修1",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_1_T.json",
+      "url": "PEPGaoZhong_1_T.json",
       "length": 311,
       "language": "en",
       "languageCategory": "en"
@@ -1502,7 +1502,7 @@
       "description": "人教版高中必修2",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_2_T.json",
+      "url": "PEPGaoZhong_2_T.json",
       "length": 319,
       "language": "en",
       "languageCategory": "en"
@@ -1513,7 +1513,7 @@
       "description": "人教版高中必修3",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_3_T.json",
+      "url": "PEPGaoZhong_3_T.json",
       "length": 366,
       "language": "en",
       "languageCategory": "en"
@@ -1524,7 +1524,7 @@
       "description": "人教版高中必修4",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_4_T.json",
+      "url": "PEPGaoZhong_4_T.json",
       "length": 307,
       "language": "en",
       "languageCategory": "en"
@@ -1535,7 +1535,7 @@
       "description": "人教版高中必修5",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_5_T.json",
+      "url": "PEPGaoZhong_5_T.json",
       "length": 357,
       "language": "en",
       "languageCategory": "en"
@@ -1546,7 +1546,7 @@
       "description": "人教版高中选修6",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_6_T.json",
+      "url": "PEPGaoZhong_6_T.json",
       "length": 391,
       "language": "en",
       "languageCategory": "en"
@@ -1557,7 +1557,7 @@
       "description": "人教版高中选修7",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_7_T.json",
+      "url": "PEPGaoZhong_7_T.json",
       "length": 384,
       "language": "en",
       "languageCategory": "en"
@@ -1568,7 +1568,7 @@
       "description": "人教版高中选修8",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_8_T.json",
+      "url": "PEPGaoZhong_8_T.json",
       "length": 420,
       "language": "en",
       "languageCategory": "en"
@@ -1579,7 +1579,7 @@
       "description": "人教版高中选修9",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_9_T.json",
+      "url": "PEPGaoZhong_9_T.json",
       "length": 352,
       "language": "en",
       "languageCategory": "en"
@@ -1590,7 +1590,7 @@
       "description": "人教版高中选修10",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_10_T.json",
+      "url": "PEPGaoZhong_10_T.json",
       "length": 361,
       "language": "en",
       "languageCategory": "en"
@@ -1601,7 +1601,7 @@
       "description": "人教版高中选修11",
       "category": "青少年英语",
       "tags": ["人教版"],
-      "url": "/dicts/PEPGaoZhong_11_T.json",
+      "url": "PEPGaoZhong_11_T.json",
       "length": 309,
       "language": "en",
       "languageCategory": "en"
@@ -1613,7 +1613,7 @@
       "description": "外研版七年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_1_T.json",
+      "url": "WaiYanSheChuZhong_1_T.json",
       "length": 629,
       "language": "en",
       "languageCategory": "en"
@@ -1624,7 +1624,7 @@
       "description": "外研版七年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_2_T.json",
+      "url": "WaiYanSheChuZhong_2_T.json",
       "length": 438,
       "language": "en",
       "languageCategory": "en"
@@ -1635,7 +1635,7 @@
       "description": "外研版八年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_3_T.json",
+      "url": "WaiYanSheChuZhong_3_T.json",
       "length": 320,
       "language": "en",
       "languageCategory": "en"
@@ -1646,7 +1646,7 @@
       "description": "外研版八年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_4_T.json",
+      "url": "WaiYanSheChuZhong_4_T.json",
       "length": 266,
       "language": "en",
       "languageCategory": "en"
@@ -1657,7 +1657,7 @@
       "description": "外研版九年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_5_T.json",
+      "url": "WaiYanSheChuZhong_5_T.json",
       "length": 381,
       "language": "en",
       "languageCategory": "en"
@@ -1668,7 +1668,7 @@
       "description": "外研版九年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_6_T.json",
+      "url": "WaiYanSheChuZhong_6_T.json",
       "length": 128,
       "language": "en",
       "languageCategory": "en"
@@ -1679,7 +1679,7 @@
       "description": "外研高中必修1",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheGaoZhong_1_T.json",
+      "url": "WaiYanSheGaoZhong_1_T.json",
       "length": 411,
       "language": "en",
       "languageCategory": "en"
@@ -1690,7 +1690,7 @@
       "description": "外研高中必修2",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheGaoZhong_2_T.json",
+      "url": "WaiYanSheGaoZhong_2_T.json",
       "length": 272,
       "language": "en",
       "languageCategory": "en"
@@ -1701,7 +1701,7 @@
       "description": "外研一年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_1-Volume-up.json",
+      "url": "WaiYanSheChuZhong_1-Volume-up.json",
       "length": 138,
       "language": "en",
       "languageCategory": "en"
@@ -1712,7 +1712,7 @@
       "description": "外研一年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_1-Volume-down.json",
+      "url": "WaiYanSheChuZhong_1-Volume-down.json",
       "length": 118,
       "language": "en",
       "languageCategory": "en"
@@ -1723,7 +1723,7 @@
       "description": "外研二年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_2-Volume-top.json",
+      "url": "WaiYanSheChuZhong_2-Volume-top.json",
       "length": 118,
       "language": "en",
       "languageCategory": "en"
@@ -1734,7 +1734,7 @@
       "description": "外研二年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_2-Volume-down.json",
+      "url": "WaiYanSheChuZhong_2-Volume-down.json",
       "length": 110,
       "language": "en",
       "languageCategory": "en"
@@ -1745,7 +1745,7 @@
       "description": "外研三年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_3-Volume-top.json",
+      "url": "WaiYanSheChuZhong_3-Volume-top.json",
       "length": 82,
       "language": "en",
       "languageCategory": "en"
@@ -1756,7 +1756,7 @@
       "description": "外研三年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_3-Volume-down.json",
+      "url": "WaiYanSheChuZhong_3-Volume-down.json",
       "length": 106,
       "language": "en",
       "languageCategory": "en"
@@ -1767,7 +1767,7 @@
       "description": "外研四年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_4-Volume-top.json",
+      "url": "WaiYanSheChuZhong_4-Volume-top.json",
       "length": 116,
       "language": "en",
       "languageCategory": "en"
@@ -1778,7 +1778,7 @@
       "description": "外研四年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_4-Volume-down.json",
+      "url": "WaiYanSheChuZhong_4-Volume-down.json",
       "length": 78,
       "language": "en",
       "languageCategory": "en"
@@ -1789,7 +1789,7 @@
       "description": "外研五年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_5-Volume-top.json",
+      "url": "WaiYanSheChuZhong_5-Volume-top.json",
       "length": 80,
       "language": "en",
       "languageCategory": "en"
@@ -1800,7 +1800,7 @@
       "description": "外研五年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_5-Volume-down.json",
+      "url": "WaiYanSheChuZhong_5-Volume-down.json",
       "length": 72,
       "language": "en",
       "languageCategory": "en"
@@ -1811,7 +1811,7 @@
       "description": "外研六年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_6-Volume-top.json",
+      "url": "WaiYanSheChuZhong_6-Volume-top.json",
       "length": 61,
       "language": "en",
       "languageCategory": "en"
@@ -1822,7 +1822,7 @@
       "description": "外研六年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/WaiYanSheChuZhong_6-Volume-down.json",
+      "url": "WaiYanSheChuZhong_6-Volume-down.json",
       "length": 91,
       "language": "en",
       "languageCategory": "en"
@@ -1833,7 +1833,7 @@
       "description": "外研新起点三年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-3-1.json",
+      "url": "waiyan-xin-3-1.json",
       "length": 134,
       "language": "en",
       "languageCategory": "en"
@@ -1844,7 +1844,7 @@
       "description": "外研新起点三年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-3-2.json",
+      "url": "waiyan-xin-3-2.json",
       "length": 156,
       "language": "en",
       "languageCategory": "en"
@@ -1855,7 +1855,7 @@
       "description": "外研新起点四年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-4-1.json",
+      "url": "waiyan-xin-4-1.json",
       "length": 144,
       "language": "en",
       "languageCategory": "en"
@@ -1866,7 +1866,7 @@
       "description": "外研新起点四年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-4-2.json",
+      "url": "waiyan-xin-4-2.json",
       "length": 134,
       "language": "en",
       "languageCategory": "en"
@@ -1877,7 +1877,7 @@
       "description": "外研新起点五年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-5-1.json",
+      "url": "waiyan-xin-5-1.json",
       "length": 152,
       "language": "en",
       "languageCategory": "en"
@@ -1888,7 +1888,7 @@
       "description": "外研新起点五年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-5-2.json",
+      "url": "waiyan-xin-5-2.json",
       "length": 147,
       "language": "en",
       "languageCategory": "en"
@@ -1899,7 +1899,7 @@
       "description": "外研新起点六年级上册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-6-1.json",
+      "url": "waiyan-xin-6-1.json",
       "length": 83,
       "language": "en",
       "languageCategory": "en"
@@ -1910,7 +1910,7 @@
       "description": "外研新起点六年级下册",
       "category": "青少年英语",
       "tags": ["外研版"],
-      "url": "/dicts/waiyan-xin-6-2.json",
+      "url": "waiyan-xin-6-2.json",
       "length": 105,
       "language": "en",
       "languageCategory": "en"
@@ -1922,7 +1922,7 @@
       "description": "译林版高中必修1",
       "category": "青少年英语",
       "tags": ["译林版"],
-      "url": "./dicts/YiLin_1.json",
+      "url": ".YiLin_1.json",
       "length": 276,
       "language": "en",
       "languageCategory": "en"
@@ -1933,7 +1933,7 @@
       "description": "译林版高中必修2",
       "category": "青少年英语",
       "tags": ["译林版"],
-      "url": "./dicts/YiLin_2.json",
+      "url": ".YiLin_2.json",
       "length": 297,
       "language": "en",
       "languageCategory": "en"
@@ -1944,7 +1944,7 @@
       "description": "译林版高中必修3",
       "category": "青少年英语",
       "tags": ["译林版"],
-      "url": "./dicts/YiLin_3.json",
+      "url": ".YiLin_3.json",
       "length": 295,
       "language": "en",
       "languageCategory": "en"
@@ -1955,7 +1955,7 @@
       "description": "北师大版高中必修1",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_1_T.json",
+      "url": "BeiShiGaoZhong_1_T.json",
       "length": 226,
       "language": "en",
       "languageCategory": "en"
@@ -1966,7 +1966,7 @@
       "description": "北师大版高中必修2",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_2_T.json",
+      "url": "BeiShiGaoZhong_2_T.json",
       "length": 244,
       "language": "en",
       "languageCategory": "en"
@@ -1977,7 +1977,7 @@
       "description": "北师大版高中必修3",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_3_T.json",
+      "url": "BeiShiGaoZhong_3_T.json",
       "length": 295,
       "language": "en",
       "languageCategory": "en"
@@ -1988,7 +1988,7 @@
       "description": "北师大版高中必修4",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_4_T.json",
+      "url": "BeiShiGaoZhong_4_T.json",
       "length": 336,
       "language": "en",
       "languageCategory": "en"
@@ -1999,7 +1999,7 @@
       "description": "北师大版高中必修5",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_5_T.json",
+      "url": "BeiShiGaoZhong_5_T.json",
       "length": 327,
       "language": "en",
       "languageCategory": "en"
@@ -2010,7 +2010,7 @@
       "description": "北师大版高中选修6",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_6_T.json",
+      "url": "BeiShiGaoZhong_6_T.json",
       "length": 271,
       "language": "en",
       "languageCategory": "en"
@@ -2021,7 +2021,7 @@
       "description": "北师大版高中选修7",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_7_T.json",
+      "url": "BeiShiGaoZhong_7_T.json",
       "length": 334,
       "language": "en",
       "languageCategory": "en"
@@ -2032,7 +2032,7 @@
       "description": "北师大版高中选修8",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_8_T.json",
+      "url": "BeiShiGaoZhong_8_T.json",
       "length": 364,
       "language": "en",
       "languageCategory": "en"
@@ -2043,7 +2043,7 @@
       "description": "北师大版高中选修9",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_9_T.json",
+      "url": "BeiShiGaoZhong_9_T.json",
       "length": 299,
       "language": "en",
       "languageCategory": "en"
@@ -2054,7 +2054,7 @@
       "description": "北师大版高中选修10",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_10_T.json",
+      "url": "BeiShiGaoZhong_10_T.json",
       "length": 267,
       "language": "en",
       "languageCategory": "en"
@@ -2065,7 +2065,7 @@
       "description": "北师大版高中选修11",
       "category": "青少年英语",
       "tags": ["北师大"],
-      "url": "/dicts/BeiShiGaoZhong_11_T.json",
+      "url": "BeiShiGaoZhong_11_T.json",
       "length": 330,
       "language": "en",
       "languageCategory": "en"
@@ -2076,7 +2076,7 @@
       "description": "冀教版三年级起点三年级上",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao3-1.json",
+      "url": "jiJiao3-1.json",
       "length": 75,
       "language": "en",
       "languageCategory": "en"
@@ -2087,7 +2087,7 @@
       "description": "冀教版三年级起点三年级下",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao3-2.json",
+      "url": "jiJiao3-2.json",
       "length": 76,
       "language": "en",
       "languageCategory": "en"
@@ -2098,7 +2098,7 @@
       "description": "冀教版三年级起点四年级上",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao4-1.json",
+      "url": "jiJiao4-1.json",
       "length": 78,
       "language": "en",
       "languageCategory": "en"
@@ -2109,7 +2109,7 @@
       "description": "冀教版三年级起点四年级下",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao4-2.json",
+      "url": "jiJiao4-2.json",
       "length": 84,
       "language": "en",
       "languageCategory": "en"
@@ -2120,7 +2120,7 @@
       "description": "冀教版三年级起点五年级上",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao5-1.json",
+      "url": "jiJiao5-1.json",
       "length": 79,
       "language": "en",
       "languageCategory": "en"
@@ -2131,7 +2131,7 @@
       "description": "冀教版三年级起点五年级下",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao5-2.json",
+      "url": "jiJiao5-2.json",
       "length": 96,
       "language": "en",
       "languageCategory": "en"
@@ -2142,7 +2142,7 @@
       "description": "冀教版三年级起点六年级上",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao6-1.json",
+      "url": "jiJiao6-1.json",
       "length": 66,
       "language": "en",
       "languageCategory": "en"
@@ -2153,7 +2153,7 @@
       "description": "冀教版三年级起点六年级下",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao6-2.json",
+      "url": "jiJiao6-2.json",
       "length": 51,
       "language": "en",
       "languageCategory": "en"
@@ -2164,7 +2164,7 @@
       "description": "冀教版三年级起点七年级上",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao7-1.json",
+      "url": "jiJiao7-1.json",
       "length": 561,
       "language": "en",
       "languageCategory": "en"
@@ -2175,7 +2175,7 @@
       "description": "冀教版三年级起点七年级下",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao7-2.json",
+      "url": "jiJiao7-2.json",
       "length": 514,
       "language": "en",
       "languageCategory": "en"
@@ -2186,7 +2186,7 @@
       "description": "冀教版三年级起点八年级上",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao8-1.json",
+      "url": "jiJiao8-1.json",
       "length": 420,
       "language": "en",
       "languageCategory": "en"
@@ -2197,7 +2197,7 @@
       "description": "冀教版三年级起点八年级下",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao8-2.json",
+      "url": "jiJiao8-2.json",
       "length": 487,
       "language": "en",
       "languageCategory": "en"
@@ -2208,7 +2208,7 @@
       "description": "冀教版三年级起点九年级全册",
       "category": "青少年英语",
       "tags": ["冀教版"],
-      "url": "/dicts/jiJiao9.json",
+      "url": "jiJiao9.json",
       "length": 636,
       "language": "en",
       "languageCategory": "en"
@@ -2219,7 +2219,7 @@
       "description": "北京初中",
       "category": "青少年英语",
       "tags": ["其他"],
-      "url": "/dicts/beijing_junior_high_school.json",
+      "url": "beijing_junior_high_school.json",
       "length": 1844,
       "language": "en",
       "languageCategory": "en"
@@ -2230,7 +2230,7 @@
       "description": "EF等级1",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_1.json",
+      "url": "EF_LEVEL_1.json",
       "length": 297,
       "language": "en",
       "languageCategory": "en"
@@ -2241,7 +2241,7 @@
       "description": "EF等级2",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_2.json",
+      "url": "EF_LEVEL_2.json",
       "length": 353,
       "language": "en",
       "languageCategory": "en"
@@ -2252,7 +2252,7 @@
       "description": "EF等级3",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_3.json",
+      "url": "EF_LEVEL_3.json",
       "length": 172,
       "language": "en",
       "languageCategory": "en"
@@ -2263,7 +2263,7 @@
       "description": "EF等级4",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_4.json",
+      "url": "EF_LEVEL_4.json",
       "length": 178,
       "language": "en",
       "languageCategory": "en"
@@ -2274,7 +2274,7 @@
       "description": "EF等级5",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_5.json",
+      "url": "EF_LEVEL_5.json",
       "length": 172,
       "language": "en",
       "languageCategory": "en"
@@ -2285,7 +2285,7 @@
       "description": "EF等级6",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_6.json",
+      "url": "EF_LEVEL_6.json",
       "length": 172,
       "language": "en",
       "languageCategory": "en"
@@ -2296,7 +2296,7 @@
       "description": "EF等级7",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_7.json",
+      "url": "EF_LEVEL_7.json",
       "length": 171,
       "language": "en",
       "languageCategory": "en"
@@ -2307,7 +2307,7 @@
       "description": "EF等级8",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_8.json",
+      "url": "EF_LEVEL_8.json",
       "length": 172,
       "language": "en",
       "languageCategory": "en"
@@ -2318,7 +2318,7 @@
       "description": "EF等级9",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_9.json",
+      "url": "EF_LEVEL_9.json",
       "length": 165,
       "language": "en",
       "languageCategory": "en"
@@ -2329,7 +2329,7 @@
       "description": "EF等级10",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_10.json",
+      "url": "EF_LEVEL_10.json",
       "length": 174,
       "language": "en",
       "languageCategory": "en"
@@ -2340,7 +2340,7 @@
       "description": "EF等级11",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_11.json",
+      "url": "EF_LEVEL_11.json",
       "length": 176,
       "language": "en",
       "languageCategory": "en"
@@ -2351,7 +2351,7 @@
       "description": "EF等级12",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_12.json",
+      "url": "EF_LEVEL_12.json",
       "length": 170,
       "language": "en",
       "languageCategory": "en"
@@ -2362,7 +2362,7 @@
       "description": "EF等级13",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_13.json",
+      "url": "EF_LEVEL_13.json",
       "length": 172,
       "language": "en",
       "languageCategory": "en"
@@ -2373,7 +2373,7 @@
       "description": "EF等级14",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_14.json",
+      "url": "EF_LEVEL_14.json",
       "length": 171,
       "language": "en",
       "languageCategory": "en"
@@ -2384,7 +2384,7 @@
       "description": "EF等级15",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_15.json",
+      "url": "EF_LEVEL_15.json",
       "length": 168,
       "language": "en",
       "languageCategory": "en"
@@ -2395,7 +2395,7 @@
       "description": "EF等级16",
       "category": "青少年英语",
       "tags": ["EF"],
-      "url": "/dicts/EF_LEVEL_16.json",
+      "url": "EF_LEVEL_16.json",
       "length": 170,
       "language": "en",
       "languageCategory": "en"
@@ -2406,7 +2406,7 @@
       "description": "词汇表来自Reading Explorer 3, Third Edition",
       "category": "青少年英语",
       "tags": ["其他"],
-      "url": "/dicts/ReadingExplorer3.json",
+      "url": "ReadingExplorer3.json",
       "length": 239,
       "language": "en",
       "languageCategory": "en"
@@ -2417,7 +2417,7 @@
       "description": "麦克米伦7000",
       "category": "中国考试",
       "tags": ["其他"],
-      "url": "/dicts/Macmillan7000.json",
+      "url": "Macmillan7000.json",
       "length": 6268,
       "language": "en",
       "languageCategory": "en"
@@ -2428,7 +2428,7 @@
       "description": "RAZ 分级阅读 AA",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-AA.json",
+      "url": "raz-AA.json",
       "length": 422,
       "language": "en",
       "languageCategory": "en"
@@ -2439,7 +2439,7 @@
       "description": "RAZ 分级阅读 A",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-A.json",
+      "url": "raz-A.json",
       "length": 487,
       "language": "en",
       "languageCategory": "en"
@@ -2450,7 +2450,7 @@
       "description": "RAZ 分级阅读 B",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-B.json",
+      "url": "raz-B.json",
       "length": 465,
       "language": "en",
       "languageCategory": "en"
@@ -2461,7 +2461,7 @@
       "description": "RAZ 分级阅读 C",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-C.json",
+      "url": "raz-C.json",
       "length": 480,
       "language": "en",
       "languageCategory": "en"
@@ -2472,7 +2472,7 @@
       "description": "RAZ 分级阅读 D",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-D.json",
+      "url": "raz-D.json",
       "length": 436,
       "language": "en",
       "languageCategory": "en"
@@ -2483,7 +2483,7 @@
       "description": "RAZ 分级阅读 E",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-E.json",
+      "url": "raz-E.json",
       "length": 427,
       "language": "en",
       "languageCategory": "en"
@@ -2494,7 +2494,7 @@
       "description": "RAZ 分级阅读 F",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-F.json",
+      "url": "raz-F.json",
       "length": 437,
       "language": "en",
       "languageCategory": "en"
@@ -2505,7 +2505,7 @@
       "description": "RAZ 分级阅读 G",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-G.json",
+      "url": "raz-G.json",
       "length": 435,
       "language": "en",
       "languageCategory": "en"
@@ -2516,7 +2516,7 @@
       "description": "RAZ 分级阅读 H",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-H.json",
+      "url": "raz-H.json",
       "length": 385,
       "language": "en",
       "languageCategory": "en"
@@ -2527,7 +2527,7 @@
       "description": "RAZ 分级阅读 I",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-I.json",
+      "url": "raz-I.json",
       "length": 408,
       "language": "en",
       "languageCategory": "en"
@@ -2538,7 +2538,7 @@
       "description": "RAZ 分级阅读 J",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-J.json",
+      "url": "raz-J.json",
       "length": 434,
       "language": "en",
       "languageCategory": "en"
@@ -2549,7 +2549,7 @@
       "description": "RAZ 分级阅读 K",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-K.json",
+      "url": "raz-K.json",
       "length": 397,
       "language": "en",
       "languageCategory": "en"
@@ -2560,7 +2560,7 @@
       "description": "RAZ 分级阅读 L",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-L.json",
+      "url": "raz-L.json",
       "length": 402,
       "language": "en",
       "languageCategory": "en"
@@ -2571,7 +2571,7 @@
       "description": "RAZ 分级阅读 M",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-M.json",
+      "url": "raz-M.json",
       "length": 403,
       "language": "en",
       "languageCategory": "en"
@@ -2582,7 +2582,7 @@
       "description": "RAZ 分级阅读 N",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-N.json",
+      "url": "raz-N.json",
       "length": 376,
       "language": "en",
       "languageCategory": "en"
@@ -2593,7 +2593,7 @@
       "description": "RAZ 分级阅读 O",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-O.json",
+      "url": "raz-O.json",
       "length": 429,
       "language": "en",
       "languageCategory": "en"
@@ -2604,7 +2604,7 @@
       "description": "RAZ 分级阅读 P",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-P.json",
+      "url": "raz-P.json",
       "length": 379,
       "language": "en",
       "languageCategory": "en"
@@ -2615,7 +2615,7 @@
       "description": "RAZ 分级阅读 Q",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-Q.json",
+      "url": "raz-Q.json",
       "length": 442,
       "language": "en",
       "languageCategory": "en"
@@ -2626,7 +2626,7 @@
       "description": "RAZ 分级阅读 R",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-R.json",
+      "url": "raz-R.json",
       "length": 422,
       "language": "en",
       "languageCategory": "en"
@@ -2637,7 +2637,7 @@
       "description": "RAZ 分级阅读 S",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-S.json",
+      "url": "raz-S.json",
       "length": 434,
       "language": "en",
       "languageCategory": "en"
@@ -2648,7 +2648,7 @@
       "description": "RAZ 分级阅读 T",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-T.json",
+      "url": "raz-T.json",
       "length": 427,
       "language": "en",
       "languageCategory": "en"
@@ -2659,7 +2659,7 @@
       "description": "RAZ 分级阅读 U",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-U.json",
+      "url": "raz-U.json",
       "length": 418,
       "language": "en",
       "languageCategory": "en"
@@ -2670,7 +2670,7 @@
       "description": "RAZ 分级阅读 V",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-V.json",
+      "url": "raz-V.json",
       "length": 409,
       "language": "en",
       "languageCategory": "en"
@@ -2681,7 +2681,7 @@
       "description": "RAZ 分级阅读 W",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-W.json",
+      "url": "raz-W.json",
       "length": 392,
       "language": "en",
       "languageCategory": "en"
@@ -2692,7 +2692,7 @@
       "description": "RAZ 分级阅读 X",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-X.json",
+      "url": "raz-X.json",
       "length": 546,
       "language": "en",
       "languageCategory": "en"
@@ -2703,7 +2703,7 @@
       "description": "RAZ 分级阅读 Y",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-Y.json",
+      "url": "raz-Y.json",
       "length": 461,
       "language": "en",
       "languageCategory": "en"
@@ -2714,7 +2714,7 @@
       "description": "RAZ 分级阅读 Z",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-Z.json",
+      "url": "raz-Z.json",
       "length": 414,
       "language": "en",
       "languageCategory": "en"
@@ -2725,7 +2725,7 @@
       "description": "RAZ 分级阅读 Z1",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-Z1.json",
+      "url": "raz-Z1.json",
       "length": 467,
       "language": "en",
       "languageCategory": "en"
@@ -2736,7 +2736,7 @@
       "description": "RAZ 分级阅读 Z2",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-Z2.json",
+      "url": "raz-Z2.json",
       "length": 492,
       "language": "en",
       "languageCategory": "en"
@@ -2747,7 +2747,7 @@
       "description": "RAZ 分级阅读 所有词汇",
       "category": "青少年英语",
       "tags": ["RAZ"],
-      "url": "/dicts/raz-all.json",
+      "url": "raz-all.json",
       "length": 5831,
       "language": "en",
       "languageCategory": "en"
@@ -2758,7 +2758,7 @@
       "description": "英语翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/Japanesebasicword.json",
+      "url": "Japanesebasicword.json",
       "length": 100,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2769,7 +2769,7 @@
       "description": "中文翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/Japanesebasicword_zh.json",
+      "url": "Japanesebasicword_zh.json",
       "length": 100,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2780,7 +2780,7 @@
       "description": "英语翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N5.json",
+      "url": "JapVocabList.N5.json",
       "length": 670,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2791,7 +2791,7 @@
       "description": "中文翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N5_zh.json",
+      "url": "JapVocabList.N5_zh.json",
       "length": 670,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2802,7 +2802,7 @@
       "description": "英语翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N4.json",
+      "url": "JapVocabList.N4.json",
       "length": 635,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2813,7 +2813,7 @@
       "description": "中文翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N4_zh.json",
+      "url": "JapVocabList.N4_zh.json",
       "length": 635,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2824,7 +2824,7 @@
       "description": "英语翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N3.json",
+      "url": "JapVocabList.N3.json",
       "length": 1830,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2835,7 +2835,7 @@
       "description": "中文翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N3_zh.json",
+      "url": "JapVocabList.N3_zh.json",
       "length": 1830,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2846,7 +2846,7 @@
       "description": "英语翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N2.json",
+      "url": "JapVocabList.N2.json",
       "length": 1836,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2857,7 +2857,7 @@
       "description": "中文翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N2_zh.json",
+      "url": "JapVocabList.N2_zh.json",
       "length": 1836,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2868,7 +2868,7 @@
       "description": "英语翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N1.json",
+      "url": "JapVocabList.N1.json",
       "length": 3477,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2879,7 +2879,7 @@
       "description": "中文翻译",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/JapVocabList.N1_zh.json",
+      "url": "JapVocabList.N1_zh.json",
       "length": 3477,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2890,7 +2890,7 @@
       "description": "高频单词_日语N1",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/Jap_High-Frequency_N1.json",
+      "url": "Jap_High-Frequency_N1.json",
       "length": 3000,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2901,7 +2901,7 @@
       "description": "高频单词_日语N2",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/Jap_High-Frequency_N2.json",
+      "url": "Jap_High-Frequency_N2.json",
       "length": 2500,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2912,7 +2912,7 @@
       "description": "高频单词_日语N3",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/Jap_High-Frequency_N3.json",
+      "url": "Jap_High-Frequency_N3.json",
       "length": 1999,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2923,7 +2923,7 @@
       "description": "高频单词_日语N4N5",
       "category": "日语学习",
       "tags": ["基础"],
-      "url": "/dicts/Jap_High-Frequency_N4N5.json",
+      "url": "Jap_High-Frequency_N4N5.json",
       "length": 2000,
       "language": "romaji",
       "languageCategory": "ja"
@@ -2934,7 +2934,7 @@
       "description": "程序员常见单词词库",
       "category": "代码练习",
       "tags": ["通用"],
-      "url": "/dicts/it-words.json",
+      "url": "it-words.json",
       "length": 1700,
       "language": "code",
       "languageCategory": "code"
@@ -2945,7 +2945,7 @@
       "description": "少儿 Python 常见词",
       "category": "代码练习",
       "tags": ["少儿编程", "Python"],
-      "url": "/dicts/Child_python_code.json",
+      "url": "Child_python_code.json",
       "length": 19,
       "language": "en",
       "languageCategory": "code"
@@ -2956,7 +2956,7 @@
       "description": "少儿 Python Turtle 常见词",
       "category": "代码练习",
       "tags": ["少儿编程", "Python"],
-      "url": "/dicts/Child_python_turtle_code.json",
+      "url": "Child_python_turtle_code.json",
       "length": 27,
       "language": "en",
       "languageCategory": "code"
@@ -2967,7 +2967,7 @@
       "description": "少儿 C++ 常见词",
       "category": "代码练习",
       "tags": ["少儿编程", "C++"],
-      "url": "/dicts/Child_cpp.json",
+      "url": "Child_cpp.json",
       "length": 39,
       "language": "en",
       "languageCategory": "code"
@@ -2978,7 +2978,7 @@
       "description": "Arduino常见词",
       "category": "代码练习",
       "tags": ["少儿编程", "Arduino"],
-      "url": "/dicts/arduino_keywords.json",
+      "url": "arduino_keywords.json",
       "length": 78,
       "language": "en",
       "languageCategory": "code"
@@ -2989,7 +2989,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-array.json",
+      "url": "js-array.json",
       "length": 36,
       "language": "code",
       "languageCategory": "code"
@@ -3000,7 +3000,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-date.json",
+      "url": "js-date.json",
       "length": 34,
       "language": "code",
       "languageCategory": "code"
@@ -3011,7 +3011,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-global.json",
+      "url": "js-global.json",
       "length": 9,
       "language": "code",
       "languageCategory": "code"
@@ -3022,7 +3022,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-map-set.json",
+      "url": "js-map-set.json",
       "length": 16,
       "language": "code",
       "languageCategory": "code"
@@ -3033,7 +3033,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-math.json",
+      "url": "js-math.json",
       "length": 38,
       "language": "code",
       "languageCategory": "code"
@@ -3044,7 +3044,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-number.json",
+      "url": "js-number.json",
       "length": 22,
       "language": "code",
       "languageCategory": "code"
@@ -3055,7 +3055,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-object.json",
+      "url": "js-object.json",
       "length": 37,
       "language": "code",
       "languageCategory": "code"
@@ -3066,7 +3066,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-promise.json",
+      "url": "js-promise.json",
       "length": 9,
       "language": "code",
       "languageCategory": "code"
@@ -3077,7 +3077,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["JavaScript"],
-      "url": "/dicts/js-string.json",
+      "url": "js-string.json",
       "length": 32,
       "language": "code",
       "languageCategory": "code"
@@ -3088,7 +3088,7 @@
       "description": "Python Built-in API",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-builtin.json",
+      "url": "python-builtin.json",
       "length": 65,
       "language": "code",
       "languageCategory": "code"
@@ -3099,7 +3099,7 @@
       "description": "Python array API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-array.json",
+      "url": "python-array.json",
       "length": 11,
       "language": "code",
       "languageCategory": "code"
@@ -3110,7 +3110,7 @@
       "description": "Python date API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-date.json",
+      "url": "python-date.json",
       "length": 39,
       "language": "code",
       "languageCategory": "code"
@@ -3121,7 +3121,7 @@
       "description": "Python file API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-file.json",
+      "url": "python-file.json",
       "length": 21,
       "language": "code",
       "languageCategory": "code"
@@ -3132,7 +3132,7 @@
       "description": "Python class API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-class.json",
+      "url": "python-class.json",
       "length": 13,
       "language": "code",
       "languageCategory": "code"
@@ -3143,7 +3143,7 @@
       "description": "Python set API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-set.json",
+      "url": "python-set.json",
       "length": 29,
       "language": "code",
       "languageCategory": "code"
@@ -3154,7 +3154,7 @@
       "description": "Python math API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-math.json",
+      "url": "python-math.json",
       "length": 37,
       "language": "code",
       "languageCategory": "code"
@@ -3165,7 +3165,7 @@
       "description": "Python string API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-string.json",
+      "url": "python-string.json",
       "length": 40,
       "language": "code",
       "languageCategory": "code"
@@ -3176,7 +3176,7 @@
       "description": "Python system API ",
       "category": "代码练习",
       "tags": ["Python"],
-      "url": "/dicts/python-sys.json",
+      "url": "python-sys.json",
       "length": 24,
       "language": "code",
       "languageCategory": "code"
@@ -3187,7 +3187,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["Java"],
-      "url": "/dicts/java-arraylist.json",
+      "url": "java-arraylist.json",
       "length": 25,
       "language": "code",
       "languageCategory": "code"
@@ -3198,7 +3198,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["Java"],
-      "url": "/dicts/java-character.json",
+      "url": "java-character.json",
       "length": 8,
       "language": "code",
       "languageCategory": "code"
@@ -3209,7 +3209,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["Java"],
-      "url": "/dicts/java-hashmap.json",
+      "url": "java-hashmap.json",
       "length": 22,
       "language": "code",
       "languageCategory": "code"
@@ -3220,7 +3220,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["Java"],
-      "url": "/dicts/java-linkedlist.json",
+      "url": "java-linkedlist.json",
       "length": 25,
       "language": "code",
       "languageCategory": "code"
@@ -3231,7 +3231,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["Java"],
-      "url": "/dicts/java-string.json",
+      "url": "java-string.json",
       "length": 48,
       "language": "code",
       "languageCategory": "code"
@@ -3242,7 +3242,7 @@
       "description": "JavaScript API 词典",
       "category": "代码练习",
       "tags": ["Java"],
-      "url": "/dicts/java-stringBuffer.json",
+      "url": "java-stringBuffer.json",
       "length": 20,
       "language": "code",
       "languageCategory": "code"
@@ -3253,7 +3253,7 @@
       "description": "Linux Command",
       "category": "代码练习",
       "tags": ["Linux"],
-      "url": "/dicts/linux-command.json",
+      "url": "linux-command.json",
       "length": 575,
       "language": "code",
       "languageCategory": "code"
@@ -3264,7 +3264,7 @@
       "description": "C#关键字以及用途",
       "category": "代码练习",
       "tags": ["C#"],
-      "url": "/dicts/csharp-keywords.json",
+      "url": "csharp-keywords.json",
       "length": 78,
       "language": "code",
       "languageCategory": "code"
@@ -3275,7 +3275,7 @@
       "description": "C# String API",
       "category": "代码练习",
       "tags": ["C#"],
-      "url": "/dicts/csharp-string.json",
+      "url": "csharp-string.json",
       "length": 79,
       "language": "code",
       "languageCategory": "code"
@@ -3286,7 +3286,7 @@
       "description": "C# List API",
       "category": "代码练习",
       "tags": ["C#"],
-      "url": "/dicts/csharp-list.json",
+      "url": "csharp-list.json",
       "length": 36,
       "language": "code",
       "languageCategory": "code"
@@ -3297,7 +3297,7 @@
       "description": "SQL 常用语句 小写",
       "category": "代码练习",
       "tags": ["SQL"],
-      "url": "/dicts/SQL_statement_lower-case.json",
+      "url": "SQL_statement_lower-case.json",
       "length": 12,
       "language": "code",
       "languageCategory": "code"
@@ -3308,7 +3308,7 @@
       "description": "SQL 常用语句 大写",
       "category": "代码练习",
       "tags": ["SQL"],
-      "url": "/dicts/SQL_statement_upper-case.json",
+      "url": "SQL_statement_upper-case.json",
       "length": 12,
       "language": "code",
       "languageCategory": "code"
@@ -3319,7 +3319,7 @@
       "description": "AI机器学习 常用英语词汇",
       "category": "代码练习",
       "tags": ["AI"],
-      "url": "/dicts/ai_machine_learning.json",
+      "url": "ai_machine_learning.json",
       "length": 726,
       "language": "code",
       "languageCategory": "code"
@@ -3330,7 +3330,7 @@
       "description": "AI for Science 常用英语词汇",
       "category": "代码练习",
       "tags": ["AI"],
-      "url": "/dicts/ai_for_science.json",
+      "url": "ai_for_science.json",
       "length": 491,
       "language": "code",
       "languageCategory": "code"
@@ -3341,7 +3341,7 @@
       "description": "go语言关键字,",
       "category": "代码练习",
       "tags": ["golang"],
-      "url": "/dicts/go_keyword.json",
+      "url": "go_keyword.json",
       "length": 25,
       "language": "code",
       "languageCategory": "code"
@@ -3352,7 +3352,7 @@
       "description": "go语言内建函数和类型",
       "category": "代码练习",
       "tags": ["golang"],
-      "url": "/dicts/go_builtin.json",
+      "url": "go_builtin.json",
       "length": 46,
       "language": "code",
       "languageCategory": "code"

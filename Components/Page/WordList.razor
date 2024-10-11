@@ -16,7 +16,7 @@
 @inject ISettingService _settingService
 @inject TypeAdapterConfig _config
 
-<div class="flex flex-col w-full h-full relative px-4 gap-4">
+<div class="px-4 gap-4 relative flex h-full w-full flex-col">
     <div class="flex flex-row">
         @foreach (var item in languageCategorys ?? [])
         {
@@ -24,11 +24,11 @@
             {
                 continue;
             }
-            <span class="bg-gray-200 shadow cursor-pointer hover:bg-gray-300 p-2 px-6 text-lg border-gray-300 border-b-4 @(curBook == item ? "border-blue-300" : "")" @onclick="()=> SetCurBook(item)">@getLanName(item)</span>
+            <span class="bg-gray-200 p-2 px-6 border-gray-300 cursor-pointer border-b-4 text-lg shadow hover:bg-gray-300 @(curBook == item ? "border-blue-300" : "")" @onclick="()=> SetCurBook(item)">@getLanName(item)</span>
         }
     </div>
 
-    <div class="grid grid-cols-4 gap-5">
+    <div class="gap-5 grid grid-cols-4">
         @{
             if (!string.IsNullOrEmpty(curBook) && categories != null)
             {
@@ -44,29 +44,29 @@
                     {
                         currentTags.Add(item.Key, tags[0]);
                     }
-                    <div class="col-span-4 flex flex-row flex-wrap gap-2">
+                    <div class="gap-2 col-span-4 flex flex-row flex-wrap">
                         @foreach (var t_item in tags)
                         {
-                            <span class="bg-gray-200 shadow rounded cursor-pointer hover:bg-gray-300 p-2 px-6 text-lg border-b-4" @onclick="()=> SetCurTag(item.Key, t_item)">@t_item.Name</span>
+                            <span class="bg-gray-200 p-2 px-6 cursor-pointer rounded border-b-4 text-lg shadow hover:bg-gray-300" @onclick="()=> SetCurTag(item.Key, t_item)">@t_item.Name</span>
                         }
                     </div>
                         foreach (var b_item in item.Where(b => b.Tags.Any(t => t.Name == currentTags[item.Key].Name)))
                         {
-                            <div class="group relative h-[320px] flex flex-col items-center justify-center shadow-md rounded transition-all duration-500 cursor-pointer hover:-translate-y-1"
+                            <div class="group relative flex h-[320px] cursor-pointer flex-col items-center justify-center rounded shadow-md transition-all duration-500 hover:-translate-y-1"
                                  style="background:#@(b_item.Color)">
-                                <span class="text-2xl font-bold m-auto group-hover:text-sky-500 transition-all">@b_item.Name</span>
-                                <div class="mt-auto flex flex-col w-full">
+                                <span class="group-hover:text-sky-500 m-auto text-2xl font-bold transition-all">@b_item.Name</span>
+                                <div class="mt-auto flex w-full flex-col">
                                     <div class="flex justify-around">
-                                        <span class="!block bg-gray-100 rounded-md p-1">背完@(b_item.GraspCount)个</span>
-                                        <span class="!block bg-gray-100 rounded-md p-1">总共@(b_item.Count)个</span>
+                                        <span class="!block bg-gray-100 p-1 rounded-md">背完@(b_item.GraspCount)个</span>
+                                        <span class="!block bg-gray-100 p-1 rounded-md">总共@(b_item.Count)个</span>
                                     </div>
                                     <Progress Class="!w-10/12 !m-auto" Percent=@(b_item.GraspCount / b_item.Count * 100) ShowInfo="false" />
                                 </div>
                                 @if (b_item.IsCurrent)
                                 {
-                                    <FaIcon Class="absolute right-3 top-3 text-white text-bold" Type="fa-check" IsInherit="true" />
+                                    <FaIcon Class="right-3 top-3 text-white text-bold absolute" Type="fa-check" IsInherit="true" />
                                 }
-                                <div class="absolute insert-0 flex items-center justify-center gap-5 bg-gray-100 transition-all opacity-0 group-hover:opacity-70 w-full h-full">
+                                <div class="insert-0 gap-5 bg-gray-100 group-hover:opacity-70 absolute flex h-full w-full items-center justify-center opacity-0 transition-all">
                                     <Button Type="@ButtonType.Primary" OnClick="()=> SelectBook(b_item)">选择</Button>
                                     <Button Type="@ButtonType.Primary" OnClick="()=> openWordsView(b_item)">查看</Button>
                                 </div>
@@ -78,7 +78,7 @@
         
 
     </div>
-    <div class="fixed right-12 bottom-12 w-[48px] h-[48px] flex items-center justify-center bg-white shadow-md rounded-full cursor-pointer hover:bg-gray-50" @onclick="()=>openModal()">
+    <div class="right-12 bottom-12 bg-white fixed flex h-[48px] w-[48px] cursor-pointer items-center justify-center rounded-full shadow-md hover:bg-gray-50" @onclick="()=>openModal()">
         <FaIcon Type="fa-plus" IsInherit="true"/>
     </div>
 </div>
@@ -87,12 +87,15 @@
 {
     <Drawer @bind-Visible="wordsView" Title="@($"{currSelectBook.Name}单词列表")" Width="500">
         <Virtualize Items="@currSelectBook.Words" Context="item">
-            <div class="relative flex flex-col bg-slate-300 gap-3 my-3 p-3 rounded shadow-current">
-                <div class="flex flex-row gap-2">
-                    <span class="text-base text-black font-medium">@item.WordName</span>
-                    <span class="text-base text-black text-gray-600">英 @item.AnnotationUk 美 @item.AnnotationUs</span>
+            <div class="bg-slate-300 gap-3 my-3 p-3 shadow-current relative flex flex-col rounded">
+                <div class="gap-2 flex flex-row">
+                    <span class="text-black text-base font-medium">@item.WordName</span>
+                    <span class="text-black text-gray-600 text-base">英 @item.AnnotationUk 美 @item.AnnotationUs</span>
                 </div>
-                <span class="text-base text-black font-medium">@item.Translation</span>
+                @foreach (var sub_item in @item.Translates)
+                {
+                    <span class="text-black mr-[20px] text-base font-medium">@sub_item.Trans</span>
+                }
                 <FaIcon OnClick="p => PlayWord(item)" Class=" absolute right-3 top-1/2 -translate-y-1/2" Type="fa-volume-low"></FaIcon>
             </div>
         </Virtualize>

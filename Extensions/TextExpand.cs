@@ -2,13 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MoqWord.Extensions
 {
     public static class TextExpand
     {
-
+        /// <summary>
+        /// 使用正则表达式分割字符串
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static string SplitChar(this string source, string pattern)
+        {
+            return Regex.Split(source, pattern)[0];
+        }
         /// <summary>
         /// 根据汉字和英文字符的数量计算读出文本所需的秒数。
         /// </summary>
@@ -24,8 +34,8 @@ namespace MoqWord.Extensions
             double speedFactor = 1.5 - (speechSpeed / 200.0);
 
             // 基础发音时间（秒）
-            double baseTimePerChineseChar = 0.5;
-            double baseTimePerEnglishChar = 0.25;
+            double baseTimePerChineseChar = 0.25;
+            double baseTimePerEnglishChar = 0.2;
 
             // 调整后的发音时间
             double timePerChineseChar = baseTimePerChineseChar * speedFactor;

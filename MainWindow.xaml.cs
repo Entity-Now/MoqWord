@@ -24,6 +24,7 @@ namespace MoqWord
         public ISqlSugarClient sqlSugar { get; set; }
         public ISettingRepository settingRepository { get; set; }
         public IShortcutKeysService shortcutKeysService { get; set; }
+        public IPopupConfigService popupConfigService { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -31,11 +32,12 @@ namespace MoqWord
             // 注册窗口事件类
             WindowHelper.Init();
         }
-        public MainWindow(ISqlSugarClient _sqlSugar, ISettingRepository _settingRepository, IShortcutKeysService _shortcutKeysService) : this()
+        public MainWindow(ISqlSugarClient _sqlSugar, ISettingRepository _settingRepository, IShortcutKeysService _shortcutKeysService, IPopupConfigService popupConfigService) : this()
         {
             sqlSugar = _sqlSugar;
             settingRepository = _settingRepository;
             shortcutKeysService = _shortcutKeysService;
+            this.popupConfigService = popupConfigService;
             // 初始化数据库
             init();
             // 
@@ -108,6 +110,23 @@ namespace MoqWord
                         Interface = "IPlayService",
                         Method = "Next"
                     },
+                });
+            }
+            // 初始化窗口样式
+            var firstPopupConfig = popupConfigService.First();
+            if (firstPopupConfig is null or default(PopupConfig))
+            {
+                popupConfigService.InsertOrUpdate(new PopupConfig()
+                {
+                    Background = "#B6EEEEEE",
+                    Color = "#FFCC3737",
+                    TranslationFontSize = 14.5,
+                    WordNameFontSize = 32.5,
+                    Opacity = 1,
+                    IsLock = false,
+                    IsPenetrate = false,
+                    CreateDT = DateTime.Now,
+                    UpdateDT = DateTime.Now,
                 });
             }
         }

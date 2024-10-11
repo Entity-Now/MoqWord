@@ -49,6 +49,10 @@ namespace MoqWord.Model.Entity
         /// </summary>
         public bool IsExternal { get; set; } = false;
         /// <summary>
+        /// 平台名称
+        /// </summary>
+        public string Platform { get; set; } = string.Empty;
+        /// <summary>
         /// 语言
         /// </summary>
         public string Language { get; set; }
@@ -56,6 +60,10 @@ namespace MoqWord.Model.Entity
         /// 语言分类
         /// </summary>
         public string LanguageCategory { get; set; }
+        /// <summary>
+        /// 资源路径
+        /// </summary>
+        public string Path { get; set; } = string.Empty;
         [Navigate(typeof(BookTag), nameof(BookTag.BookId), nameof(BookTag.TagId))]
         public List<Tag> Tags { get; set; }
         /// <summary>

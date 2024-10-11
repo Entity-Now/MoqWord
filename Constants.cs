@@ -16,5 +16,7 @@ namespace MoqWord
         public const string ThemeAccent = "Light";
         public static string SelfPath = AppContext.BaseDirectory;
         public static string Connection = $"DataSource={Path.Combine(SelfPath, "MoqWord.db")}";
+        public static string DistConf = $"{SelfPath}/Local/dist_conf.json";
+        public static string BooksPath = $"{SelfPath}/Local/dicts/{{0}}";
     }
 }

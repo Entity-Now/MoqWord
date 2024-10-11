@@ -60,6 +60,10 @@ namespace MoqWord.Model.EntityDTO
         /// </summary>
         public bool IsExternal { get; set; } = false;
         /// <summary>
+        /// 平台名称
+        /// </summary>
+        public string Platform { get; set; } = string.Empty;
+        /// <summary>
         /// 语言
         /// </summary>
         public string Language { get; set; }
