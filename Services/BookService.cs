@@ -159,7 +159,7 @@ namespace MoqWord.Services
                 return default(List<Word>);
             }
             // 获取指定GroupNumber的单词
-            var wordsToReview = wordService.All().Includes(w => w.Translates).Where(w => w.GroupNumber == groupNumber && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
+            var wordsToReview = wordService.All().Includes(w => w.Translates).Where(w => w.BookId == settings.CurrentBookId && w.GroupNumber == groupNumber && !w.Grasp).OrderBy(w => w.Due).Take(settings.EverDayCount).ToList();
 
             return wordsToReview;
         }

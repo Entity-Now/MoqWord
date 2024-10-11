@@ -172,7 +172,7 @@ namespace MoqWord.Services
             // play
             playSound.PlayAsync(CurrentWord.WordName, _cancellationTokenSource.Token);
             // play text
-            scheduler.AddTempTask(TimeSpan.FromSeconds(readTime), () =>
+            scheduler.AddTempTask(TimeSpan.FromSeconds(readTime + 0.3), () =>
             {
                 var tran_s = CurrentWord.Translates[0];
                 secondaryPlaySound.PlayAsync(tran_s.Trans.ReplacePartOfSpeech(), _cancellationTokenSource.Token);
