@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoqWord.WpfComponents"
+             xmlns:converts="clr-namespace:MoqWord.Utlis.Converts"
              xmlns:vm="clr-namespace:MoqWord.ModelView"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="400"
@@ -46,18 +47,21 @@
                 </Grid>
                 <Button x:Name="_LockButton" Foreground="{Binding popupConfigModelView.Color}" HorizontalAlignment="Center" Style="{ StaticResource textButton }" Content="&#xf023;" Command="{Binding LookCommand}"/>
                 <StackPanel Grid.Row="1" Orientation="Vertical">
-                    <Grid>
+                    <Grid HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.WordNameFontSize }" Style="{StaticResource desktopWordNameFontSize}" Text="{Binding playService.CurrentWord.WordName}"/>
-                        <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel Margin="20 0 0 0" Grid.Column="1"  Orientation="Horizontal" VerticalAlignment="Center">
                             <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Text="{Binding playService.CurrentWord.AnnotationUs}"/>
-                            <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Text="{Binding playService.CurrentWord.AnnotationUk}" Margin="10,0,0,0"/>
+                            <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Text="{Binding playService.CurrentWord.AnnotationUk}" Margin="0,0,0,0"/>
                         </StackPanel>
                     </Grid>
-                    <TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Style="{StaticResource desktopTranslateFontSize}" Text="{Binding playService.CurrentWord.Translation}"/>
+                    <StackPanel x:Name="translate_list" Orientation="Vertical" HorizontalAlignment="Center">
+                        
+                    </StackPanel>
+                    <!--<TextBlock Foreground="{Binding popupConfigModelView.Color}" FontSize="{ Binding popupConfigModelView.TranslationFontSize }" Style="{StaticResource desktopTranslateFontSize}" Text="{Binding playService.CurrentWord.Translation, Converter={Binding }}"/>-->
                 </StackPanel>
             </Grid>
         </Border>

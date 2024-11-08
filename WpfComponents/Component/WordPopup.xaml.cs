@@ -80,6 +80,18 @@ namespace MoqWord.WpfComponents
                         }
                     });
                 });
+            this.WhenAnyValue(x => x.ViewMode.playService.CurrentWord)
+                .Subscribe((e) => {
+                    translate_list.Children.Clear();
+                    foreach (var item in e.Translates)
+                    {
+                        var textblock = new TextBlock();
+                        textblock.Text = item.Trans;
+                        translate_list.Children.Add(textblock);
+                    }
+
+                    this.Height = 140 + (e.Translates.Count * (ViewModel?.popupConfigModelView?.TranslationFontSize ?? 12));
+                });
         }
 
         public WordNotifyModelView? ViewMode

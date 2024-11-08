@@ -16,40 +16,41 @@
 @inject ISettingService _settingService
 @inject TypeAdapterConfig _config
 
-<div class="px-4 gap-4 relative flex h-full w-full flex-col">
-    <div class="flex flex-row">
-        @foreach (var item in languageCategorys ?? [])
-        {
-            if (string.IsNullOrEmpty(item))
+<Spin Spinning="isLoading">
+    <div class="px-4 gap-4 relative flex h-full w-full flex-col">
+        <div class="flex flex-row">
+            @foreach (var item in languageCategorys ?? [])
             {
-                continue;
-            }
-            <span class="bg-gray-200 p-2 px-6 border-gray-300 cursor-pointer border-b-4 text-lg shadow hover:bg-gray-300 @(curBook == item ? "border-blue-300" : "")" @onclick="()=> SetCurBook(item)">@getLanName(item)</span>
-        }
-    </div>
-
-    <div class="gap-5 grid grid-cols-4">
-        @{
-            if (!string.IsNullOrEmpty(curBook) && categories != null)
-            {
-                var bookList = categories?.Where(c => c.LanguageCategory == getLanKey(curBook))
-                    .GroupBy(c => c.Category).Where(k => !string.IsNullOrEmpty(k.Key));
-                foreach (var item in bookList ?? [])
+                if (string.IsNullOrEmpty(item))
                 {
-                    var tags = item.SelectMany(c => c.Tags)
+                    continue;
+                }
+                <span class="bg-gray-200 p-2 px-6 border-gray-300 cursor-pointer border-b-4 text-lg shadow hover:bg-gray-300 @(curBook == item ? "border-blue-300" : "")" @onclick="()=> SetCurBook(item)">@getLanName(item)</span>
+            }
+        </div>
+
+        <div class="gap-5 grid grid-cols-4">
+            @{
+                if (!string.IsNullOrEmpty(curBook) && categories != null)
+                {
+                    var bookList = categories?.Where(c => c.LanguageCategory == getLanKey(curBook))
+                    .GroupBy(c => c.Category).Where(k => !string.IsNullOrEmpty(k.Key));
+                    foreach (var item in bookList ?? [])
+                    {
+                        var tags = item.SelectMany(c => c.Tags)
                         .GroupBy(c => c.Name)
                         .Select(c => c.First())
                         .ToList();
-                    if (bookList != null && currentTags.Count < bookList?.Count())
-                    {
-                        currentTags.Add(item.Key, tags[0]);
-                    }
-                    <div class="gap-2 col-span-4 flex flex-row flex-wrap">
-                        @foreach (var t_item in tags)
+                        if (bookList != null && currentTags.Count < bookList?.Count())
                         {
-                            <span class="bg-gray-200 p-2 px-6 cursor-pointer rounded border-b-4 text-lg shadow hover:bg-gray-300" @onclick="()=> SetCurTag(item.Key, t_item)">@t_item.Name</span>
+                            currentTags.Add(item.Key, tags[0]);
                         }
-                    </div>
+                        <div class="gap-2 col-span-4 flex flex-row flex-wrap">
+                            @foreach (var t_item in tags)
+                            {
+                                <span class="bg-gray-200 p-2 px-6 cursor-pointer rounded border-b-4 text-lg shadow hover:bg-gray-300" @onclick="()=> SetCurTag(item.Key, t_item)">@t_item.Name</span>
+                            }
+                        </div>
                         foreach (var b_item in item.Where(b => b.Tags.Any(t => t.Name == currentTags[item.Key].Name)))
                         {
                             <div class="group relative flex h-[320px] cursor-pointer flex-col items-center justify-center rounded shadow-md transition-all duration-500 hover:-translate-y-1"
@@ -72,16 +73,17 @@
                                 </div>
                             </div>
                         }
+                    }
                 }
             }
-        }
-        
 
+
+        </div>
+        <div class="right-12 bottom-12 bg-white fixed flex h-[48px] w-[48px] cursor-pointer items-center justify-center rounded-full shadow-md hover:bg-gray-50" @onclick="()=>openModal()">
+            <FaIcon Type="fa-plus" IsInherit="true" />
+        </div>
     </div>
-    <div class="right-12 bottom-12 bg-white fixed flex h-[48px] w-[48px] cursor-pointer items-center justify-center rounded-full shadow-md hover:bg-gray-50" @onclick="()=>openModal()">
-        <FaIcon Type="fa-plus" IsInherit="true"/>
-    </div>
-</div>
+</Spin>
 
 @if (currSelectBook != null)
 {

@@ -18,6 +18,7 @@ namespace MoqWord.Components.Page
 {
     public partial class WordList
     {
+        bool isLoading = false;
         // 表单是否显示
         bool modalIsVisible = false;
         bool wordsView = false;
@@ -109,6 +110,7 @@ namespace MoqWord.Components.Page
             {
                 try
                 {
+                    isLoading = true;
                     var findBook = await _service.FirstAsync(b => b.Name == model.Name && b.Language == model.Language);
                     if (findBook != null)
                     {
@@ -147,11 +149,11 @@ namespace MoqWord.Components.Page
                         {
                             await _message.Success("导入成功~");
                             modalIsVisible = false;
-                            await InvokeAsync(StateHasChanged);
+                            await Task.Delay(500);
                         }
                         else
                         {
-                            await _message.Error("导入失败~");
+                            await _message.Error("导入失败~") ;
                         }
                     }
                 }
@@ -159,44 +161,58 @@ namespace MoqWord.Components.Page
                 {
                     await _message.Error(ex.Message);
                 }
+                finally
+                {
+                    isLoading = false;
+                    await InvokeAsync(StateHasChanged);
+                }
 
             });
         }
         async void SelectBook(BookDTO c)
         {
-            Book book = c.Adapt<Book>();
-            var findBook = await _service.FirstAsync(b => b.Name == c.Name && b.Language == c.Language);
-            if (findBook != null)
+            try
             {
-                if (_service.SelectBook(book))
+                isLoading = true;
+                Book book = c.Adapt<Book>();
+                var findBook = await _service.FirstAsync(b => b.Name == c.Name && b.Language == c.Language);
+                if (findBook != null)
                 {
-                    await _message.Success("设置成功~");
-                    await InvokeAsync(StateHasChanged);
-                    return;
+                    if (!_service.SelectBook(book))
+                    {
+                        await _message.Warning("设置失败~");
+                        return;
+                    }
                 }
-                await _message.Warning("设置失败~");
-                return;
+                else
+                {
+                    // 导入json文件
+                    book.Path = string.Format(Constants.BooksPath, c.Path);
+                    var readBook = ResourceHelper.GetFileText(book.Path);
+                    book.IsCurrent = true;
+                    book.Words = importPlatform["Qwerty"].ImportWords(readBook).ToList();
+                    var insertRes = await _service.InsertNav(book)
+                        .Include(b => b.Words)
+                        .ThenInclude(t => t.Translates)
+                        .Include(w => w.Tags)
+                        .ExecuteCommandAsync();
+                    if (!insertRes || !_service.SelectBook(_service.First(b => b.Name == book.Name)))
+                    {
+                        await _message.Warning("导入失败！");
+                    }
+                }
             }
-            // 导入json文件
-            book.Path = string.Format(Constants.BooksPath, c.Path);
-            var readBook = ResourceHelper.GetFileText(book.Path);
-            book.IsCurrent = true;
-            book.Words = importPlatform["Qwerty"].ImportWords(readBook).ToList();
-            var insertRes = await _service.InsertNav(book)
-                .Include(b => b.Words)
-                .ThenInclude(t => t.Translates)
-                .Include(w => w.Tags)
-                .ExecuteCommandAsync();
-            if (insertRes)
+            catch (Exception ex)
             {
-                await _message.Success("导入成功！");
-                _service.SelectBook(_service.First(b => b.Name == book.Name));
+                await _message.Warning("导入失败，错误信息：" + ex.Message);
+            }
+            finally
+            {
+                await Task.Delay(500);
+                isLoading = false;
                 await InvokeAsync(StateHasChanged);
             }
-            else
-            {
-                await _message.Warning("导入失败！");
-            }
+            
         }
 
         async void PlayWord(Word word)
