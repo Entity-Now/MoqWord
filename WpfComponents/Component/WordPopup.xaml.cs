@@ -1,4 +1,5 @@
-﻿using Edge_tts_sharp;
+﻿using ColorHelper;
+using Edge_tts_sharp;
 using Microsoft.Extensions.DependencyInjection;
 using MoqWord.ModelView;
 using ReactiveUI;
@@ -82,15 +83,19 @@ namespace MoqWord.WpfComponents
                 });
             this.WhenAnyValue(x => x.ViewMode.playService.CurrentWord)
                 .Subscribe((e) => {
-                    translate_list.Children.Clear();
-                    foreach (var item in e.Translates)
-                    {
-                        var textblock = new TextBlock();
-                        textblock.Text = item.Trans;
-                        translate_list.Children.Add(textblock);
-                    }
+                    Dispatcher?.Invoke(() => {
+                        translate_list.Children.Clear();
+                        foreach (var item in e.Translates)
+                        {
+                            var textblock = new TextBlock();
+                            textblock.Style = (Style)FindResource("desktopTranslateFontSize");
+                            textblock.Foreground = new SolidColorBrush((Color)System.Windows.Media.ColorConverter.ConvertFromString(ViewModel?.popupConfigModelView.Color ?? "#bebebe"));
+                            textblock.Text = item.Trans;
+                            translate_list.Children.Add(textblock);
+                        }
 
-                    this.Height = 140 + (e.Translates.Count * (ViewModel?.popupConfigModelView?.TranslationFontSize ?? 12));
+                        this.Height = 140 + (e.Translates.Count * (ViewModel?.popupConfigModelView?.TranslationFontSize ?? 12));
+                    });
                 });
         }
 
