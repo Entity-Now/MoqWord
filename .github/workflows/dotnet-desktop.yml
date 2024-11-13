@@ -40,7 +40,7 @@ name: .NET Core Desktop Build for Relase
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
     tags: 
       - "v*"
 
@@ -78,6 +78,7 @@ jobs:
     - name: 上传到Release中
       uses: Shopify/upload-to-release@v2.0.0
       with: 
+        tag: ${{ github.ref }}
         name: MoqWord-${{ github.ref }}-${{RUNNER_ARCH}}
         path: MoqWord-${{ github.ref }}-${{RUNNER_ARCH}}.zip
         content-type: application/zip
