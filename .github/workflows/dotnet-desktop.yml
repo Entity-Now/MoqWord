@@ -40,7 +40,6 @@ name: .NET Core Desktop Build for Relase
 
 on:
   push:
-    branches: [ "master" ]
     tags: 
       - "v*"
 
