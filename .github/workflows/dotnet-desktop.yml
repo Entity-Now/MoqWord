@@ -81,6 +81,6 @@ jobs:
         name: MoqWord-${{ github.ref }}-${{RUNNER_ARCH}}
         path: MoqWord-${{ github.ref }}-${{RUNNER_ARCH}}.zip
         content-type: application/zip
-        repo-token: ${{secrets.GITHUB_TOKEN}}
+        repo-token: ${{secrets.workflow_key}}
       
     
