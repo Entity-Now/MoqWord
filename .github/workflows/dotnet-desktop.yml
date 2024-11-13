@@ -40,8 +40,8 @@ name: .NET Core Desktop Build for Relase
 
 on:
   push:
-    tags: 
-      - "v*"
+    tags:
+      - '*'
 
 jobs:
 
