@@ -63,10 +63,9 @@ namespace MoqWord.Services
             {
                 await Audio.PlayAudioFromUrlAsync
                 (
-                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncode(word)}&type={soundName}",
+                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncode(word)}&type={soundName}&le=cn",
                      cancellationToken: cancelToken
                 );
-
             }
             catch (Exception ex)
             {

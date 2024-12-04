@@ -69,7 +69,7 @@ namespace MoqWord.Services
                         }
                         catch (TaskCanceledException)
                         {
-
+                            
                         }
                         finally
                         {
