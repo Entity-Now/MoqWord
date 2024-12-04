@@ -83,6 +83,7 @@ namespace MoqWord.WpfComponents
                 });
             this.WhenAnyValue(x => x.ViewMode.playService.CurrentWord)
                 .Subscribe((e) => {
+                    if (e is null) return;
                     Dispatcher?.Invoke(() => {
                         translate_list.Children.Clear();
                         foreach (var item in e.Translates)
