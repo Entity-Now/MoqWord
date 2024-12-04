@@ -217,7 +217,7 @@ namespace MoqWord.Components.Page
 
         async void PlayWord(Word word)
         {
-            var sound = _settingService.getCurrentSound();
+            var (sound, _) = _settingService.getCurrentSound();
             await sound.PlayAsync(word.WordName);
         }
 

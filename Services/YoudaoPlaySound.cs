@@ -46,16 +46,31 @@ namespace MoqWord.Services
                 }
                 await Audio.PlayAudioFromUrlAsync
                 (
-                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncodeUnicode(word)}&type={useVoice}",
-                     (float)setting.SpeechSpeed,
-                     (float)setting.SoundVolume / 100,
-                     cancelToken
+                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncode(word)}&type={useVoice}",
+                     cancellationToken: cancelToken
                 );
                 
             }
             catch (Exception ex)
             {
-                messageService.Error(ex.Message);
+                await messageService.Error(ex.Message);
+            }
+        }
+
+        public async Task PlayAsync(string soundName, string word, double volume, double speed, CancellationToken cancelToken = default)
+        {
+            try
+            {
+                await Audio.PlayAudioFromUrlAsync
+                (
+                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncode(word)}&type={soundName}",
+                     cancellationToken: cancelToken
+                );
+
+            }
+            catch (Exception ex)
+            {
+                await messageService.Error(ex.Message);
             }
         }
     }

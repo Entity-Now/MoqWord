@@ -88,13 +88,12 @@ namespace MoqWord.Services
             private set => this.RaiseAndSetIfChanged(ref _previousWord, value);
         }
 
-        private CancellationTokenSource _cancellationTokenSource;
+        private CancellationTokenSource _cancellationTokenSource = default;
 
-        public PlayService(IBookService _BookService, ISettingService _settingService, DefaultPlaySound _secondaryPlay, Scheduler _scheduler, IWordLogService wordLogService, IWordService wordService)
+        public PlayService(IBookService _BookService, ISettingService _settingService, Scheduler _scheduler, IWordLogService wordLogService, IWordService wordService)
         {
             BookService = _BookService;
             settingService = _settingService;
-            secondaryPlaySound = _secondaryPlay;
             this.wordLogService = wordLogService;
             this.wordService = wordService;
             scheduler = _scheduler;
@@ -162,21 +161,31 @@ namespace MoqWord.Services
                 Looped();
             }
         }
-        public virtual void Play()
+        public virtual async Task Play()
         {
+            if (_cancellationTokenSource.Token.IsCancellationRequested)
+            {
+                return;
+            }
             // 获取音源
-            playSound = settingService.getCurrentSound();
+            (playSound, secondaryPlaySound) = settingService.getCurrentSound();
             // 播放单词所需的时间
             var s = settingService.First();
             var readTime = CurrentWord.WordName.CalculateReadingTime(s.SpeechSpeed);
             // play
-            playSound.PlayAsync(CurrentWord.WordName, _cancellationTokenSource.Token);
+            await playSound.PlayAsync(CurrentWord.WordName, _cancellationTokenSource.Token);
             // play text
-            scheduler.AddTempTask(TimeSpan.FromSeconds(readTime + 0.3), () =>
-            {
-                var tran_s = CurrentWord.Translates[0];
-                secondaryPlaySound.PlayAsync(tran_s.Trans.ReplacePartOfSpeech(), _cancellationTokenSource.Token);
-            });
+            //scheduler.AddTempTask(TimeSpan.FromSeconds(readTime + 0.3), async () =>
+            //{
+            //    if (_cancellationTokenSource.Token.IsCancellationRequested)
+            //    {
+            //        return;
+            //    }
+            //    var tran_s = CurrentWord.Translates[0];
+            //    await secondaryPlaySound.PlayAsync(s.SecondSoundName, tran_s.Trans.ReplacePartOfSpeech(), s.SoundVolume, s.SpeechSpeed, _cancellationTokenSource.Token);
+            //});
+            var tran_s = CurrentWord.Translates[0];
+            await secondaryPlaySound.PlayAsync(s.SecondSoundName, tran_s.Trans.ReplacePartOfSpeech(), s.SoundVolume, s.SpeechSpeed, _cancellationTokenSource.Token);
             // add log
             wordLogService.InsertList(new List<WordLog> { new WordLog
             {
@@ -213,7 +222,7 @@ namespace MoqWord.Services
             IsLoopPlay = false;
         }
 
-        public void Looped()
+        public async Task Looped()
         {
             CancelAndResetToken();
             if (!IsLoopPlay || _cancellationTokenSource.Token.IsCancellationRequested)
@@ -221,42 +230,35 @@ namespace MoqWord.Services
                 return;
             }
             var s = settingService.First();
-            // 计算下次播放时间
-            var wordNameTime = CurrentWord.WordName.CalculateReadingTime(s.SpeechSpeed);
-            var translateTime = CurrentWord.Translates[0].Trans.CalculateReadingTime(s.SpeechSpeed);
-            var nextTime = wordNameTime + translateTime + 0.3;
             int playCount = 0;
-            void playSound()
+            async Task playSound()
             {
                 if (!IsLoopPlay || _cancellationTokenSource.Token.IsCancellationRequested)
                 {
                     return;
                 }
                 // 播放单词
-                Play();
+                await Play();
                 playCount++;
                 if (playCount < (int)s.RepeatCount)
                 {
-                    scheduler.AddTempTask(TimeSpan.FromSeconds(nextTime), playSound);
+                    await playSound();
                 }
                 else
                 {
-                    scheduler.AddTempTask(TimeSpan.FromSeconds(nextTime), () =>
+                    if (CurrentIndex < ToDayWords.Count - 1)
                     {
-                        if (CurrentIndex < ToDayWords.Count - 1)
-                        {
-                            CurrentIndex++;
-                        }
-                        else
-                        {
-                            CurrentIndex = 0;
-                        }
-                        Looped();
-                    });
+                        CurrentIndex++;
+                    }
+                    else
+                    {
+                        CurrentIndex = 0;
+                    }
+                    await Looped();
                 }
             }
             // play
-            playSound();
+            await playSound();
         }
 
 

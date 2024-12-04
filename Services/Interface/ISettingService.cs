@@ -18,7 +18,7 @@ namespace MoqWord.Services.Interface
         /// 获取当前的音源
         /// </summary>
         /// <returns></returns>
-        IPlaySound getCurrentSound();
+        (IPlaySound?, IPlaySound?) getCurrentSound();
         /// <summary>
         /// 设置当前的音源
         /// </summary>

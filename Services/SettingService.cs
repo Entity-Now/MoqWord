@@ -34,7 +34,7 @@ namespace MoqWord.Services
         /// 获取当前的音源
         /// </summary>
         /// <returns></returns>
-        public virtual IPlaySound getCurrentSound() 
+        public virtual (IPlaySound?, IPlaySound?) getCurrentSound() 
         {
             Dictionary<Sound, Type> SoundMap = new Dictionary<Sound, Type> 
             {
@@ -44,7 +44,8 @@ namespace MoqWord.Services
             };
             var setting = repository.First();
             var service = ServiceHelper.getService().GetService(SoundMap[setting.SoundSource]) as IPlaySound;
-            return service;
+            var secondService = ServiceHelper.getService().GetService(SoundMap[setting.SecondSoundSource]) as IPlaySound;
+            return (service, secondService);
         }
         /// <summary>
         /// 设置当前的音源

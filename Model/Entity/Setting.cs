@@ -71,7 +71,19 @@ namespace MoqWord.Model.Entity
         /// </summary>
         //[CellType("音频名", "未定义", CellType.TextBox, typeof(string))]
         [CellType(Visible = false)]
-        public string SoundName { get; set; }
+        public string SoundName { get; set; } = string.Empty;
+        /// <summary>
+        /// 音译音源
+        /// </summary>
+        //[CellType("音源", Sound.Default, CellType.ComboBox, typeof(Sound))]
+        [CellType(Visible = false)]
+        public Sound SecondSoundSource { get; set; }
+        /// <summary>
+        /// 音译音频名
+        /// </summary>
+        //[CellType("音频名", "未定义", CellType.TextBox, typeof(string))]
+        [CellType(Visible = false)]
+        public string SecondSoundName { get; set; } = string.Empty;
         /// <summary>
         /// 编码译码器
         /// </summary>

@@ -15,6 +15,15 @@ namespace MoqWord.ModelView
         public ISettingService SettingService { get; set; }
         public IShortcutKeysService ShortcutKeysService { get; set; }
 
+        string soundName = "";
+        public string SoundName
+        {
+            get => soundName;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref soundName, value);
+            }
+        }
         Sound _sound;
         public Sound Sound
         {
@@ -25,15 +34,25 @@ namespace MoqWord.ModelView
             }
         }
 
-        string soundName = "";
-        public string SoundName
+        string secondSoundName = "";
+        public string SecondSoundName
         {
-            get => soundName;
+            get => secondSoundName;
             set
             {
-                this.RaiseAndSetIfChanged(ref soundName, value);
+                this.RaiseAndSetIfChanged(ref secondSoundName, value);
             }
         }
+        Sound _secondSound;
+        public Sound SecondSound
+        {
+            get => _secondSound;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _secondSound, value);
+            }
+        }
+
 
         double speechSpeed;
         public double SpeechSpeed
@@ -61,6 +80,12 @@ namespace MoqWord.ModelView
         private readonly ReadOnlyObservableCollection<Voice> _soundList;
         public ReadOnlyObservableCollection<Voice> SoundList => _soundList;
         /// <summary>
+        /// 音频列表
+        /// </summary>
+        SourceList<Voice> secondSoundList = new SourceList<Voice>();
+        private readonly ReadOnlyObservableCollection<Voice> _secondSoundList;
+        public ReadOnlyObservableCollection<Voice>SecondSoundList => _secondSoundList;
+        /// <summary>
         /// 
         /// </summary>
         SourceList<ShortcutKeys> shortcutKeys = new SourceList<ShortcutKeys>();
@@ -74,11 +99,17 @@ namespace MoqWord.ModelView
             var s = settingService.First();
             Sound = s.SoundSource;
             SoundName = s.SoundName;
+            SecondSound = s.SecondSoundSource;
+            SecondSoundName = s.SecondSoundName;
             SoundVolume = s.SoundVolume;
             SpeechSpeed = s.SpeechSpeed;
             soundList.Connect()
                 .ObserveOn(RxApp.MainThreadScheduler)
                 .Bind(out _soundList)
+                .Subscribe();
+            secondSoundList.Connect()
+                .ObserveOn(RxApp.MainThreadScheduler)
+                .Bind(out _secondSoundList)
                 .Subscribe();
 
             shortcutKeys.Connect()
@@ -92,7 +123,13 @@ namespace MoqWord.ModelView
                     soundList.Clear();
                     soundList.AddRange(voices.GetVoice());
                 });
-            this.WhenAnyValue(v => v.Sound, v => v.SoundName, v => v.SpeechSpeed, v => v.SoundVolume)
+            this.WhenAnyValue(it => it.SecondSound)
+                .Subscribe(r => {
+                    var voices = settingService.getSound(r);
+                    secondSoundList.Clear();
+                    secondSoundList.AddRange(voices.GetVoice());
+                });
+            this.WhenAnyValue(v => v.Sound, v => v.SoundName, v => v.SecondSound, v => v.SecondSoundName, v => v.SpeechSpeed, v => v.SoundVolume)
                 .Throttle(TimeSpan.FromMilliseconds(1000))
                 .Subscribe(r =>
                 {
@@ -100,8 +137,10 @@ namespace MoqWord.ModelView
                     {
                         SoundSource  = r.Item1,
                         SoundName = r.Item2,
-                        SpeechSpeed = r.Item3,
-                        SoundVolume = r.Item4
+                        SecondSoundSource = r.Item3,
+                        SecondSoundName = r.Item4,
+                        SpeechSpeed = r.Item5,
+                        SoundVolume = r.Item6
                     }, x => x.Id > 0);
                 });
 

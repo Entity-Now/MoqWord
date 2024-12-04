@@ -49,7 +49,7 @@ namespace MoqWord.Services.Interface
         /// <summary>
         /// 开始播放单词
         /// </summary>
-        void Play();
+        Task Play();
         /// <summary>
         /// 停止播放单词
         /// </summary>
@@ -65,6 +65,6 @@ namespace MoqWord.Services.Interface
         /// <summary>
         /// 循环播放
         /// </summary>
-        void Looped();
+        Task Looped();
     }
 }

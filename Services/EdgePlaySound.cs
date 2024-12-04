@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Edge_tts_sharp;
 using Edge_tts_sharp.Model;
 using Edge_tts_sharp.Utils;
+using MoqWord.Model.Entity;
 using MoqWord.Repository.Interface;
 using MoqWord.Services.Interface;
 
@@ -19,26 +20,35 @@ namespace MoqWord.Services
             settingRepository = _settingRepository;
         }
 
-        public Task PlayAsync(string word, CancellationToken cancelToken = default)
+        public async Task PlayAsync(string word, CancellationToken cancelToken = default)
         {
             try
             {
                 //Edge_tts.Await = true;
                 var setting = settingRepository.First();
-                Voice useVoice = null;
-                if (setting.SoundSource == Sound.Edge && !string.IsNullOrEmpty(setting.SoundName))
+                await PlayAsync(setting.SoundName, word, setting.SoundVolume, setting.SpeechSpeed, cancelToken);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task PlayAsync(string soundName, string word, double volume, double speed, CancellationToken cancelToken = default)
+        {
+            bool finish = false;
+            try
+            {
+                Voice useVoice = GetVoice().FirstOrDefault(x => x.Name == soundName);
+                if (useVoice is null)
                 {
-                    useVoice = GetVoice().First(x => x.Name == setting.SoundName);
-                }
-                else
-                {
-                    useVoice = GetVoice().First(x => x.Name.Contains("zh"));
+                    throw new Exception("未找到Voice音频");
                 }
                 Edge_tts.Invoke(new PlayOption
                 {
                     Text = word,
-                    Volume = (int)setting.SoundVolume / 100,
-                    Rate = (int)setting.SpeechSpeed
+                    Volume = (int)volume / 100,
+                    Rate = (int)speed
                 }, new eVoice
                 {
                     Name = useVoice.Name,
@@ -50,18 +60,33 @@ namespace MoqWord.Services
                 {
                     if (!cancelToken.IsCancellationRequested)
                     {
-                        await Audio.PlayToByteAsync(
-                            sound.ToArray(),
-                            cancellationToken: cancelToken
-                        );
+                        try
+                        {
+                            await Audio.PlayToByteAsync(
+                                sound.ToArray(),
+                                cancellationToken: cancelToken
+                            );
+                        }
+                        catch (TaskCanceledException)
+                        {
+
+                        }
+                        finally
+                        {
+                            finish = true;
+                        }
                     }
                 });
-                return Task.CompletedTask;
             }
-            catch (Exception)
+            catch (TaskCanceledException)
             {
-                return Task.CompletedTask;
+
             }
+            while (!finish)
+            {
+                await Task.Delay(100);
+            }
+
         }
 
         public IEnumerable<Voice> GetVoice()

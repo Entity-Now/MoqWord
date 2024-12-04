@@ -87,6 +87,18 @@
                     </div>
                 </div>
                 <div class="flex flex-row items-center justify-between">
+                    <div>翻译音源渠道</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <EnumSelect TEnum="Sound" @bind-Value="ViewModel.SecondSound" />
+                    </div>
+                </div>
+                <div class="flex flex-row items-center justify-between">
+                    <div>翻译音源名称</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <Select TItem="Voice" TItemValue="string" @bind-Value="ViewModel.SecondSoundName" DataSource="@ViewModel.SecondSoundList" ValueName="@nameof(Voice.Name)" LabelName="@nameof(Voice.ShortName)" />
+                    </div>
+                </div>
+                <div class="flex flex-row items-center justify-between">
                     <div>音量</div>
                     <div class="ml-auto min-w-[200px]">
                         <Slider TValue="double" @bind-Value="ViewModel.SoundVolume" Step="1" Min="0" Max="100" />

@@ -68,6 +68,8 @@ namespace MoqWord
                     Difficulty = 0.5,
                     SoundName = "",
                     SoundSource = Sound.Default,
+                    SecondSoundName = "",
+                    SecondSoundSource = Sound.Default,
                     SpeechSpeed = 0,
                     SoundVolume = 100,
                     SuggestedCodec = "",

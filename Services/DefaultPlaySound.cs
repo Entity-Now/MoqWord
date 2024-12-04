@@ -36,6 +36,22 @@ namespace MoqWord.Services
                 synth.Volume = (int)selectVoice.SoundVolume;
                 synth.SelectVoice(useVoice);
 
+                await PlayAsync(selectVoice.SoundName, word, selectVoice.SoundVolume, selectVoice.SpeechSpeed, cancelToken);
+            }
+            finally
+            {
+                //synth.Dispose();
+            }
+        }
+        public async Task PlayAsync(string soundName, string word, double volume, double speed, CancellationToken cancelToken = default)
+        {
+            var synth = new SpeechSynthesizer();
+            try
+            {
+                synth.Rate = (int)speed / 10;
+                synth.Volume = (int)volume;
+                synth.SelectVoice(soundName);
+
                 var tcs = new TaskCompletionSource<bool>();
                 cancelToken.Register(() =>
                 {
@@ -68,5 +84,6 @@ namespace MoqWord.Services
                 });
             }
         }
+
     }
 }
