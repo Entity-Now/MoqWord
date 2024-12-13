@@ -17,3 +17,4 @@ global using MoqWord.Core.Interface;
 global using MoqWord.Components.Components.FaIcon;
 global using Microsoft.JSInterop;
 global using System.Diagnostics.CodeAnalysis;
+global using EnTranslate.Model.Enum;

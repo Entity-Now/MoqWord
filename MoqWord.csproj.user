@@ -24,6 +24,9 @@
     <Compile Update="WpfComponents\Page\DeskTop.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="WpfComponents\Page\HoverTranslate.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Style\GlobalStyle.xaml">
@@ -45,6 +48,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="WpfComponents\Page\DeskTop.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="WpfComponents\Page\HoverTranslate.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

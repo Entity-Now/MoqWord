@@ -81,21 +81,21 @@ namespace MoqWord.WpfComponents
                         }
                     });
                 });
-            this.WhenAnyValue(x => x.ViewMode.playService.CurrentWord)
+            this.WhenAnyValue(x => x.ViewMode.playService.CurrentWord, x=> x.ViewMode.popupConfigModelView.Color)
                 .Subscribe((e) => {
-                    if (e is null) return;
+                    if (e.Item1 is null) return;
                     Dispatcher?.Invoke(() => {
                         translate_list.Children.Clear();
-                        foreach (var item in e.Translates)
+                        foreach (var item in e.Item1.Translates)
                         {
                             var textblock = new TextBlock();
                             textblock.Style = (Style)FindResource("desktopTranslateFontSize");
-                            textblock.Foreground = new SolidColorBrush((Color)System.Windows.Media.ColorConverter.ConvertFromString(ViewModel?.popupConfigModelView.Color ?? "#bebebe"));
+                            textblock.Foreground = new SolidColorBrush((Color)System.Windows.Media.ColorConverter.ConvertFromString(e.Item2 ?? "#bebebe"));
                             textblock.Text = item.Trans;
                             translate_list.Children.Add(textblock);
                         }
 
-                        this.Height = 140 + (e.Translates.Count * (ViewModel?.popupConfigModelView?.TranslationFontSize ?? 12));
+                        this.Height = 140 + (e.Item1.Translates.Count * (ViewModel?.popupConfigModelView?.TranslationFontSize ?? 12));
                     });
                 });
         }

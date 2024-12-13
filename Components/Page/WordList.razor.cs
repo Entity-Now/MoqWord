@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MyTag = MoqWord.Model.Entity.Tag;
 using ColorHelper;
-using MoqWord.Utlis;
+using MoqWord.Utils;
 
 namespace MoqWord.Components.Page
 {

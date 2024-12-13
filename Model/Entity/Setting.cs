@@ -60,6 +60,10 @@ namespace MoqWord.Model.Entity
         /// </summary>
         [CellType("难度", 0.5, CellType.TextBox, typeof(double))]
         public double Difficulty { get; set; }
+        [CellType("取词间隔", 500, CellType.TextBox, typeof(int))]
+        public int SelectionInterval { get; set; }
+        [CellType(Visible = false)]
+        public TranslateType TranslateType { get; set; }
         /// <summary>
         /// 音源
         /// </summary>

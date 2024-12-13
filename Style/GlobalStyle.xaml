@@ -17,13 +17,17 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <TextBlock Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Content}" Style="{StaticResource TextHover}"/>
+                    <TextBlock 
+                               Foreground="{TemplateBinding Foreground}"
+                               Text="{TemplateBinding Content}"
+                               Style="{StaticResource TextHover}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Setter Property="TextBlock.FontSize" Value="14"/>
         <Setter Property="TextBlock.FontWeight" Value="Medium"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
     <Style x:Key="nobackButton" TargetType="Button">
         

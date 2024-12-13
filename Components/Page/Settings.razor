@@ -113,23 +113,46 @@
             </div>
         </div>
     </TabPane>
-        <TabPane Tab="快捷键设置" Key="shortcutKeys">
-            <div class="ml-6 bg-gray-100 rounded border-2 border-slate-300 shadow-md pb-4 box-border">
-                <div class="mt-4 mx-10">
-                <span class="text-lg font-bold">快捷键设置</span>
-                </div>
-                <Divider Class="!m-4" />
-                <div class="flex flex-col mx-11 gap-1">
-                @foreach (var item in ViewModel.ShortcutKeys)
-                {
-                    <div class="flex flex-row items-center justify-between">
-                        <div>@item.Name</div>
-                        <div class="ml-auto min-w-[200px]">
-                            <Input TValue="string" @bind-Value="item.Keys" OnFocus="()=> InputFocusOn(item)" OnBlur="()=> InputBlurOn(item)" />
-                        </div>
+    <TabPane Tab="快捷键设置" Key="shortcutKeys">
+        <div class="ml-6 bg-gray-100 rounded border-2 border-slate-300 shadow-md pb-4 box-border">
+            <div class="mt-4 mx-10">
+            <span class="text-lg font-bold">快捷键设置</span>
+            </div>
+            <Divider Class="!m-4" />
+            <div class="flex flex-col mx-11 gap-1">
+            @foreach (var item in ViewModel.ShortcutKeys)
+            {
+                <div class="flex flex-row items-center justify-between">
+                    <div>@item.Name</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <Input TValue="string" @bind-Value="item.ShortcutName" @onkeydown="HotKey_PreviewKeyDown" @onkeyup="(e)=> HotKey_PreviewKeyUp(e, item)" />
                     </div>
-                }
+                </div>
+            }
+            </div>
+        </div>
+    </TabPane>
+    <TabPane Tab="翻译设置" Key="Translate">
+        <div class="ml-6 bg-gray-100 rounded border-2 border-slate-300 shadow-md pb-4 box-border">
+            <div class="mt-4 mx-10">
+                <span class="text-lg font-bold">翻译设置</span>
+            </div>
+            <Divider Class="!m-4" />
+            <div class="flex flex-col mx-11 gap-1">
+                <div class="flex flex-row items-center justify-between">
+                    <div>翻译文本平台</div>
+                    <div class="ml-auto min-w-[200px]">
+                        <Select TItem="TranslateType" TItemValue="TranslateType" DefaultValue="@(TranslateType.Bing)" @bind-Value="ViewModel.TranslateType">
+                            <SelectOptions>
+                                <SelectOption Label="Bing" Value="@(TranslateType.Bing)"/>
+                                <SelectOption Label="谷歌" Value="@(TranslateType.Google)"/>
+                                <SelectOption Label="Deep" Value="@(TranslateType.Deep)"/>
+                                <SelectOption Label="Yandex" Value="@(TranslateType.Yandex)"/>
+                            </SelectOptions>
+                        </Select>
+                    </div>
                 </div>
             </div>
-        </TabPane>
+        </div>
+    </TabPane>
 </Tabs>

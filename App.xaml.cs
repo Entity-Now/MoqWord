@@ -11,16 +11,20 @@ namespace MoqWord
     /// </summary>
     public partial class App : Application
     {
+        public EventWaitHandle? ProgramStarted;
         protected override void OnStartup(StartupEventArgs e)
         {
-            // 注册键盘钩子
-            KeyBoardHook.SetHook(KeyBoardHook._proc);
-            base.OnStartup(e);
+            bool createNew;
+            ProgramStarted = new EventWaitHandle(false, EventResetMode.AutoReset, "MoqWord", out createNew);
+
+            if (!createNew)
+            {
+                MessageBox.Show("请不要重复运行程序！");
+                Environment.Exit(0);
+            }
 
             var mainWindow = ServiceHelper.Services.GetRequiredService<MainWindow>();
             mainWindow.Show();
-            // 卸载钩子
-            KeyBoardHook.UnhookWindowsHookEx(KeyBoardHook._hookID);
         }
     }
 

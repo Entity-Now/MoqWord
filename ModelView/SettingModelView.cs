@@ -73,6 +73,17 @@ namespace MoqWord.ModelView
                 this.RaiseAndSetIfChanged(ref soundVolume, value);
             }
         }
+
+        TranslateType translateType;
+        public TranslateType TranslateType
+        {
+            get => translateType;
+            set
+            {
+                this.RaiseAndSetIfChanged(ref translateType, value);
+            }
+        }
+
         /// <summary>
         /// 音频列表
         /// </summary>
@@ -129,7 +140,13 @@ namespace MoqWord.ModelView
                     secondSoundList.Clear();
                     secondSoundList.AddRange(voices.GetVoice());
                 });
-            this.WhenAnyValue(v => v.Sound, v => v.SoundName, v => v.SecondSound, v => v.SecondSoundName, v => v.SpeechSpeed, v => v.SoundVolume)
+            this.WhenAnyValue(v => v.Sound,
+                    v => v.SoundName,
+                    v => v.SecondSound, 
+                    v => v.SecondSoundName, 
+                    v => v.SpeechSpeed, 
+                    v => v.SoundVolume,
+                    v => v.TranslateType)
                 .Throttle(TimeSpan.FromMilliseconds(1000))
                 .Subscribe(r =>
                 {
@@ -140,7 +157,8 @@ namespace MoqWord.ModelView
                         SecondSoundSource = r.Item3,
                         SecondSoundName = r.Item4,
                         SpeechSpeed = r.Item5,
-                        SoundVolume = r.Item6
+                        SoundVolume = r.Item6,
+                        TranslateType = r.Item7,
                     }, x => x.Id > 0);
                 });
 

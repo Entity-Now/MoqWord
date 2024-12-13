@@ -1,4 +1,5 @@
 ﻿using AntDesign;
+using DynamicData;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 using MoqWord.Attributes;
@@ -7,6 +8,7 @@ using MoqWord.Extensions;
 using MoqWord.Model.Data;
 using MoqWord.ModelView;
 using MoqWord.Repository.Interface;
+using MoqWord.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,7 +18,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
-using static MoqWord.Core.KeyBoardHook;
+using static MoqWord.Utils.NativeMethod;
+using KeyboardEventArgs = Microsoft.AspNetCore.Components.Web.KeyboardEventArgs;
 
 namespace MoqWord.Components.Page
 {
@@ -30,9 +33,8 @@ namespace MoqWord.Components.Page
             get => ViewModel;
             set => ViewModel = value;
         }
-
+        private List<string> keys = new List<string>();
         private string currentTag = "default";
-        KeyDownHandle inputHandle = null;
         public List<SettingItem> SourceList { get; set; }
 
         protected override void OnInitialized()
@@ -47,29 +49,54 @@ namespace MoqWord.Components.Page
             item.Value = curr;
         }
 
-        void InputFocusOn(ShortcutKeys sk)
+        private void HotKey_PreviewKeyDown(KeyboardEventArgs e)
         {
-            inputHandle = (keys) =>
+            var key = e.Key;
+            if (keys.Contains(key))
             {
-                this.InvokeAsync(() =>
-                {
-                    sk.Keys = String.Join(',', keys.Select(k => KeyMap.keyMap.ContainsKey(k) ? KeyMap.keyMap[k] : ""));
-                    StateHasChanged();
-                });
-            };
-            KeyBoardHook.KeysHandle += inputHandle;
-            // 设置钩子
-            KeyBoardHook.KeysHandle -= NotifyIconHelper.KeyListens;
-
+                return;
+            }
+            keys.Add(key);
         }
-        void InputBlurOn(ShortcutKeys sk)
+
+        private void HotKey_PreviewKeyUp(KeyboardEventArgs e, ShortcutKeys shortcutKeys)
         {
-            KeyBoardHook.KeysHandle -= inputHandle;// 设置钩子
-            KeyBoardHook.KeysHandle += NotifyIconHelper.KeyListens;
-            settingService.ShortcutKeysService.SetColumns(s => new()
+            var notShortcutKeys = new List<string>
             {
-                Keys = sk.Keys
-            }, s => s.Id == sk.Id);
+                "Alt", "Control", "Shift", "Meta", "CapsLock", "NumLock", "ScrollLock",
+                "Insert", "Delete", "Backspace", "Tab", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight",
+                "PrintScreen", "Pause"
+            };
+            if (keys.Count <= 0)
+            {
+                return;
+            }
+            if (keys.Count == 1 && notShortcutKeys.Any(item => item == keys[0]))
+            {
+                keys.Clear();
+                return;
+            }
+            shortcutKeys.ShortcutName = string.Join(',', keys.Select(k => KeyMap.getKeyName(k)));
+            shortcutKeys.Key = KeyMap.getKeyNumber(keys[keys.Count - 1]);
+            shortcutKeys.Modifiers = KeyModifiers.None;
+            if ((Keyboard.Modifiers & ModifierKeys.Control) != 0)
+            {
+                shortcutKeys.Modifiers += 2;
+            }
+
+            if ((Keyboard.Modifiers & ModifierKeys.Shift) != 0)
+            {
+                shortcutKeys.Modifiers += 4;
+            }
+
+            if ((Keyboard.Modifiers & ModifierKeys.Alt) != 0)
+            {
+                shortcutKeys.Modifiers += 1;
+            }
+            keys.Clear();
+            settingService.ShortcutKeysService.UpdateById(shortcutKeys);
+            // 重载热键
+            ShortcutKeyHelper.ReRegister();
         }
     }
 }

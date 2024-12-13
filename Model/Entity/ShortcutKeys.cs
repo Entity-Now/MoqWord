@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static MoqWord.Utils.NativeMethod;
 
 namespace MoqWord.Model.Entity
 {
@@ -15,9 +16,13 @@ namespace MoqWord.Model.Entity
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 按键列表
+        /// 按键代码
         /// </summary>
-        public string Keys { get; set; }
+        public int Key { get; set; }
+        /// <summary>
+        /// 功能案件
+        /// </summary>
+        public KeyModifiers Modifiers { get; set; }
         /// <summary>
         /// 调用的方法名
         /// </summary>
@@ -31,6 +36,6 @@ namespace MoqWord.Model.Entity
         /// <summary>
         /// 快捷名
         /// </summary>
-        public ShortcutName ShortcutName { get; set; }
+        public string ShortcutName { get; set; }
     }
 }
