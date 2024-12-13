@@ -101,7 +101,7 @@ namespace MoqWord
                         Name = "打开/关闭单词",
                         ShortcutName = "Ctrl,Alt,D",
                         Key = 68,
-                        Modifiers = NativeMethod.KeyModifiers.Ctrl
+                        Modifiers = NativeMethod.KeyModifiers.Ctrl | NativeMethod.KeyModifiers.Alt
                     },
                     new ShortcutKeys
                     {
@@ -110,7 +110,7 @@ namespace MoqWord
                         Key = 80,
                         Interface = "IPlayService",
                         Method = "Collapse",
-                        Modifiers = NativeMethod.KeyModifiers.Ctrl
+                        Modifiers = NativeMethod.KeyModifiers.Ctrl | NativeMethod.KeyModifiers.Alt
                     },
                     new ShortcutKeys
                     {
@@ -119,7 +119,7 @@ namespace MoqWord
                         Key = 37,
                         Interface = "IPlayService",
                         Method = "Previous",
-                        Modifiers = NativeMethod.KeyModifiers.Ctrl
+                        Modifiers = NativeMethod.KeyModifiers.Ctrl | NativeMethod.KeyModifiers.Alt
                     },
                     new ShortcutKeys
                     {
@@ -128,14 +128,14 @@ namespace MoqWord
                         Key = 39,
                         Interface = "IPlayService",
                         Method = "Next",
-                        Modifiers = NativeMethod.KeyModifiers.Ctrl
+                        Modifiers = NativeMethod.KeyModifiers.Ctrl | NativeMethod.KeyModifiers.Alt
                     },
                     new ShortcutKeys
                     {
                         Name = "划词翻译",
                         ShortcutName = "Ctrl,Space",
                         Key = 32,
-                        Modifiers = NativeMethod.KeyModifiers.Ctrl
+                        Modifiers = NativeMethod.KeyModifiers.Ctrl | NativeMethod.KeyModifiers.Alt
                     }
                 });
             }
