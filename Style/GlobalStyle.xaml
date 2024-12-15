@@ -86,4 +86,10 @@
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0 15"/>
     </Style>
+    <!--动画-->
+    <Storyboard x:Key="loading">
+        <DoubleAnimation
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                From="0" To="360" Duration="0:0:5" RepeatBehavior="Forever"/>
+    </Storyboard>
 </ResourceDictionary>

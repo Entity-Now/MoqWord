@@ -79,6 +79,10 @@ namespace MoqWord.Helpers
             }
             DeskTopNotify.Show();
         }
+        // Windows API to get the DPI scale for the primary monitor
+        [DllImport("user32.dll")]
+        public static extern int GetDpiForWindow(IntPtr hwnd);
+
         public static void ShowHoverTranslate()
         {
             if (HoverTranslate.Visibility == Visibility.Visible)
@@ -88,51 +92,75 @@ namespace MoqWord.Helpers
             }
 
             // 显示窗口
-            HoverTranslate.CurrentString = GetWords.Get();
+            HoverTranslate.SetCurrentString(GetWords.Get());
             HoverTranslate.WindowStartupLocation = WindowStartupLocation.Manual;
+
+            // 显示窗口
+            HoverTranslate.Show();
 
             // 使用 Dispatcher 延迟设置位置
             HoverTranslate.Dispatcher.InvokeAsync(async () =>
             {
-                await HoverTranslate.getWord();
-                // 获取鼠标屏幕坐标
+                // 等待一帧，以确保控件的尺寸已更新
+                // await Task.Delay(10);  // 确保控件的布局更新完成
+
+                // 获取鼠标的屏幕坐标
                 var mousePosition = System.Windows.Forms.Cursor.Position;
 
-                // 获取屏幕工作区大小
-                var screen = System.Windows.Forms.Screen.FromPoint(mousePosition);
-                var workingArea = screen.WorkingArea;
+                // 获取当前窗口的 DPI 缩放比例
+                var hwnd = new System.Windows.Interop.WindowInteropHelper(HoverTranslate).Handle;
+                int dpi = GetDpiForWindow(hwnd);
 
-                // 计算窗口的初始位置，使其居中于鼠标
+                // 计算 DPI 缩放比例
+                double scale = dpi / 96.0;  // 默认 96 DPI 是 100% 缩放
+
+                // 使用 DPI 缩放来调整鼠标坐标
+                double mouseX = mousePosition.X / scale;
+                double mouseY = mousePosition.Y / scale;
+
+                // 获取窗口的宽度和高度
                 double windowWidth = HoverTranslate.Width;
                 double windowHeight = HoverTranslate.Height;
-                double left = mousePosition.X;
-                double top = mousePosition.Y - windowHeight / 2;
 
-                // 调整位置以确保窗口在屏幕内
-                if (left < workingArea.Left)
-                {
-                    left = workingArea.Left;
-                }
-                else if (left + windowWidth > workingArea.Right)
-                {
-                    left = workingArea.Right - windowWidth;
-                }
-
-                if (top < workingArea.Top)
-                {
-                    top = workingArea.Top;
-                }
-                else if (top + windowHeight > workingArea.Bottom)
-                {
-                    top = workingArea.Bottom - windowHeight;
-                }
+                // 计算鼠标位置周围的剩余空间
+                double spaceLeft = mouseX;
+                double spaceRight = SystemParameters.WorkArea.Width - mouseX;
+                double spaceTop = mouseY;
+                double spaceBottom = SystemParameters.WorkArea.Height - mouseY;
 
                 // 设置窗口的位置
-                HoverTranslate.Left = left;
-                HoverTranslate.Top = top;
-                HoverTranslate.Visibility = Visibility.Visible;
+                if (spaceRight < windowWidth)  // 如果右边空间不足
+                {
+                    HoverTranslate.Left = mouseX - windowWidth - 10;  // 显示在左边
+                }
+                else
+                {
+                    HoverTranslate.Left = mouseX + 10;  // 默认显示在右边
+                }
+
+                // 根据上下空间决定窗口的垂直位置
+                if (spaceBottom < windowHeight)  // 如果下边空间不足
+                {
+                    HoverTranslate.Top = mouseY - windowHeight - 10;  // 显示在上边
+                }
+                else
+                {
+                    HoverTranslate.Top = mouseY + 10;  // 默认显示在下边
+                }
+
+                // 确保窗口不超出屏幕边界
+                if (HoverTranslate.Left + HoverTranslate.Width > SystemParameters.WorkArea.Width)
+                {
+                    HoverTranslate.Left = SystemParameters.WorkArea.Width - HoverTranslate.Width;
+                }
+
+                if (HoverTranslate.Top + HoverTranslate.Height > SystemParameters.WorkArea.Height)
+                {
+                    HoverTranslate.Top = SystemParameters.WorkArea.Height - HoverTranslate.Height;
+                }
             }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
         }
+
         public static void ShowOptionView()
         {
             var popupOptionView = new HandyControl.Controls.Window();

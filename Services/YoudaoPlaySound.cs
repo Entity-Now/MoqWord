@@ -46,7 +46,7 @@ namespace MoqWord.Services
                 }
                 await Audio.PlayAudioFromUrlAsync
                 (
-                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncode(word)}&type={useVoice}",
+                    $"https://dict.youdao.com/dictvoice?audio={HttpUtility.UrlEncode(word)}&type={useVoice}&le=cn",
                      cancellationToken: cancelToken
                 );
                 

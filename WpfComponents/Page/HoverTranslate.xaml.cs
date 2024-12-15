@@ -45,6 +45,18 @@ namespace MoqWord.WpfComponents.Page
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                loading.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        public void SetCurrentString(string text)
+        {
+            CurrentString = text;
+            this.translateText.Text = text;
+            loading.Visibility = Visibility.Collapsed;
+            getWord();
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)

@@ -45,6 +45,8 @@ namespace MoqWord.Extensions
                 { "part", "分词" },
                 { "ger", "动名词" },
                 { "inf", "不定式" },
+                { "vt", "及物动词" },
+                { "vi", "不及物动词" }
             };
             if (PartOfSpeech.ContainsKey(preStr))
             {

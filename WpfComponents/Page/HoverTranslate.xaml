@@ -22,7 +22,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    <Grid Name="GridContainer">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
@@ -82,5 +82,16 @@
                     Style="{StaticResource TextHover}" >&#xf00d;</TextBlock>
             </Button>
         </StackPanel>
+        <Border Name="loading" Grid.ColumnSpan="2" Background="Gray">
+            <StackPanel
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center">
+                <TextBlock Text="&#xf110;"
+                           TextAlignment="Center"
+                   Style="{Binding Source={StaticResource TextHover}}"/>
+                <TextBlock Text="加载中..." Foreground="White"
+                           Margin="0 10"/>
+            </StackPanel>
+        </Border>
     </Grid>
 </Window>
